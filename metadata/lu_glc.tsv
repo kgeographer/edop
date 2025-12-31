@@ -1,0 +1,24 @@
+GLC_ID	GLC_Name
+1	Tree cover, broadleaved, evergreen
+2	Tree cover, broadleaved, deciduous, closed
+3	Tree cover, broadleaved, deciduous, open
+4	Tree cover, needle-leaved, evergreen
+5	Tree cover, needle-leaved, deciduous
+6	Tree cover, mixed leaf type
+7	Tree cover, regularly flooded, fresh
+8	Tree cover, regularly flooded, saline, (daily variation)
+9	Mosaic: tree cover/other natural vegetation
+10	Tree cover, burnt
+11	Shrub cover, closed-open, evergreen (with or without sparse tree layer)
+12	Shrub cover, closed-open, deciduous (with or without sparse tree layer)
+13	Herbaceous cover, closed-open
+14	Sparse herbaceous or sparse shrub cover
+15	Regularly flooded shrub and/or herbaceous cover
+16	Cultivated and managed areas
+17	Mosaic: cropland/tree cover/other natural vegetation
+18	Mosaic: cropland/shrub and/or herbaceous cover
+19	Bare areas
+20	Water bodies (natural and artificial)
+21	Snow and ice (natural and artificial)
+22	Artificial surfaces and associated areas
+23	No data

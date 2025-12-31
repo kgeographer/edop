@@ -1,0 +1,42 @@
+BasinATLAS, HydroATLAS
+
+BasinATLAS
+==========
+➜  BasinATLAS_Data_v10.gdb ogrinfo BasinATLAS_v10.gdb
+INFO: Open of `BasinATLAS_v10.gdb'
+      using driver `OpenFileGDB' successful.
+Layer: BasinATLAS_v10_lev01 (Multi Polygon)
+Layer: BasinATLAS_v10_lev02 (Multi Polygon)
+Layer: BasinATLAS_v10_lev03 (Multi Polygon)
+Layer: BasinATLAS_v10_lev04 (Multi Polygon)
+Layer: BasinATLAS_v10_lev05 (Multi Polygon)
+Layer: BasinATLAS_v10_lev06 (Multi Polygon)
+Layer: BasinATLAS_v10_lev07 (Multi Polygon)
+Layer: BasinATLAS_v10_lev08 (Multi Polygon)
+Layer: BasinATLAS_v10_lev09 (Multi Polygon)
+Layer: BasinATLAS_v10_lev10 (Multi Polygon)
+Layer: BasinATLAS_v10_lev11 (Multi Polygon)
+Layer: BasinATLAS_v10_lev12 (Multi Polygon)
+
+# num rows per level
+for L in $(seq -w 01 12); do
+	ogrinfo -so BasinATLAS_v10.gdb BasinATLAS_v10_lev${L} | grep "Feature Count"
+done
+1	Feature Count: 10
+2	Feature Count: 62
+3	Feature Count: 292
+4	Feature Count: 1342
+5 Feature Count: 4734
+6	Feature Count: 16397
+7	Feature Count: 57646
+8	Feature Count: 190675
+9	Feature Count: 508190
+10	Feature Count: 941012
+11	Feature Count: 1031785
+12	Feature Count: 1034083
+
+# get level 9 to geopackage
+ogr2ogr -f GPKG ../basins_l08.gpkg BasinATLAS_v10.gdb BasinATLAS_v10_lev08
+
+
+

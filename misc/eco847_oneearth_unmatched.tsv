@@ -1,0 +1,51 @@
+eco_id	eco_name	eco_key	suggested_slug	suggested_title	suggested_key	sim
+332	East Central Texas forests	east central texas forests	south-central-rockies-forests	South Central Rockies Forests	south central rockies forests	0.7636
+332	East Central Texas forests	east central texas forests	central-southern-cascades-forests	Central-Southern Cascades Forests	central southern cascades forests	0.6780
+332	East Central Texas forests	east central texas forests	eastern-australian-temperate-forests	Eastern Australian Temperate Forests	eastern australian temperate forests	0.6774
+332	East Central Texas forests	east central texas forests	central-american-dry-forests	Central American Dry Forests	central american dry forests	0.6667
+332	East Central Texas forests	east central texas forests	east-african-montane-forests	East African Montane Forests	east african montane forests	0.6667
+333	Eastern Canadian Forest-Boreal transition	eastern canadian forest boreal transition	eastern-canadian-temperate-boreal-forest-transition	Eastern Canadian Temperate-Boreal Forest Transition	eastern canadian temperate boreal forest transition	0.8043
+333	Eastern Canadian Forest-Boreal transition	eastern canadian forest boreal transition	eastern-canadian-boreal-forests	Eastern Canadian Boreal Forests	eastern canadian boreal forests	0.7222
+333	Eastern Canadian Forest-Boreal transition	eastern canadian forest boreal transition	western-congolian-forest-savanna	Western Congolian Forest-Savanna	western congolian forest savanna	0.6575
+333	Eastern Canadian Forest-Boreal transition	eastern canadian forest boreal transition	eastern-canadian-shield-taiga	Eastern Canadian Shield Taiga	eastern canadian shield taiga	0.6571
+333	Eastern Canadian Forest-Boreal transition	eastern canadian forest boreal transition	central-us-forest-grasslands-transition	Central US Forest-Grasslands Transition	central us forest grasslands transition	0.6250
+373	Eastern Canadian forests	eastern canadian forests	eastern-canadian-boreal-forests	Eastern Canadian Boreal Forests	eastern canadian boreal forests	0.8727
+373	Eastern Canadian forests	eastern canadian forests	eastern-cascades-forests	Eastern Cascades Forests	eastern cascades forests	0.8333
+373	Eastern Canadian forests	eastern canadian forests	eastern-guinean-forests	Eastern Guinean Forests	eastern guinean forests	0.8085
+373	Eastern Canadian forests	eastern canadian forests	eastern-arc-forests	Eastern Arc Forests	eastern arc forests	0.7907
+373	Eastern Canadian forests	eastern canadian forests	eastern-congolian-swamp-forests	Eastern Congolian Swamp Forests	eastern congolian swamp forests	0.7636
+416	Interior Yukon-Alaska alpine tundra	interior yukon alaska alpine tundra	interior-alaska-yukon-alpine-tundra	Interior Alaska-Yukon Alpine Tundra	interior alaska yukon alpine tundra	0.8286
+416	Interior Yukon-Alaska alpine tundra	interior yukon alaska alpine tundra	interior-alaska-yukon-lowland-taiga	Interior Alaska-Yukon Lowland Taiga	interior alaska yukon lowland taiga	0.6000
+416	Interior Yukon-Alaska alpine tundra	interior yukon alaska alpine tundra	eastern-himalayan-alpine-shrub-and-meadows	Eastern Himalayan Alpine Shrub and Meadows	eastern himalayan alpine shrub and meadows	0.5455
+416	Interior Yukon-Alaska alpine tundra	interior yukon alaska alpine tundra	western-himalayan-alpine-shrub-and-meadows	Western Himalayan Alpine Shrub and Meadows	western himalayan alpine shrub and meadows	0.5455
+416	Interior Yukon-Alaska alpine tundra	interior yukon alaska alpine tundra	iceland-boreal-birch-forests-and-alpine-tundra	Iceland Boreal Birch Forests and Alpine Tundra	iceland boreal birch forests and alpine tundra	0.5432
+363	Piney Woods	piney woods	piney-woods-forests	Piney Woods Forests	piney woods forests	0.7333
+363	Piney Woods	piney woods	coolgardie-woodlands	Coolgardie Woodlands	coolgardie woodlands	0.5161
+363	Piney Woods	piney woods	naracoorte-woodlands	Naracoorte Woodlands	naracoorte woodlands	0.5161
+363	Piney Woods	piney woods	angolan-mopane-woodlands	Angolan Mopane Woodlands	angolan mopane woodlands	0.5143
+363	Piney Woods	piney woods	zambezian-mopane-woodlands	Zambezian Mopane Woodlands	zambezian mopane woodlands	0.4865
+365	Queen Charlotte Islands conifer forests	queen charlotte islands conifer forests	iberian-conifer-forests	Iberian Conifer Forests	iberian conifer forests	0.6774
+365	Queen Charlotte Islands conifer forests	queen charlotte islands conifer forests	leeward-islands-moist-forests	Leeward Islands Moist Forests	leeward islands moist forests	0.6765
+365	Queen Charlotte Islands conifer forests	queen charlotte islands conifer forests	tian-shan-montane-conifer-forests	Tian Shan Montane Conifer Forests	tian shan montane conifer forests	0.6667
+365	Queen Charlotte Islands conifer forests	queen charlotte islands conifer forests	fraser-plateau-and-basin-conifer-forests	Fraser Plateau and Basin Conifer Forests	fraser plateau and basin conifer forests	0.6582
+365	Queen Charlotte Islands conifer forests	queen charlotte islands conifer forests	qilian-mountains-conifer-forests	Qilian Mountains Conifer Forests	qilian mountains conifer forests	0.6479
+628	Rapa Nui and Sala y Gómez subtropical forests	rapa nui and sala y gomez subtropical forests	rapa-nui-and-sala-y-gomez-subtropical-broadleaf-forests	Rapa Nui and Sala Y Gómez Subtropical Broadleaf Forests	rapa nui and sala y gomez subtropical broadleaf forests	0.9000
+628	Rapa Nui and Sala y Gómez subtropical forests	rapa nui and sala y gomez subtropical forests	northern-triangle-subtropical-forests	Northern Triangle Subtropical Forests	northern triangle subtropical forests	0.6585
+628	Rapa Nui and Sala y Gómez subtropical forests	rapa nui and sala y gomez subtropical forests	norfolk-island-subtropical-forests	Norfolk Island Subtropical Forests	norfolk island subtropical forests	0.6582
+628	Rapa Nui and Sala y Gómez subtropical forests	rapa nui and sala y gomez subtropical forests	meghalaya-subtropical-forests	Meghalaya Subtropical Forests	meghalaya subtropical forests	0.6486
+628	Rapa Nui and Sala y Gómez subtropical forests	rapa nui and sala y gomez subtropical forests	kermadec-islands-subtropical-moist-forests	Kermadec Islands Subtropical Moist Forests	kermadec islands subtropical moist forests	0.6437
+0	Rock and Ice	rock and ice	orinoco-wetlands	Orinoco Wetlands	orinoco wetlands	0.5000
+0	Rock and Ice	rock and ice	norfolk-island-subtropical-forests	Norfolk Island Subtropical Forests	norfolk island subtropical forests	0.4783
+0	Rock and Ice	rock and ice	borneo-lowland-rainforests	Borneo Lowland Rainforests	borneo lowland rainforests	0.4737
+0	Rock and Ice	rock and ice	cocos-island-moist-forests	Cocos Island Moist Forests	cocos island moist forests	0.4737
+0	Rock and Ice	rock and ice	arabian-sand-desert	Arabian Sand Desert	arabian sand desert	0.4516
+54	Serengeti volcanic grasslands	serengeti volcanic grasslands	ascension-scrub-and-grasslands	Ascension Scrub and Grasslands	ascension scrub and grasslands	0.6441
+54	Serengeti volcanic grasslands	serengeti volcanic grasslands	western-gulf-coastal-grasslands	Western Gulf Coastal Grasslands	western gulf coastal grasslands	0.6000
+54	Serengeti volcanic grasslands	serengeti volcanic grasslands	drakensberg-grasslands	Drakensberg Grasslands	drakensberg grasslands	0.5882
+54	Serengeti volcanic grasslands	serengeti volcanic grasslands	terai-duar-savanna-and-grasslands	Terai-Duar Savanna and Grasslands	terai duar savanna and grasslands	0.5806
+54	Serengeti volcanic grasslands	serengeti volcanic grasslands	mongolian-manchurian-grassland	Mongolian-Manchurian Grassland	mongolian manchurian grassland	0.5763
+400	Southeast US mixed woodlands and savannas	southeast us mixed woodlands and savannas	southeast-us-conifer-savannas	Southeast US Conifer Savannas	southeast us conifer savannas	0.6857
+400	Southeast US mixed woodlands and savannas	southeast us mixed woodlands and savannas	southwest-arabian-montane-woodlands-and-grasslands	Southwest Arabian Montane Woodlands and Grasslands	southwest arabian montane woodlands and grasslands	0.6813
+400	Southeast US mixed woodlands and savannas	southeast us mixed woodlands and savannas	southwest-australia-woodlands	Southwest Australia Woodlands	southwest australia woodlands	0.6286
+400	Southeast US mixed woodlands and savannas	southeast us mixed woodlands and savannas	southwest-australia-savanna	Southwest Australia Savanna	southwest australia savanna	0.6176
+400	Southeast US mixed woodlands and savannas	southeast us mixed woodlands and savannas	southeast-australia-temperate-savanna	Southeast Australia Temperate Savanna	southeast australia temperate savanna	0.6154

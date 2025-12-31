@@ -1,0 +1,42 @@
+EDOP: Environmental Dimensions of Place
+=======================================
+
+Elevation
+---------
+SRTM (Shuttle Radar Topography Mission): 30m (1 arc-second) global
+NASADEM (30m): improved SRTM
+Copernicus DEM (GLO-30 / GLO-90)
+
+
+Hydrological
+------------
+HydroAtlas (sheds, basins, rivers)
+https://www.hydrosheds.org/hydroatlas
+	Global BasinATLAS
+https://www.hydrosheds.org/products/hydrobasins
+	shapefiles by continent, 1-12 resolution (9 looks good)
+
+
+
+Ecoregions (titles/IDs only)
+----------------------------
+WWF Ecoregions
+	local: ecoregions_827.shp
+	from https://www.geographyrealm.com/terrestrial-ecoregions-gis-data/
+		ecoregions2017.zip (.shp); 847 rows
+One Earth (map: https://ecoregions.appspot.com/)
+https://www.oneearth.org/ecoregion-list/
+e.g. Timbuktu in Sahelian Acacia Savanna
+	https://www.oneearth.org/ecoregions/sahelian-acacia-savanna/
+844 of 847 have descriptive landing pages
+
+in Postgres
+edop database
+	TABLES
+	- eco847: eco_id, eco_name, geom, biome_num, biome_name
+	- oneearth_links: slug, title
+	- slug_override: eco_id, slug
+	VIEWS
+	- eco847_oneearth_final: eco_id, eco_name, slug, slug_source
+
+

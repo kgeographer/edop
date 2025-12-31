@@ -1,0 +1,57 @@
+pull	ID	Category	Attribute	Source Data	Citation	Column(s)	Count
+	H01	Hydrology	Natural Discharge	WaterGAP v2.2	Döll et al. 2003	dis_m3_---	x3
+	H02	Hydrology	Land Surface Runoff	WaterGAP v2.2	Döll et al. 2003	run_mm_---	x1
+	H03	Hydrology	Inundation Extent	GIEMS-D15	Fluet-Chouinard et al. 2015	inu_pc_---	x6
+	H04	Hydrology	Limnicity (Percent Lake Area)	HydroLAKES	Messager et al. 2016	lka_pc_---	x2
+	H05	Hydrology	Lake Volume	HydroLAKES	Messager et al. 2016	lkv_mc_---	x1
+	H06	Hydrology	Reservoir Volume	GRanD v1.1	Lehner et al. 2011	rev_mc_---	x1
+	H07	Hydrology	Degree of Regulation	HydroSHEDS & GRanD	Lehner et al. 2011	dor_pc_---	x1
+	H08	Hydrology	River Area	HydroSHEDS & WaterGAP	Lehner & Grill 2013	ria_ha_---	x2
+	H09	Hydrology	River Volume	HydroSHEDS & WaterGAP	Lehner & Grill 2013	riv_tc_---	x2
+	H10	Hydrology	Groundwater Table Depth	Global Groundwater Map	Fan et al. 2013	gwt_cm_---	x1
+	P01	Physiography	Elevation	EarthEnv-DEM90	Robinson et al. 2014	ele_mt_---	x4
+	P02	Physiography	Terrain Slope	EarthEnv-DEM90	Robinson et al. 2014	slp_dg_---	x2
+	P03	Physiography	Stream Gradient	EarthEnv-DEM90	Robinson et al. 2014	sgr_dk_---	x1
+	C01	Climate	Climate Zones	GEnS	Metzger et al. 2013	clz_cl_---	x1
+	C02	Climate	Climate Strata	GEnS	Metzger et al. 2013	cls_cl_---	x1
+	C03	Climate	Air Temperature	WorldClim v1.4	Hijmans et al. 2005	tmp_dc_---	x16
+	C04	Climate	Precipitation	WorldClim v1.4	Hijmans et al. 2005	pre_mm_---	x14
+	C05	Climate	Potential Evapotranspiration	Global-PET	Zomer et al. 2008	pet_mm_---	x14
+	C06	Climate	Actual Evapotranspiration	Global Soil-Water Balance	Trabucco & Zomer 2010	aet_mm_---	x14
+	C07	Climate	Global Aridity Index	Global Aridity Index	Zomer et al. 2008	ari_ix_---	x2
+	C08	Climate	Climate Moisture Index	WorldClim & Global-PET	Hijmans et al. 2005	cmi_ix_---	x14
+	C09	Climate	Snow Cover Extent	MODIS/Aqua	Hall & Riggs 2016	snw_pc_---	x15
+	L01	Landcover	Land Cover Classes	GLC2000	Bartholomé & Belward 2005	glc_cl_---	x1
+	L02	Landcover	Land Cover Extent	GLC2000	Bartholomé & Belward 2005	glc_pc_---	x44
+	L03	Landcover	Potential Natural Vegetation Classes	EarthStat	Ramankutty & Foley 1999	pnv_cl_---	x1
+	L04	Landcover	Potential Natural Vegetation Extent	EarthStat	Ramankutty & Foley 1999	pnv_pc_---	x30
+	L05	Landcover	Wetland Classes	GLWD	Lehner & Döll 2004	wet_cl_---	x1
+	L06	Landcover	Wetland Extent	GLWD	Lehner & Döll 2004	wet_pc_---	x22
+	L07	Landcover	Forest Cover Extent	GLC2000	Bartholomé & Belward 2005	for_pc_---	x2
+	L08	Landcover	Cropland Extent	EarthStat	Ramankutty et al. 2008	crp_pc_---	x2
+	L09	Landcover	Pasture Extent	EarthStat	Ramankutty et al. 2008	pst_pc_---	x2
+	L10	Landcover	Irrigated Area Extent (Equipped)	HID v1.0	Siebert et al. 2015	ire_pc_---	x2
+	L11	Landcover	Glacier Extent	GLIMS	GLIMS & NSIDC 2012	gla_pc_---	x2
+	L12	Landcover	Permafrost Extent	PZI	Gruber 2012	prm_pc_---	x2
+	L13	Landcover	Protected Area Extent	WDPA	IUCN & UNEP-WCMC 2014	pac_pc_---	x2
+	L14	Landcover	Terrestrial Biomes	TEOW	Dinerstein et al. 2017	tbi_cl_---	x1
+	L15	Landcover	Terrestrial Ecoregions	TEOW	Dinerstein et al. 2017	tec_cl_---	x1
+	L16	Landcover	Freshwater Major Habitat Types	FEOW	Abell et al. 2008	fmh_cl_---	x1
+	L17	Landcover	Freshwater Ecoregions	FEOW	Abell et al. 2008	fec_cl_---	x1
+	S01	Soils & Geology	Clay Fraction in Soil	SoilGrids1km	Hengl et al. 2014	cly_pc_---	x2
+	S02	Soils & Geology	Silt Fraction in Soil	SoilGrids1km	Hengl et al. 2014	slt_pc_---	x2
+	S03	Soils & Geology	Sand Fraction in Soil	SoilGrids1km	Hengl et al. 2014	snd_pc_---	x2
+	S04	Soils & Geology	Organic Carbon Content in Soil	SoilGrids1km	Hengl et al. 2014	soc_th_---	x2
+	S05	Soils & Geology	Soil Water Content	Global Soil-Water Balance	Trabucco & Zomer 2010	swc_pc_---	x14
+	S06	Soils & Geology	Lithological Classes	GLiM	Hartmann & Moosdorf 2012	lit_cl_---	x1
+	S07	Soils & Geology	Karst Area Extent	Rock Outcrops v3.0	Williams & Ford 2006	kar_pc_---	x2
+	S08	Soils & Geology	Soil Erosion	GloSEM v1.2	Borrelli et al. 2017	ero_kh_---	x2
+	A01	Anthropogenic	Population Count	GPW v4	CIESIN 2016	pop_ct_---	x2
+	A02	Anthropogenic	Population Density	GPW v4	CIESIN 2016	ppd_pk_---	x2
+	A03	Anthropogenic	Urban Extent	GHS S-MOD v1.0 (2016)	Pesaresi & Freire 2016	urb_pc_---	x2
+	A04	Anthropogenic	Nighttime Lights	Nighttime Lights v4	Doll 2008	nli_ix_---	x2
+	A05	Anthropogenic	Road Density	GRIP v4	Meijer et al. 2018	rdd_mk_---	x2
+	A06	Anthropogenic	Human Footprint	Human Footprint v2	Venter et al. 2016	hft_ix_---	x4
+	A07	Anthropogenic	Global Administrative Areas	GADM v2.0	University of Berkeley 2012	gad_id_---	x1
+	A08	Anthropogenic	Gross Domestic Product	GDP PPP v2	Kummu et al. 2018	gdp_ud_---	x3
+	A09	Anthropogenic	Human Development Index	HDI v2	Kummu et al. 2018	hdi_ix_---	x1

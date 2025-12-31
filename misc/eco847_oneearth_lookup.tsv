@@ -1,0 +1,838 @@
+eco_id	eco_name	slug	oneearth_title	match_type	score
+1	Albertine Rift montane forests	albertine-rift-montane-forests	Albertine Rift Montane Forests	norm_exact	1.0000
+2	Cameroon Highlands forests	cameroon-highlands-forests	Cameroon Highlands Forests	norm_exact	1.0000
+3	Central Congolian lowland forests	central-congolian-lowland-forests	Central Congolian Lowland Forests	norm_exact	1.0000
+4	Comoros forests	comoros-forests	Comoros Forests	norm_exact	1.0000
+5	Congolian coastal forests	congolian-coastal-forests	Congolian Coastal Forests	norm_exact	1.0000
+6	Cross-Niger transition forests	cross-niger-transition-forests	Cross-Niger Transition Forests	norm_exact	1.0000
+7	Cross-Sanaga-Bioko coastal forests	cross-sanaga-bioko-coastal-forests	Cross-Sanaga-Bioko Coastal Forests	norm_exact	1.0000
+8	East African montane forests	east-african-montane-forests	East African Montane Forests	norm_exact	1.0000
+9	Eastern Arc forests	eastern-arc-forests	Eastern Arc Forests	norm_exact	1.0000
+10	Eastern Congolian swamp forests	eastern-congolian-swamp-forests	Eastern Congolian Swamp Forests	norm_exact	1.0000
+11	Eastern Guinean forests	eastern-guinean-forests	Eastern Guinean Forests	norm_exact	1.0000
+12	Ethiopian montane forests	ethiopian-montane-forests	Ethiopian Montane Forests	norm_exact	1.0000
+13	Granitic Seychelles forests	granitic-seychelles-forests	Granitic Seychelles Forests	norm_exact	1.0000
+14	Guinean montane forests	guinean-montane-forests	Guinean Montane Forests	norm_exact	1.0000
+15	Knysna-Amatole montane forests	knysna-amatole-montane-forests	Knysna-Amatole Montane Forests	norm_exact	1.0000
+16	Kwazulu Natal-Cape coastal forests	kwazulu-natal-cape-coastal-forests	Kwazulu Natal-Cape Coastal Forests	norm_exact	1.0000
+17	Madagascar humid forests	madagascar-humid-forests	Madagascar Humid Forests	norm_exact	1.0000
+18	Madagascar subhumid forests	madagascar-subhumid-forests	Madagascar Subhumid Forests	norm_exact	1.0000
+19	Maputaland coastal forests and woodlands	maputaland-coastal-forests-and-woodlands	Maputaland Coastal Forests and Woodlands	norm_exact	1.0000
+20	Mascarene forests	mascarene-forests	Mascarene Forests	norm_exact	1.0000
+21	Mount Cameroon and Bioko montane forests	mount-cameroon-and-bioko-montane-forests	Mount Cameroon and Bioko Montane Forests	norm_exact	1.0000
+22	Niger Delta swamp forests	niger-delta-swamp-forests	Niger Delta Swamp Forests	norm_exact	1.0000
+23	Nigerian lowland forests	nigerian-lowland-forests	Nigerian Lowland Forests	norm_exact	1.0000
+24	Northeast Congolian lowland forests	northeast-congolian-lowland-forests	Northeast Congolian Lowland Forests	norm_exact	1.0000
+25	Northern Swahili coastal forests	northern-swahili-coastal-forests	Northern Swahili Coastal Forests	norm_exact	1.0000
+26	Northwest Congolian lowland forests	northwest-congolian-lowland-forests	Northwest Congolian Lowland Forests	norm_exact	1.0000
+27	São Tomé, Príncipe, and Annobón forests	sao-tome-principe-and-annobon-forests	São Tomé, Príncipe, and Annobón Forests	norm_exact	1.0000
+28	Southern Swahili coastal forests and woodlands	southern-swahili-coastal-forests-and-woodlands	Southern Swahili Coastal Forests and Woodlands	norm_exact	1.0000
+29	Western Congolian swamp forests	western-congolian-swamp-forests	Western Congolian Swamp Forests	norm_exact	1.0000
+30	Western Guinean lowland forests	western-guinean-lowland-forests	Western Guinean Lowland Forests	norm_exact	1.0000
+31	Cape Verde Islands dry forests	cape-verde-islands-dry-forests	Cape Verde Islands Dry Forests	norm_exact	1.0000
+32	Madagascar dry deciduous forests	madagascar-dry-deciduous-forests	Madagascar Dry Deciduous Forests	norm_exact	1.0000
+33	Zambezian evergreen dry forests	zambezian-evergreen-dry-forests	Zambezian Evergreen Dry Forests	norm_exact	1.0000
+34	Angolan mopane woodlands	angolan-mopane-woodlands	Angolan Mopane Woodlands	norm_exact	1.0000
+35	Angolan scarp savanna and woodlands	angolan-scarp-savanna-and-woodlands	Angolan Scarp Savanna and Woodlands	norm_exact	1.0000
+36	Angolan wet miombo woodlands	angolan-wet-miombo-woodlands	Angolan Wet Miombo Woodlands	norm_exact	1.0000
+37	Ascension scrub and grasslands	ascension-scrub-and-grasslands	Ascension Scrub and Grasslands	norm_exact	1.0000
+38	Central bushveld	central-bushveld	Central Bushveld	norm_exact	1.0000
+39	Central Zambezian wet miombo woodlands	central-zambezian-wet-miombo-woodlands	Central Zambezian Wet Miombo Woodlands	norm_exact	1.0000
+40	Drakensberg Escarpment savanna and thicket	drakensberg-escarpment-savanna-and-thicket	Drakensberg Escarpment Savanna and Thicket	norm_exact	1.0000
+41	Drakensberg grasslands	drakensberg-grasslands	Drakensberg Grasslands	norm_exact	1.0000
+42	Dry miombo woodlands	dry-miombo-woodlands	Dry Miombo Woodlands	norm_exact	1.0000
+43	East Sudanian savanna	east-sudanian-savanna	East Sudanian Savanna	norm_exact	1.0000
+44	Guinean forest-savanna	guinean-forest-savanna	Guinean Forest-Savanna	norm_exact	1.0000
+45	Horn of Africa xeric bushlands	horn-of-africa-xeric-bushlands	Horn of Africa Xeric Bushlands	norm_exact	1.0000
+46	Itigi-Sumbu thicket	itigi-sumbu-thicket	Itigi-Sumbu Thicket	norm_exact	1.0000
+47	Kalahari Acacia woodlands	kalahari-acacia-woodlands	Kalahari Acacia Woodlands	norm_exact	1.0000
+48	Limpopo lowveld	limpopo-lowveld	Limpopo Lowveld	norm_exact	1.0000
+49	Mandara Plateau woodlands	mandara-plateau-woodlands	Mandara Plateau Woodlands	norm_exact	1.0000
+50	Masai xeric grasslands and shrublands	masai-xeric-grasslands-and-shrublands	Masai Xeric Grasslands and Shrublands	norm_exact	1.0000
+51	Northern Acacia-Commiphora bushlands and thickets	northern-acacia-commiphora-bushlands-and-thickets	Northern Acacia-Commiphora Bushlands and Thickets	norm_exact	1.0000
+52	Northern Congolian Forest-Savanna	northern-congolian-forest-savanna	Northern Congolian Forest-Savanna	norm_exact	1.0000
+53	Sahelian Acacia savanna	sahelian-acacia-savanna	Sahelian Acacia Savanna	norm_exact	1.0000
+55	Somali Acacia-Commiphora bushlands and thickets	somali-acacia-commiphora-bushlands-and-thickets	Somali Acacia-Commiphora Bushlands and Thickets	norm_exact	1.0000
+56	South Arabian fog woodlands, shrublands, and dune	south-arabian-fog-woodlands-shrublands-and-dune	South Arabian Fog Woodlands, Shrublands, and Dune	norm_exact	1.0000
+57	Southern Acacia-Commiphora bushlands and thickets	southern-acacia-commiphora-bushlands-and-thickets	Southern Acacia-Commiphora Bushlands and Thickets	norm_exact	1.0000
+58	Southern Congolian forest-savanna	southern-congolian-forest-savanna	Southern Congolian Forest-Savanna	norm_exact	1.0000
+59	Southwest Arabian montane woodlands and grasslands	southwest-arabian-montane-woodlands-and-grasslands	Southwest Arabian Montane Woodlands and Grasslands	norm_exact	1.0000
+60	St. Helena scrub and woodlands	st-helena-scrub-and-woodlands	St. Helena Scrub and Woodlands	norm_exact	1.0000
+61	Victoria Basin forest-savanna	victoria-basin-forest-savanna	Victoria Basin Forest-Savanna	norm_exact	1.0000
+62	West Sudanian savanna	west-sudanian-savanna	West Sudanian Savanna	norm_exact	1.0000
+63	Western Congolian forest-savanna	western-congolian-forest-savanna	Western Congolian Forest-Savanna	norm_exact	1.0000
+64	Zambezian Baikiaea woodlands	zambezian-baikiaea-woodlands	Zambezian Baikiaea Woodlands	norm_exact	1.0000
+65	Zambezian mopane woodlands	zambezian-mopane-woodlands	Zambezian Mopane Woodlands	norm_exact	1.0000
+66	Zambezian-Limpopo mixed woodlands	zambezian-limpopo-mixed-woodlands	Zambezian-Limpopo Mixed Woodlands	norm_exact	1.0000
+67	Amsterdam-Saint Paul Islands temperate grasslands	amsterdam-saint-paul-islands-temperate-grasslands	Amsterdam-Saint Paul Islands Temperate Grasslands	norm_exact	1.0000
+68	Tristan Da Cunha-Gough Islands shrub and grasslands	tristan-da-cunha-gough-islands-shrub-and-grasslands	Tristan Da Cunha-Gough Islands Shrub and Grasslands	norm_exact	1.0000
+69	East African halophytics	east-african-halophytics	East African Halophytics	norm_exact	1.0000
+70	Etosha Pan halophytics	etosha-pan-halophytics	Etosha Pan Halophytics	norm_exact	1.0000
+71	Inner Niger Delta flooded savanna	inner-niger-delta-flooded-savanna	Inner Niger Delta Flooded Savanna	norm_exact	1.0000
+72	Lake Chad flooded savanna	lake-chad-flooded-savanna	Lake Chad Flooded Savanna	norm_exact	1.0000
+73	Makgadikgadi halophytics	makgadikgadi-halophytics	Makgadikgadi Halophytics	norm_exact	1.0000
+74	Sudd flooded grasslands	sudd-flooded-grasslands	Sudd Flooded Grasslands	norm_exact	1.0000
+75	Zambezian coastal flooded savanna	zambezian-coastal-flooded-savanna	Zambezian Coastal Flooded Savanna	norm_exact	1.0000
+76	Zambezian flooded grasslands	zambezian-flooded-grasslands	Zambezian Flooded Grasslands	norm_exact	1.0000
+77	Angolan montane forest-grassland	angolan-montane-forest-grassland	Angolan Montane Forest-Grassland	norm_exact	1.0000
+78	East African montane moorlands	east-african-montane-moorlands	East African Montane Moorlands	norm_exact	1.0000
+79	Ethiopian montane grasslands and woodlands	ethiopian-montane-grasslands-and-woodlands	Ethiopian Montane Grasslands and Woodlands	norm_exact	1.0000
+80	Ethiopian montane moorlands	ethiopian-montane-moorlands	Ethiopian Montane Moorlands	norm_exact	1.0000
+81	Highveld grasslands	highveld-grasslands	Highveld Grasslands	norm_exact	1.0000
+82	Jos Plateau forest-grassland	jos-plateau-forest-grassland	Jos Plateau Forest-Grassland	norm_exact	1.0000
+83	Madagascar ericoid thickets	madagascar-ericoid-thickets	Madagascar Ericoid Thickets	norm_exact	1.0000
+84	Mulanje Montane forest-grassland	mulanje-montane-forest-grassland	Mulanje Montane Forest-Grassland	norm_exact	1.0000
+85	Nyanga-Chimanimani Montane forest-grassland	nyanga-chimanimani-montane-forest-grassland	Nyanga-Chimanimani Montane Forest-Grassland	norm_exact	1.0000
+86	Rwenzori-Virunga montane moorlands	rwenzori-virunga-montane-moorlands	Rwenzori-Virunga Montane Moorlands	norm_exact	1.0000
+87	Southern Rift Montane forest-grassland	southern-rift-montane-forest-grassland	Southern Rift Montane Forest-Grassland	norm_exact	1.0000
+88	Albany thickets	albany-thickets	Albany Thickets	norm_exact	1.0000
+89	Fynbos shrubland	fynbos-shrubland	Fynbos Shrubland	norm_exact	1.0000
+90	Renosterveld shrubland	renosterveld-shrubland	Renosterveld Shrubland	norm_exact	1.0000
+91	Aldabra Island xeric scrub	aldabra-island-xeric-scrub	Aldabra Island Xeric Scrub	norm_exact	1.0000
+92	Djibouti xeric shrublands	djibouti-xeric-shrublands	Djibouti Xeric Shrublands	norm_exact	1.0000
+93	Eritrean coastal desert	eritrean-coastal-desert	Eritrean Coastal Desert	norm_exact	1.0000
+94	Gariep Karoo	gariep-karoo	Gariep Karoo	norm_exact	1.0000
+95	Hobyo grasslands and shrublands	hobyo-grasslands-and-shrublands	Hobyo Grasslands and Shrublands	norm_exact	1.0000
+96	Ile Europa and Bassas da India xeric scrub	ile-europa-and-bassas-da-india-xeric-scrub	Ile Europa and Bassas Da India Xeric Scrub	norm_exact	1.0000
+97	Kalahari xeric savanna	kalahari-xeric-savanna	Kalahari Xeric Savanna	norm_exact	1.0000
+98	Kaokoveld desert	kaokoveld-desert	Kaokoveld Desert	norm_exact	1.0000
+99	Madagascar spiny thickets	madagascar-spiny-thickets	Madagascar Spiny Thickets	norm_exact	1.0000
+100	Madagascar succulent woodlands	madagascar-succulent-woodlands	Madagascar Succulent Woodlands	norm_exact	1.0000
+101	Nama Karoo shrublands	nama-karoo-shrublands	Nama Karoo Shrublands	norm_exact	1.0000
+102	Namaqualand-Richtersveld steppe	namaqualand-richtersveld-steppe	Namaqualand-Richtersveld Steppe	norm_exact	1.0000
+103	Namib Desert	namib-desert	Namib Desert	norm_exact	1.0000
+104	Namibian savanna woodlands	namibian-savanna-woodlands	Namibian Savanna Woodlands	norm_exact	1.0000
+105	Socotra Island xeric shrublands	socotra-island-xeric-shrublands	Socotra Island Xeric Shrublands	norm_exact	1.0000
+106	Somali montane xeric woodlands	somali-montane-xeric-woodlands	Somali Montane Xeric Woodlands	norm_exact	1.0000
+107	Southwest Arabian coastal xeric shrublands	southwest-arabian-coastal-xeric-shrublands	Southwest Arabian Coastal Xeric Shrublands	norm_exact	1.0000
+108	Southwest Arabian Escarpment shrublands and woodlands	southwest-arabian-escarpment-shrublands-and-woodlands	Southwest Arabian Escarpment Shrublands and Woodlands	norm_exact	1.0000
+109	Southwest Arabian highland xeric scrub	southwest-arabian-highland-xeric-scrub	Southwest Arabian Highland Xeric Scrub	norm_exact	1.0000
+110	Succulent Karoo xeric shrublands	succulent-karoo-xeric-shrublands	Succulent Karoo Xeric Shrublands	norm_exact	1.0000
+111	Central African mangroves	central-african-mangroves	Central African Mangroves	norm_exact	1.0000
+112	East African mangroves	east-african-mangroves	East African Mangroves	norm_exact	1.0000
+113	Guinean mangroves	guinean-mangroves	Guinean Mangroves	norm_exact	1.0000
+114	Madagascar mangroves	madagascar-mangroves	Madagascar Mangroves	norm_exact	1.0000
+115	Red Sea mangroves	red-sea-mangroves	Red Sea Mangroves	norm_exact	1.0000
+116	Southern Africa mangroves	southern-africa-mangroves	Southern Africa Mangroves	norm_exact	1.0000
+117	Adelie Land tundra	adelie-land-tundra	Adelie Land Tundra	norm_exact	1.0000
+118	Central South Antarctic Peninsula tundra	central-south-antarctic-peninsula-tundra	Central South Antarctic Peninsula Tundra	norm_exact	1.0000
+119	Dronning Maud Land tundra	dronning-maud-land-tundra	Dronning Maud Land Tundra	norm_exact	1.0000
+120	East Antarctic tundra	east-antarctic-tundra	East Antarctic Tundra	norm_exact	1.0000
+121	Ellsworth Land tundra	ellsworth-land-tundra	Ellsworth Land Tundra	norm_exact	1.0000
+122	Ellsworth Mountains tundra	ellsworth-mountains-tundra	Ellsworth Mountains Tundra	norm_exact	1.0000
+123	Enderby Land tundra	enderby-land-tundra	Enderby Land Tundra	norm_exact	1.0000
+124	Marie Byrd Land tundra	marie-byrd-land-tundra	Marie Byrd Land Tundra	norm_exact	1.0000
+125	North Victoria Land tundra	north-victoria-land-tundra	North Victoria Land Tundra	norm_exact	1.0000
+126	Northeast Antarctic Peninsula tundra	northeast-antarctic-peninsula-tundra	Northeast Antarctic Peninsula Tundra	norm_exact	1.0000
+127	Northwest Antarctic Peninsula tundra	northwest-antarctic-peninsula-tundra	Northwest Antarctic Peninsula Tundra	norm_exact	1.0000
+128	Prince Charles Mountains tundra	prince-charles-mountains-tundra	Prince Charles Mountains Tundra	norm_exact	1.0000
+129	Scotia Sea Islands tundra	scotia-sea-islands-tundra	Scotia Sea Islands Tundra	norm_exact	1.0000
+130	South Antarctic Peninsula tundra	south-antarctic-peninsula-tundra	South Antarctic Peninsula Tundra	norm_exact	1.0000
+131	South Orkney Islands tundra	south-orkney-islands-tundra	South Orkney Islands Tundra	norm_exact	1.0000
+132	South Victoria Land tundra	south-victoria-land-tundra	South Victoria Land Tundra	norm_exact	1.0000
+133	Southern Indian Ocean Islands tundra	southern-indian-ocean-islands-tundra	Southern Indian Ocean Islands Tundra	norm_exact	1.0000
+134	Transantarctic Mountains tundra	transantarctic-mountains-tundra	Transantarctic Mountains Tundra	norm_exact	1.0000
+135	Admiralty Islands lowland rain forests	admiralty-islands-lowland-rainforests	Admiralty Islands Lowland Rainforests	norm_exact	1.0000
+136	Banda Sea Islands moist deciduous forests	banda-sea-islands-moist-deciduous-forests	Banda Sea Islands Moist Deciduous Forests	norm_exact	1.0000
+137	Biak-Numfoor rain forests	biak-numfoor-rainforests	Biak-Numfoor Rainforests	norm_exact	1.0000
+138	Buru rain forests	buru-rainforests	Buru Rainforests	norm_exact	1.0000
+139	Central Range Papuan montane rain forests	central-range-papuan-montane-rainforests	Central Range Papuan Montane Rainforests	norm_exact	1.0000
+140	Halmahera rain forests	halmahera-rainforests	Halmahera Rainforests	norm_exact	1.0000
+141	Huon Peninsula montane rain forests	huon-peninsula-montane-rainforests	Huon Peninsula Montane Rainforests	norm_exact	1.0000
+142	Lord Howe Island subtropical forests	lord-howe-island-subtropical-forests	Lord Howe Island Subtropical Forests	norm_exact	1.0000
+143	Louisiade Archipelago rain forests	louisiade-archipelago-rainforests	Louisiade Archipelago Rainforests	norm_exact	1.0000
+144	New Britain-New Ireland lowland rain forests	new-britain-new-ireland-lowland-rainforests	New Britain-New Ireland Lowland Rainforests	norm_exact	1.0000
+145	New Britain-New Ireland montane rain forests	new-britain-new-ireland-montane-rainforests	New Britain-New Ireland Montane Rainforests	norm_exact	1.0000
+146	New Caledonia rain forests	new-caledonia-rainforests	New Caledonia Rainforests	norm_exact	1.0000
+147	Norfolk Island subtropical forests	norfolk-island-subtropical-forests	Norfolk Island Subtropical Forests	norm_exact	1.0000
+148	Northern New Guinea lowland rain and freshwater swamp forests	northern-new-guinea-lowland-rain-and-freshwater-swamp-forests	Northern New Guinea Lowland Rain and Freshwater Swamp Forests	norm_exact	1.0000
+149	Northern New Guinea montane rain forests	northern-new-guinea-montane-rainforests	Northern New Guinea Montane Rainforests	norm_exact	1.0000
+150	Queensland tropical rain forests	queensland-tropical-rainforests	Queensland Tropical Rainforests	norm_exact	1.0000
+151	Seram rain forests	seram-rainforests	Seram Rainforests	norm_exact	1.0000
+152	Solomon Islands rain forests	solomon-islands-rainforests	Solomon Islands Rainforests	norm_exact	1.0000
+153	Southeast Papuan rain forests	southeastern-papuan-rainforests	Southeastern Papuan Rainforests	fuzzy_auto	0.9492
+154	Southern New Guinea freshwater swamp forests	southern-new-guinea-freshwater-swamp-forests	Southern New Guinea Freshwater Swamp Forests	norm_exact	1.0000
+155	Southern New Guinea lowland rain forests	southern-new-guinea-lowland-rainforests	Southern New Guinea Lowland Rainforests	norm_exact	1.0000
+156	Sulawesi lowland rain forests	sulawesi-lowland-rainforests	Sulawesi Lowland Rainforests	norm_exact	1.0000
+157	Sulawesi montane rain forests	sulawesi-montane-rainforests	Sulawesi Montane Rainforests	norm_exact	1.0000
+158	Trobriand Islands rain forests	trobriand-islands-rainforests	Trobriand Islands Rainforests	norm_exact	1.0000
+159	Vanuatu rain forests	vanuatu-rainforests	Vanuatu Rainforests	norm_exact	1.0000
+160	Vogelkop montane rain forests	vogelkop-montane-rainforests	Vogelkop Montane Rainforests	norm_exact	1.0000
+161	Vogelkop-Aru lowland rain forests	vogelkop-aru-lowland-rainforests	Vogelkop-Aru Lowland Rainforests	norm_exact	1.0000
+162	Yapen rain forests	yapen-rainforests	Yapen Rainforests	norm_exact	1.0000
+163	Lesser Sundas deciduous forests	lesser-sundas-deciduous-forests	Lesser Sundas Deciduous Forests	norm_exact	1.0000
+164	New Caledonia dry forests	new-caledonia-dry-forests	New Caledonia Dry Forests	norm_exact	1.0000
+165	Sumba deciduous forests	sumba-deciduous-forests	Sumba Deciduous Forests	norm_exact	1.0000
+166	Timor and Wetar deciduous forests	timor-and-wetar-deciduous-forests	Timor and Wetar Deciduous Forests	norm_exact	1.0000
+167	Chatham Island temperate forests	chatham-island-temperate-forests	Chatham Island Temperate Forests	norm_exact	1.0000
+168	Eastern Australian temperate forests	eastern-australian-temperate-forests	Eastern Australian Temperate Forests	norm_exact	1.0000
+169	Fiordland temperate forests	fiordland-temperate-forests	Fiordland Temperate Forests	norm_exact	1.0000
+170	Nelson Coast temperate forests	nelson-coast-temperate-forests	Nelson Coast Temperate Forests	norm_exact	1.0000
+171	New Zealand North Island temperate forests	new-zealand-north-island-temperate-forests	New Zealand North Island Temperate Forests	norm_exact	1.0000
+172	New Zealand South Island temperate forests	new-zealand-south-island-temperate-forests	New Zealand South Island Temperate Forests	norm_exact	1.0000
+173	Northland temperate kauri forests	northland-temperate-kauri-forests	Northland Temperate Kauri Forests	norm_exact	1.0000
+174	Rakiura Island temperate forests	rakiura-island-temperate-forests	Rakiura Island Temperate Forests	norm_exact	1.0000
+175	Richmond temperate forests	richmond-temperate-forests	Richmond Temperate Forests	norm_exact	1.0000
+176	Southeast Australia temperate forests	southeast-australia-temperate-forests	Southeast Australia Temperate Forests	norm_exact	1.0000
+177	Tasmanian Central Highland forests	tasmanian-central-highland-forests	Tasmanian Central Highland Forests	norm_exact	1.0000
+178	Tasmanian temperate forests	tasmanian-temperate-forests	Tasmanian Temperate Forests	norm_exact	1.0000
+179	Tasmanian temperate rain forests	tasmanian-temperate-rainforests	Tasmanian Temperate Rainforests	norm_exact	1.0000
+180	Westland temperate forests	westland-temperate-forests	Westland Temperate Forests	norm_exact	1.0000
+181	Arnhem Land tropical savanna	arnhem-land-tropical-savanna	Arnhem Land Tropical Savanna	norm_exact	1.0000
+182	Brigalow tropical savanna	brigalow-tropical-savanna	Brigalow Tropical Savanna	norm_exact	1.0000
+183	Cape York Peninsula tropical savanna	cape-york-peninsula-tropical-savanna	Cape York Peninsula Tropical Savanna	norm_exact	1.0000
+184	Carpentaria tropical savanna	carpentaria-tropical-savanna	Carpentaria Tropical Savanna	norm_exact	1.0000
+185	Einasleigh upland savanna	einasleigh-upland-savanna	Einasleigh Upland Savanna	norm_exact	1.0000
+186	Kimberly tropical savanna	kimberly-tropical-savanna	Kimberly Tropical Savanna	norm_exact	1.0000
+187	Mitchell Grass Downs	mitchell-grass-downs	Mitchell Grass Downs	norm_exact	1.0000
+188	Trans Fly savanna and grasslands	trans-fly-savanna-and-grasslands	Trans Fly Savanna and Grasslands	norm_exact	1.0000
+189	Victoria Plains tropical savanna	victoria-plains-tropical-savanna	Victoria Plains Tropical Savanna	norm_exact	1.0000
+190	Canterbury-Otago tussock grasslands	canterbury-otago-tussock-grasslands	Canterbury-Otago Tussock Grasslands	norm_exact	1.0000
+191	Eastern Australia mulga shrublands	eastern-australia-mulga-shrublands	Eastern Australia Mulga Shrublands	norm_exact	1.0000
+192	Southeast Australia temperate savanna	southeast-australia-temperate-savanna	Southeast Australia Temperate Savanna	norm_exact	1.0000
+193	Australian Alps montane grasslands	australian-alps-montane-grasslands	Australian Alps Montane Grasslands	norm_exact	1.0000
+194	New Zealand South Island montane grasslands	new-zealand-south-island-montane-grasslands	New Zealand South Island Montane Grasslands	norm_exact	1.0000
+195	Papuan Central Range sub-alpine grasslands	papuan-central-range-sub-alpine-grasslands	Papuan Central Range Sub-Alpine Grasslands	norm_exact	1.0000
+196	Antipodes Subantarctic Islands tundra	antipodes-subantarctic-islands-tundra	Antipodes Subantarctic Islands Tundra	norm_exact	1.0000
+197	Coolgardie woodlands	coolgardie-woodlands	Coolgardie Woodlands	norm_exact	1.0000
+198	Esperance mallee	esperance-mallee	Esperance Mallee	norm_exact	1.0000
+199	Eyre and York mallee	eyre-and-yorke-mallee	Eyre and Yorke Mallee	fuzzy_auto	0.9756
+200	Flinders-Lofty montane woodlands	flinders-lofty-montane-woodlands	Flinders-Lofty Montane Woodlands	norm_exact	1.0000
+201	Hampton mallee and woodlands	hampton-mallee-and-woodlands	Hampton Mallee and Woodlands	norm_exact	1.0000
+202	Jarrah-Karri forest and shrublands	jarrah-karri-forest-and-shrublands	Jarrah-Karri Forest and Shrublands	norm_exact	1.0000
+203	Murray-Darling woodlands and mallee	murray-darling-woodlands-and-mallee	Murray-Darling Woodlands and Mallee	norm_exact	1.0000
+204	Naracoorte woodlands	naracoorte-woodlands	Naracoorte Woodlands	norm_exact	1.0000
+205	Southwest Australia savanna	southwest-australia-savanna	Southwest Australia Savanna	norm_exact	1.0000
+206	Southwest Australia woodlands	southwest-australia-woodlands	Southwest Australia Woodlands	norm_exact	1.0000
+207	Carnarvon xeric shrublands	carnarvon-xeric-shrublands	Carnarvon Xeric Shrublands	norm_exact	1.0000
+208	Central Ranges xeric scrub	central-ranges-xeric-scrub	Central Ranges Xeric Scrub	norm_exact	1.0000
+209	Gibson desert	gibson-desert	Gibson Desert	norm_exact	1.0000
+210	Great Sandy-Tanami desert	great-sandy-tanami-desert	Great Sandy-Tanami Desert	norm_exact	1.0000
+211	Great Victoria desert	great-victoria-desert	Great Victoria Desert	norm_exact	1.0000
+212	Nullarbor Plains xeric shrublands	nullarbor-plains-xeric-shrublands	Nullarbor Plains Xeric Shrublands	norm_exact	1.0000
+213	Pilbara shrublands	pilbara-shrublands	Pilbara Shrublands	norm_exact	1.0000
+214	Simpson desert	simpson-desert	Simpson Desert	norm_exact	1.0000
+215	Tirari-Sturt stony desert	tirari-stuart-stony-desert	Tirari-Stuart Stony Desert	fuzzy_auto	0.9804
+216	Western Australian Mulga shrublands	western-australian-mulga-shrublands	Western Australian Mulga Shrublands	norm_exact	1.0000
+217	New Guinea mangroves	new-guinea-mangroves	New Guinea Mangroves	norm_exact	1.0000
+218	Andaman Islands rain forests	andaman-islands-rainforests	Andaman Islands Rainforests	norm_exact	1.0000
+219	Borneo lowland rain forests	borneo-lowland-rainforests	Borneo Lowland Rainforests	norm_exact	1.0000
+220	Borneo montane rain forests	borneo-montane-rainforests	Borneo Montane Rainforests	norm_exact	1.0000
+221	Borneo peat swamp forests	borneo-peat-swamp-forests	Borneo Peat Swamp Forests	norm_exact	1.0000
+222	Brahmaputra Valley semi-evergreen forests	brahmaputra-valley-semi-evergreen-forests	Brahmaputra Valley Semi-Evergreen Forests	norm_exact	1.0000
+223	Cardamom Mountains rain forests	cardamom-mountains-rainforests	Cardamom Mountains Rainforests	norm_exact	1.0000
+224	Chao Phraya freshwater swamp forests	chao-phraya-freshwater-swamp-forests	Chao Phraya Freshwater Swamp Forests	norm_exact	1.0000
+225	Chao Phraya lowland moist deciduous forests	chao-phraya-lowland-moist-deciduous-forests	Chao Phraya Lowland Moist Deciduous Forests	norm_exact	1.0000
+226	Chin Hills-Arakan Yoma montane forests	chin-hills-arakan-yoma-montane-forests	Chin Hills-Arakan Yoma Montane Forests	norm_exact	1.0000
+227	Christmas and Cocos Islands tropical forests	christmas-and-cocos-islands-tropical-forests	Christmas and Cocos Islands Tropical Forests	norm_exact	1.0000
+228	East Deccan moist deciduous forests	east-deccan-moist-deciduous-forests	East Deccan Moist Deciduous Forests	norm_exact	1.0000
+229	Eastern Java-Bali montane rain forests	eastern-java-bali-montane-rainforests	Eastern Java–Bali Montane Rainforests	norm_exact	1.0000
+230	Eastern Java-Bali rain forests	eastern-java-bali-rainforests	Eastern Java-Bali Rainforests	norm_exact	1.0000
+231	Greater Negros-Panay rain forests	greater-negros-panay-rainforests	Greater Negros-Panay Rainforests	norm_exact	1.0000
+232	Hainan Island monsoon rain forests	hainan-island-monsoon-rainforests	Hainan Island Monsoon Rainforests	norm_exact	1.0000
+233	Himalayan subtropical broadleaf forests	himalayan-subtropical-broadleaf-forests	Himalayan Subtropical Broadleaf Forests	norm_exact	1.0000
+234	Irrawaddy freshwater swamp forests	irrawaddy-freshwater-swamp-forests	Irrawaddy Freshwater Swamp Forests	norm_exact	1.0000
+235	Irrawaddy moist deciduous forests	irrawaddy-moist-deciduous-forests	Irrawaddy Moist Deciduous Forests	norm_exact	1.0000
+236	Jian Nan subtropical evergreen forests	jian-nan-subtropical-evergreen-forests	Jian Nan Subtropical Evergreen Forests	norm_exact	1.0000
+237	Kayah-Karen montane rain forests	kayah-karen-montane-rainforests	Kayah-Karen Montane Rainforests	norm_exact	1.0000
+238	Lower Gangetic Plains moist deciduous forests	lower-gangetic-plains-moist-deciduous-forests	Lower Gangetic Plains Moist Deciduous Forests	norm_exact	1.0000
+239	Luang Prabang montane rain forests	luang-prabang-montane-rainforests	Luang Prabang Montane Rainforests	norm_exact	1.0000
+240	Luzon montane rain forests	luzon-montane-rainforests	Luzon Montane Rainforests	norm_exact	1.0000
+241	Luzon rain forests	luzon-rainforests	Luzon Rainforests	norm_exact	1.0000
+242	Malabar Coast moist forests	malabar-coast-moist-forests	Malabar Coast Moist Forests	norm_exact	1.0000
+243	Maldives-Lakshadweep-Chagos Archipelago tropical moist forests	maldives-lakshadweep-chagos-archipelago-tropical-moist-forests	Maldives-Lakshadweep-Chagos Archipelago Tropical Moist Forests	norm_exact	1.0000
+244	Meghalaya subtropical forests	meghalaya-subtropical-forests	Meghalaya Subtropical Forests	norm_exact	1.0000
+245	Mentawai Islands rain forests	mentawai-islands-rainforests	Mentawai Islands Rainforests	norm_exact	1.0000
+246	Mindanao montane rain forests	mindanao-montane-rainforests	Mindanao Montane Rainforests	norm_exact	1.0000
+247	Mindanao-Eastern Visayas rain forests	mindanao-eastern-visayas-rainforests	Mindanao-Eastern Visayas Rainforests	norm_exact	1.0000
+248	Mindoro rain forests	mindoro-rainforests	Mindoro Rainforests	norm_exact	1.0000
+249	Mizoram-Manipur-Kachin rain forests	mizoram-manipur-kachin-rainforests	Mizoram-Manipur-Kachin Rainforests	norm_exact	1.0000
+250	Myanmar coastal rain forests	myanmar-coastal-rainforests	Myanmar Coastal Rainforests	norm_exact	1.0000
+251	Nansei Islands subtropical evergreen forests	nansei-islands-subtropical-evergreen-forests	Nansei Islands Subtropical Evergreen Forests	norm_exact	1.0000
+252	Nicobar Islands rain forests	nicobar-islands-rainforests	Nicobar Islands Rainforests	norm_exact	1.0000
+253	North Western Ghats moist deciduous forests	north-western-ghats-moist-deciduous-forests	North Western Ghats Moist Deciduous Forests	norm_exact	1.0000
+254	North Western Ghats montane rain forests	north-western-ghats-montane-rainforests	North Western Ghats Montane Rainforests	norm_exact	1.0000
+255	Northern Annamites rain forests	northern-annamites-rainforests	Northern Annamites Rainforests	norm_exact	1.0000
+256	Northern Indochina subtropical forests	northern-indochina-subtropical-forests	Northern Indochina Subtropical Forests	norm_exact	1.0000
+257	Northern Khorat Plateau moist deciduous forests	northern-khorat-plateau-moist-deciduous-forests	Northern Khorat Plateau Moist Deciduous Forests	norm_exact	1.0000
+258	Northern Thailand-Laos moist deciduous forests	northern-thailand-laos-moist-deciduous-forests	Northern Thailand-Laos Moist Deciduous Forests	norm_exact	1.0000
+259	Northern Triangle subtropical forests	northern-triangle-subtropical-forests	Northern Triangle Subtropical Forests	norm_exact	1.0000
+260	Northern Vietnam lowland rain forests	northern-vietnam-lowland-rainforests	Northern Vietnam Lowland Rainforests	norm_exact	1.0000
+261	Orissa semi-evergreen forests	orissa-semi-evergreen-forests	Orissa Semi-Evergreen Forests	norm_exact	1.0000
+262	Palawan rain forests	palawan-rainforests	Palawan Rainforests	norm_exact	1.0000
+263	Peninsular Malaysian montane rain forests	peninsular-malaysian-montane-rainforests	Peninsular Malaysian Montane Rainforests	norm_exact	1.0000
+264	Peninsular Malaysian peat swamp forests	peninsular-malaysian-peat-swamp-forests	Peninsular Malaysian Peat Swamp Forests	norm_exact	1.0000
+265	Peninsular Malaysian rain forests	peninsular-malaysian-rainforests	Peninsular Malaysian Rainforests	norm_exact	1.0000
+266	Red River freshwater swamp forests	red-river-freshwater-swamp-forests	Red River Freshwater Swamp Forests	norm_exact	1.0000
+267	South China Sea Islands	south-china-sea-islands	South China Sea Islands	norm_exact	1.0000
+268	South China-Vietnam subtropical evergreen forests	south-china-vietnam-subtropical-evergreen-forests	South China-Vietnam Subtropical Evergreen Forests	norm_exact	1.0000
+269	South Taiwan monsoon rain forests	south-taiwan-monsoon-rainforests	South Taiwan Monsoon Rainforests	norm_exact	1.0000
+270	South Western Ghats moist deciduous forests	south-western-ghats-moist-deciduous-forests	South Western Ghats Moist Deciduous Forests	norm_exact	1.0000
+271	South Western Ghats montane rain forests	south-western-ghats-montane-rainforests	South Western Ghats Montane Rainforests	norm_exact	1.0000
+272	Southern Annamites montane rain forests	southern-annamites-montane-rainforests	Southern Annamites Montane Rainforests	norm_exact	1.0000
+273	Southwest Borneo freshwater swamp forests	southwest-borneo-freshwater-swamp-forests	Southwest Borneo Freshwater Swamp Forests	norm_exact	1.0000
+274	Sri Lanka lowland rain forests	sri-lanka-lowland-rainforests	Sri Lanka Lowland Rainforests	norm_exact	1.0000
+275	Sri Lanka montane rain forests	sri-lanka-montane-rainforests	Sri Lanka Montane Rainforests	norm_exact	1.0000
+276	Sulu Archipelago rain forests	sulu-archipelago-rainforests	Sulu Archipelago Rainforests	norm_exact	1.0000
+277	Sumatran freshwater swamp forests	sumatran-freshwater-swamp-forests	Sumatran Freshwater Swamp Forests	norm_exact	1.0000
+278	Sumatran lowland rain forests	sumatran-lowland-rainforests	Sumatran Lowland Rainforests	norm_exact	1.0000
+279	Sumatran montane rain forests	sumatran-montane-rainforests	Sumatran Montane Rainforests	norm_exact	1.0000
+280	Sumatran peat swamp forests	sumatran-peat-swamp-forests	Sumatran Peat Swamp Forests	norm_exact	1.0000
+281	Sundaland heath forests	sundaland-heath-forests	Sundaland Heath Forests	norm_exact	1.0000
+282	Sundarbans freshwater swamp forests	sundarbans-freshwater-swamp-forests	Sundarbans Freshwater Swamp Forests	norm_exact	1.0000
+283	Taiwan subtropical evergreen forests	taiwan-subtropical-evergreen-forests	Taiwan Subtropical Evergreen Forests	norm_exact	1.0000
+284	Tenasserim-South Thailand semi-evergreen rain forests	tenasserim-south-thailand-semi-evergreen-rainforests	Tenasserim-South Thailand Semi-Evergreen Rainforests	norm_exact	1.0000
+285	Tonle Sap freshwater swamp forests	tonle-sap-freshwater-swamp-forests	Tonle Sap Freshwater Swamp Forests	norm_exact	1.0000
+286	Tonle Sap-Mekong peat swamp forests	tonle-sap-mekong-peat-swamp-forests	Tonle Sap-Mekong Peat Swamp Forests	norm_exact	1.0000
+287	Upper Gangetic Plains moist deciduous forests	upper-gangetic-plains-moist-deciduous-forests	Upper Gangetic Plains Moist Deciduous Forests	norm_exact	1.0000
+288	Western Java montane rain forests	western-java-montane-rainforests	Western Java Montane Rainforests	norm_exact	1.0000
+289	Western Java rain forests	western-java-rainforests	Western Java Rainforests	norm_exact	1.0000
+290	Central Deccan Plateau dry deciduous forests	central-deccan-plateau-dry-deciduous-forests	Central Deccan Plateau Dry Deciduous Forests	norm_exact	1.0000
+291	Central Indochina dry forests	central-indochina-dry-forests	Central Indochina Dry Forests	norm_exact	1.0000
+292	Chhota-Nagpur dry deciduous forests	chhota-nagpur-dry-deciduous-forests	Chhota-Nagpur Dry Deciduous Forests	norm_exact	1.0000
+293	East Deccan dry-evergreen forests	east-deccan-dry-evergreen-forests	East Deccan Dry-Evergreen Forests	norm_exact	1.0000
+294	Irrawaddy dry forests	irrawaddy-dry-forests	Irrawaddy Dry Forests	norm_exact	1.0000
+295	Khathiar-Gir dry deciduous forests	khathiar-gir-dry-deciduous-forests	Khathiar-Gir Dry Deciduous Forests	norm_exact	1.0000
+296	Narmada Valley dry deciduous forests	narmada-valley-dry-deciduous-forests	Narmada Valley Dry Deciduous Forests	norm_exact	1.0000
+297	North Deccan dry deciduous forests	north-deccan-dry-deciduous-forests	North Deccan Dry Deciduous Forests	norm_exact	1.0000
+298	South Deccan Plateau dry deciduous forests	south-deccan-plateau-dry-deciduous-forests	South Deccan Plateau Dry Deciduous Forests	norm_exact	1.0000
+299	Southeast Indochina dry evergreen forests	southeastern-indochina-dry-evergreen-forests	Southeastern Indochina Dry Evergreen Forests	fuzzy_auto	0.9647
+300	Southern Vietnam lowland dry forests	southern-vietnam-lowland-dry-forests	Southern Vietnam Lowland Dry Forests	norm_exact	1.0000
+301	Sri Lanka dry-zone dry evergreen forests	sri-lanka-dry-zone-dry-evergreen-forests	Sri Lanka Dry-Zone Dry Evergreen Forests	norm_exact	1.0000
+302	Himalayan subtropical pine forests	himalayan-subtropical-pine-forests	Himalayan Subtropical Pine Forests	norm_exact	1.0000
+303	Luzon tropical pine forests	luzon-tropical-pine-forests	Luzon Tropical Pine Forests	norm_exact	1.0000
+304	Northeast India-Myanmar pine forests	northeast-india-myanmar-pine-forests	Northeast India-Myanmar Pine Forests	norm_exact	1.0000
+305	Sumatran tropical pine forests	sumatran-tropical-pine-forests	Sumatran Tropical Pine Forests	norm_exact	1.0000
+306	Eastern Himalayan broadleaf forests	eastern-himalayan-broadleaf-forests	Eastern Himalayan Broadleaf Forests	norm_exact	1.0000
+307	Northern Triangle temperate forests	northern-triangle-temperate-forests	Northern Triangle Temperate Forests	norm_exact	1.0000
+308	Western Himalayan broadleaf forests	western-himalayan-broadleaf-forests	Western Himalayan Broadleaf Forests	norm_exact	1.0000
+309	Eastern Himalayan subalpine conifer forests	eastern-himalayan-subalpine-conifer-forests	Eastern Himalayan Subalpine Conifer Forests	norm_exact	1.0000
+310	Western Himalayan subalpine conifer forests	western-himalayan-subalpine-conifer-forests	Western Himalayan Subalpine Conifer Forests	norm_exact	1.0000
+311	Terai-Duar savanna and grasslands	terai-duar-savanna-and-grasslands	Terai-Duar Savanna and Grasslands	norm_exact	1.0000
+312	Rann of Kutch seasonal salt marsh	rann-of-kutch-seasonal-salt-marsh	Rann of Kutch Seasonal Salt Marsh	norm_exact	1.0000
+313	Kinabalu montane alpine meadows	kinabalu-montane-alpine-meadows	Kinabalu Montane Alpine Meadows	norm_exact	1.0000
+314	Aravalli west thorn scrub forests	aravalli-west-thorn-scrub-forests	Aravalli West Thorn Scrub Forests	norm_exact	1.0000
+315	Deccan thorn scrub forests	deccan-thorn-scrub-forests	Deccan Thorn Scrub Forests	norm_exact	1.0000
+316	Godavari-Krishna mangroves	godavari-krishna-mangroves	Godavari-Krishna Mangroves	norm_exact	1.0000
+317	Indus Valley desert	indus-valley-desert	Indus Valley Desert	norm_exact	1.0000
+318	Thar desert	thar-desert	Thar Desert	norm_exact	1.0000
+319	Indochina mangroves	indochina-mangroves	Indochina Mangroves	norm_exact	1.0000
+320	Indus River Delta-Arabian Sea mangroves	indus-river-delta-arabian-sea-mangroves	Indus River Delta-Arabian Sea Mangroves	norm_exact	1.0000
+321	Myanmar Coast mangroves	myanmar-coast-mangroves	Myanmar Coast Mangroves	norm_exact	1.0000
+322	Sunda Shelf mangroves	sunda-shelf-mangroves	Sunda Shelf Mangroves	norm_exact	1.0000
+323	Sundarbans mangroves	sundarbans-mangroves	Sundarbans Mangroves	norm_exact	1.0000
+324	Sonoran-Sinaloan subtropical dry forest	sonoran-sinaloan-subtropical-dry-forest	Sonoran-Sinaloan Subtropical Dry Forest	norm_exact	1.0000
+325	Bermuda subtropical conifer forests	bermuda-subtropical-conifer-forests	Bermuda Subtropical Conifer Forests	norm_exact	1.0000
+326	Sierra Madre Occidental pine-oak forests	sierra-madre-occidental-pine-oak-forests	Sierra Madre Occidental Pine-Oak Forests	norm_exact	1.0000
+327	Sierra Madre Oriental pine-oak forests	sierra-madre-oriental-pine-oak-forests	Sierra Madre Oriental Pine-Oak Forests	norm_exact	1.0000
+328	Allegheny Highlands forests	allegheny-highlands-forests	Allegheny Highlands Forests	norm_exact	1.0000
+329	Appalachian mixed mesophytic forests	appalachian-mixed-mesophytic-forests	Appalachian Mixed Mesophytic Forests	norm_exact	1.0000
+330	Appalachian Piedmont forests	appalachian-piedmont-forests	Appalachian Piedmont Forests	norm_exact	1.0000
+331	Appalachian-Blue Ridge forests	appalachian-blue-ridge-forests	Appalachian-Blue Ridge forests	norm_exact	1.0000
+334	Eastern Great Lakes lowland forests	eastern-great-lakes-lowland-forests	Eastern Great Lakes Lowland Forests	norm_exact	1.0000
+335	Gulf of St. Lawrence lowland forests	gulf-of-st-lawrence-lowland-forests	Gulf of St. Lawrence Lowland Forests	norm_exact	1.0000
+336	Interior Plateau US Hardwood Forests	interior-plateau-us-hardwood-forests	Interior Plateau US Hardwood Forests	norm_exact	1.0000
+337	Mississippi lowland forests	mississippi-lowland-forests	Mississippi Lowland Forests	norm_exact	1.0000
+338	New England-Acadian forests	new-england-acadian-forests	New England-Acadian Forests	norm_exact	1.0000
+339	Northeast US Coastal forests	northeast-us-coastal-forests	Northeast US Coastal Forests	norm_exact	1.0000
+340	Ozark Highlands mixed forests	ozark-highlands-mixed-forests	Ozark Highlands Mixed Forests	norm_exact	1.0000
+341	Ozark Mountain forests	ozark-mountain-forests	Ozark Mountain Forests	norm_exact	1.0000
+342	Southern Great Lakes forests	southern-great-lakes-forests	Southern Great Lakes Forests	norm_exact	1.0000
+343	Upper Midwest US forest-savanna transition	upper-midwest-us-forest-savanna-transition	Upper Midwest US Forest-Savanna Transition	norm_exact	1.0000
+344	Western Great Lakes forests	western-great-lakes-forests	Western Great Lakes Forests	norm_exact	1.0000
+345	Alberta-British Columbia foothills forests	alberta-british-columbia-foothills-forests	Alberta-British Columbia Foothills Forests	norm_exact	1.0000
+346	Arizona Mountains forests	arizona-mountains-forests	Arizona Mountains Forests	norm_exact	1.0000
+347	Atlantic coastal pine barrens	atlantic-coastal-pine-barrens	Atlantic Coastal Pine Barrens	norm_exact	1.0000
+348	Blue Mountains forests	blue-mountains-forests	Blue Mountains Forests	norm_exact	1.0000
+349	British Columbia coastal conifer forests	british-columbia-coastal-conifer-forests	British Columbia Coastal Conifer Forests	norm_exact	1.0000
+350	Central British Columbia Mountain forests	central-british-columbia-mountain-forests	Central British Columbia Mountain Forests	norm_exact	1.0000
+351	Central Pacific Northwest coastal forests	central-pacific-northwest-coastal-forests	Central Pacific Northwest Coastal Forests	norm_exact	1.0000
+352	Central-Southern Cascades Forests	central-southern-cascades-forests	Central-Southern Cascades Forests	norm_exact	1.0000
+353	Colorado Rockies forests	colorado-rockies-forests	Colorado Rockies Forests	norm_exact	1.0000
+354	Eastern Cascades forests	eastern-cascades-forests	Eastern Cascades Forests	norm_exact	1.0000
+355	Fraser Plateau and Basin conifer forests	fraser-plateau-and-basin-conifer-forests	Fraser Plateau and Basin Conifer Forests	norm_exact	1.0000
+356	Great Basin montane forests	great-basin-montane-forests	Great Basin Montane Forests	norm_exact	1.0000
+357	Klamath-Siskiyou forests	klamath-siskiyou-forests	Klamath-Siskiyou Forests	norm_exact	1.0000
+358	North Cascades conifer forests	north-cascades-conifer-forests	North Cascades Conifer Forests	norm_exact	1.0000
+359	Northern California coastal forests	northern-california-coastal-forests	Northern California Coastal Forests	norm_exact	1.0000
+360	Northern Pacific Alaskan coastal forests	northern-pacific-alaskan-coastal-forests	Northern Pacific Alaskan Coastal Forests	norm_exact	1.0000
+361	Northern Rockies conifer forests	northern-rockies-conifer-forests	Northern Rockies Conifer Forests	norm_exact	1.0000
+362	Okanogan dry forests	okanogan-dry-forests	Okanogan Dry Forests	norm_exact	1.0000
+364	Puget lowland forests	puget-lowland-forests	Puget Lowland Forests	norm_exact	1.0000
+366	Sierra Nevada forests	sierra-nevada-forests	Sierra Nevada Forests	norm_exact	1.0000
+367	South Central Rockies forests	south-central-rockies-forests	South Central Rockies Forests	norm_exact	1.0000
+368	Wasatch and Uinta montane forests	wasatch-and-uinta-montane-forests	Wasatch and Uinta Montane Forests	norm_exact	1.0000
+369	Alaska Peninsula montane taiga	alaska-peninsula-montane-taiga	Alaska Peninsula Montane Taiga	norm_exact	1.0000
+370	Central Canadian Shield forests	central-canadian-shield-forests	Central Canadian Shield Forests	norm_exact	1.0000
+371	Cook Inlet taiga	cook-inlet-taiga	Cook Inlet Taiga	norm_exact	1.0000
+372	Copper Plateau taiga	copper-plateau-taiga	Copper Plateau Taiga	norm_exact	1.0000
+374	Eastern Canadian Shield taiga	eastern-canadian-shield-taiga	Eastern Canadian Shield Taiga	norm_exact	1.0000
+375	Interior Alaska-Yukon lowland taiga	interior-alaska-yukon-lowland-taiga	Interior Alaska-Yukon Lowland Taiga	norm_exact	1.0000
+376	Mid-Canada Boreal Plains forests	mid-canada-boreal-plains-forests	Mid-Canada Boreal Plains Forests	norm_exact	1.0000
+377	Midwest Canadian Shield forests	midwest-canadian-shield-forests	Midwest Canadian Shield Forests	norm_exact	1.0000
+378	Muskwa-Slave Lake taiga	muskwa-slave-lake-taiga	Muskwa-Slave Lake Taiga	norm_exact	1.0000
+379	Northern Canadian Shield taiga	northern-canadian-shield-taiga	Northern Canadian Shield Taiga	norm_exact	1.0000
+380	Northern Cordillera forests	northern-cordillera-forests	Northern Cordillera Forests	norm_exact	1.0000
+381	Northwest Territories taiga	northwest-territories-taiga	Northwest Territories Taiga	norm_exact	1.0000
+382	Southern Hudson Bay taiga	southern-hudson-bay-taiga	Southern Hudson Bay Taiga	norm_exact	1.0000
+383	Watson Highlands taiga	watson-highlands-taiga	Watson Highlands Taiga	norm_exact	1.0000
+384	Western Gulf coastal grasslands	western-gulf-coastal-grasslands	Western Gulf Coastal Grasslands	norm_exact	1.0000
+385	California Central Valley grasslands	california-central-valley-grasslands	California Central Valley Grasslands	norm_exact	1.0000
+386	Canadian Aspen forests and parklands	canadian-aspen-forests-and-parklands	Canadian Aspen Forests and Parklands	norm_exact	1.0000
+387	Central US forest-grasslands transition	central-us-forest-grasslands-transition	Central US Forest-Grasslands Transition	norm_exact	1.0000
+388	Central Tallgrass prairie	central-tallgrass-prairie	Central Tallgrass Prairie	norm_exact	1.0000
+389	Central-Southern US mixed grasslands	central-southern-us-mixed-grasslands	Central-Southern US Mixed Grasslands	norm_exact	1.0000
+390	Cross-Timbers savanna-woodland	cross-timbers-savanna-woodland	Cross-Timbers Savanna-Woodland	norm_exact	1.0000
+391	Edwards Plateau savanna	edwards-plateau-savanna	Edwards Plateau Savanna	norm_exact	1.0000
+392	Flint Hills tallgrass prairie	flint-hills-tallgrass-prairie	Flint Hills Tallgrass Prairie	norm_exact	1.0000
+393	Mid-Atlantic US coastal savannas	mid-atlantic-us-coastal-savannas	Mid-Atlantic US Coastal Savannas	norm_exact	1.0000
+394	Montana Valley and Foothill grasslands	montana-valley-and-foothill-grasslands	Montana Valley and Foothill Grasslands	norm_exact	1.0000
+395	Nebraska Sand Hills mixed grasslands	nebraska-sand-hills-mixed-grasslands	Nebraska Sand Hills Mixed Grasslands	norm_exact	1.0000
+396	Northern Shortgrass prairie	northern-shortgrass-prairie	Northern Shortgrass Prairie	norm_exact	1.0000
+397	Northern Tallgrass prairie	northern-tallgrass-prairie	Northern Tallgrass Prairie	norm_exact	1.0000
+398	Palouse prairie	palouse-prairie	Palouse Prairie	norm_exact	1.0000
+399	Southeast US conifer savannas	southeast-us-conifer-savannas	Southeast US Conifer Savannas	norm_exact	1.0000
+401	Texas blackland prairies	texas-blackland-prairies	Texas Blackland Prairies	norm_exact	1.0000
+402	Western shortgrass prairie	western-shortgrass-prairie	Western Shortgrass Prairie	norm_exact	1.0000
+403	Willamette Valley oak savanna	willamette-valley-oak-savanna	Willamette Valley Oak Savanna	norm_exact	1.0000
+404	Ahklun and Kilbuck Upland Tundra	ahklun-and-kilbuck-upland-tundra	Ahklun and Kilbuck Upland Tundra	norm_exact	1.0000
+405	Alaska-St. Elias Range tundra	alaska-st-elias-range-tundra	Alaska-St. Elias Range Tundra	norm_exact	1.0000
+406	Aleutian Islands tundra	aleutian-islands-tundra	Aleutian Islands Tundra	norm_exact	1.0000
+407	Arctic coastal tundra	arctic-coastal-tundra	Arctic Coastal Tundra	norm_exact	1.0000
+408	Arctic foothills tundra	arctic-foothills-tundra	Arctic Foothills Tundra	norm_exact	1.0000
+409	Beringia lowland tundra	beringia-lowland-tundra	Beringia Lowland Tundra	norm_exact	1.0000
+410	Beringia upland tundra	beringia-upland-tundra	Beringia Upland Tundra	norm_exact	1.0000
+411	Brooks-British Range tundra	brooks-british-range-tundra	Brooks-British Range tundra	norm_exact	1.0000
+412	Canadian High Arctic tundra	canadian-high-arctic-tundra	Canadian High Arctic Tundra	norm_exact	1.0000
+413	Canadian Low Arctic tundra	canadian-low-arctic-tundra	Canadian Low Arctic Tundra	norm_exact	1.0000
+414	Canadian Middle Arctic Tundra	canadian-middle-arctic-tundra	Canadian Middle Arctic Tundra	norm_exact	1.0000
+415	Davis Highlands tundra	davis-highlands-tundra	Davis Highlands Tundra	norm_exact	1.0000
+417	Kalaallit Nunaat Arctic steppe	kalaallit-nunaat-arctic-steppe	Kalaallit Nunaat Arctic Steppe	norm_exact	1.0000
+418	Kalaallit Nunaat High Arctic tundra	kalaallit-nunaat-high-arctic-tundra	Kalaallit Nunaat High Arctic Tundra	norm_exact	1.0000
+419	Ogilvie-MacKenzie alpine tundra	ogilvie-mackenzie-alpine-tundra	Ogilvie-Mackenzie Alpine Tundra	norm_exact	1.0000
+420	Pacific Coastal Mountain icefields and tundra	pacific-coastal-mountain-icefields-and-tundra	Pacific Coastal Mountain Icefields and Tundra	norm_exact	1.0000
+421	Torngat Mountain tundra	torngat-mountain-tundra	Torngat Mountain Tundra	norm_exact	1.0000
+422	California coastal sage and chaparral	california-coastal-sage-and-chaparral	California Coastal Sage and Chaparral	norm_exact	1.0000
+423	California interior chaparral and woodlands	california-interior-chaparral-and-woodlands	California Interior Chaparral and Woodlands	norm_exact	1.0000
+424	California montane chaparral and woodlands	california-montane-chaparral-and-woodlands	California Montane Chaparral and Woodlands	norm_exact	1.0000
+425	Santa Lucia Montane Chaparral & Woodlands	santa-lucia-montane-chaparral-and-woodlands	Santa Lucia Montane Chaparral and Woodlands	norm_exact	1.0000
+426	Baja California desert	baja-california-desert	Baja California Desert	norm_exact	1.0000
+427	Central Mexican matorral	central-mexican-matorral	Central Mexican Matorral	norm_exact	1.0000
+428	Chihuahuan desert	chihuahuan-desert	Chihuahuan Desert	norm_exact	1.0000
+429	Colorado Plateau shrublands	colorado-plateau-shrublands	Colorado Plateau Shrublands	norm_exact	1.0000
+430	Great Basin shrub steppe	great-basin-shrub-steppe	Great Basin Shrub Steppe	norm_exact	1.0000
+431	Gulf of California xeric scrub	gulf-of-california-xeric-scrub	Gulf of California Xeric Scrub	norm_exact	1.0000
+432	Meseta Central matorral	meseta-central-matorral	Meseta Central Matorral	norm_exact	1.0000
+433	Mojave desert	mojave-desert	Mojave Desert	norm_exact	1.0000
+434	Snake-Columbia shrub steppe	snake-columbia-shrub-steppe	Snake-Columbia Shrub Steppe	norm_exact	1.0000
+435	Sonoran desert	sonoran-desert	Sonoran Desert	norm_exact	1.0000
+436	Tamaulipan matorral	tamaulipan-matorral	Tamaulipan Matorral	norm_exact	1.0000
+437	Tamaulipan mezquital	tamaulipan-mezquital	Tamaulipan Mezquital	norm_exact	1.0000
+438	Wyoming Basin shrub steppe	wyoming-basin-shrub-steppe	Wyoming Basin Shrub Steppe	norm_exact	1.0000
+439	Alto Paraná Atlantic forests	alto-parana-atlantic-forests	Alto Paraná Atlantic Forests	norm_exact	1.0000
+440	Araucaria moist forests	araucaria-moist-forests	Araucaria Moist Forests	norm_exact	1.0000
+441	Atlantic Coast restingas	atlantic-coast-restingas	Atlantic Coast Restingas	norm_exact	1.0000
+442	Bahia coastal forests	bahia-coastal-forests	Bahia Coastal Forests	norm_exact	1.0000
+443	Bahia interior forests	bahia-interior-forests	Bahía Interior Forests	norm_exact	1.0000
+444	Bolivian Yungas	bolivian-yungas	Bolivian Yungas	norm_exact	1.0000
+445	Caatinga Enclaves moist forests	caatinga-enclaves-moist-forests	Caatinga Enclaves Moist Forests	norm_exact	1.0000
+446	Caqueta moist forests	caqueta-moist-forests	Caqueta Moist Forests	norm_exact	1.0000
+447	Catatumbo moist forests	catatumbo-moist-forests	Catatumbo Moist Forests	norm_exact	1.0000
+448	Cauca Valley montane forests	cauca-valley-montane-forests	Cauca Valley Montane Forests	norm_exact	1.0000
+449	Cayos Miskitos-San Andrés and Providencia moist forests	cayos-miskitos-san-andres-and-providencia-moist-forests	Cayos Miskitos-San Andrés and Providencia Moist Forests	norm_exact	1.0000
+450	Central American Atlantic moist forests	central-american-atlantic-moist-forests	Central American Atlantic Moist Forests	norm_exact	1.0000
+451	Central American montane forests	central-american-montane-forests	Central American Montane Forests	norm_exact	1.0000
+452	Chiapas montane forests	chiapas-montane-forests	Chiapas Montane Forests	norm_exact	1.0000
+453	Chimalapas montane forests	chimalapas-montane-forests	Chimalapas Montane Forests	norm_exact	1.0000
+454	Chocó-Darién moist forests	choco-darien-moist-forests	Chocó-Darién Moist Forests	norm_exact	1.0000
+455	Cocos Island moist forests	cocos-island-moist-forests	Cocos Island Moist Forests	norm_exact	1.0000
+456	Cordillera La Costa montane forests	cordillera-de-la-costa-montane-forests	Cordillera de la Costa Montane Forests	fuzzy_auto	0.9589
+457	Cordillera Oriental montane forests	cordillera-oriental-montane-forests	Cordillera Oriental Montane Forests	norm_exact	1.0000
+458	Costa Rican seasonal moist forests	costa-rican-seasonal-moist-forests	Costa Rican Seasonal Moist Forests	norm_exact	1.0000
+459	Cuban moist forests	cuban-moist-forests	Cuban Moist Forests	norm_exact	1.0000
+460	Eastern Cordillera Real montane forests	eastern-cordillera-real-montane-forests	Eastern Cordillera Real Montane Forests	norm_exact	1.0000
+461	Eastern Panamanian montane forests	eastern-panamanian-montane-forests	Eastern Panamanian Montane Forests	norm_exact	1.0000
+462	Fernando de Noronha-Atol das Rocas moist forests	fernando-de-noronha-atol-das-rocas-moist-forests	Fernando De Noronha-Atol Das Rocas Moist Forests	norm_exact	1.0000
+463	Guianan freshwater swamp forests	guianan-freshwater-swamp-forests	Guianan Freshwater Swamp Forests	norm_exact	1.0000
+464	Guianan Highlands moist forests	guianan-highlands-moist-forests	Guianan Highlands Moist Forests	norm_exact	1.0000
+465	Guianan lowland moist forests	guianan-lowland-moist-forests	Guianan Lowland Moist Forests	norm_exact	1.0000
+466	Guianan piedmont moist forests	guianan-piedmont-moist-forests	Guianan Piedmont Moist Forests	norm_exact	1.0000
+467	Gurupa várzea	gurupa-varzea	Gurupa Várzea	norm_exact	1.0000
+468	Hispaniolan moist forests	hispaniolan-moist-forests	Hispaniolan Moist Forests	norm_exact	1.0000
+469	Iquitos várzea	iquitos-varzea	Iquitos Várzea	norm_exact	1.0000
+470	Isthmian-Atlantic moist forests	isthmian-atlantic-moist-forests	Isthmian-Atlantic Moist Forests	norm_exact	1.0000
+471	Isthmian-Pacific moist forests	isthmian-pacific-moist-forests	Isthmian-Pacific Moist Forests	norm_exact	1.0000
+472	Jamaican moist forests	jamaican-moist-forests	Jamaican Moist Forests	norm_exact	1.0000
+473	Japurá-Solimões-Negro moist forests	japura-solimoes-negro-moist-forests	Japurá-Solimões-Negro Moist Forests	norm_exact	1.0000
+474	Juruá-Purus moist forests	jurua-purus-moist-forests	Juruá-Purus Moist Forests	norm_exact	1.0000
+475	Leeward Islands moist forests	leeward-islands-moist-forests	Leeward Islands Moist Forests	norm_exact	1.0000
+476	Madeira-Tapajós moist forests	madeira-tapajos-moist-forests	Madeira-Tapajós Moist Forests	norm_exact	1.0000
+477	Magdalena Valley montane forests	magdalena-valley-montane-forests	Magdalena Valley Montane Forests	norm_exact	1.0000
+478	Magdalena-Urabá moist forests	magdalena-uraba-moist-forests	Magdalena-Urabá Moist Forests	norm_exact	1.0000
+479	Marañón dry forests	maranon-dry-forests	Marañon Dry Forests	norm_exact	1.0000
+480	Marajó várzea	marajo-varzea	Marajó Várzea	norm_exact	1.0000
+481	Mato Grosso tropical dry forests	mato-grosso-tropical-dry-forests	Mato Grosso Tropical Dry Forests	norm_exact	1.0000
+482	Monte Alegre várzea	monte-alegre-varzea	Monte Alegre Várzea	norm_exact	1.0000
+483	Napo moist forests	napo-moist-forests	Napo Moist Forests	norm_exact	1.0000
+484	Negro-Branco moist forests	negro-branco-moist-forests	Negro-Branco Moist Forests	norm_exact	1.0000
+485	Northeast Brazil restingas	northeast-brazil-restingas	Northeast Brazil Restingas	norm_exact	1.0000
+486	Northwest Andean montane forests	northwest-andean-montane-forests	Northwest Andean Montane Forests	norm_exact	1.0000
+487	Oaxacan montane forests	oaxacan-montane-forests	Oaxacan Montane Forests	norm_exact	1.0000
+488	Orinoco Delta swamp forests	orinoco-delta-swamp-forests	Orinoco Delta Swamp Forests	norm_exact	1.0000
+489	Pantanos de Centla	pantanos-de-centla	Pantanos De Centla	norm_exact	1.0000
+490	Pantepui forests & shrublands	pantepui-forests-and-shrublands	Pantepui Forests and Shrublands	norm_exact	1.0000
+491	Pernambuco coastal forests	pernambuco-coastal-forests	Pernambuco Coastal Forests	norm_exact	1.0000
+492	Pernambuco interior forests	pernambuco-interior-forests	Pernambuco Interior Forests	norm_exact	1.0000
+493	Peruvian Yungas	peruvian-yungas	Peruvian Yungas	norm_exact	1.0000
+494	Petén-Veracruz moist forests	peten-veracruz-moist-forests	Petén-Veracruz Moist Forests	norm_exact	1.0000
+495	Puerto Rican moist forests	puerto-rican-moist-forests	Puerto Rican Moist Forests	norm_exact	1.0000
+496	Purus várzea	purus-varzea	Purus Várzea	norm_exact	1.0000
+497	Purus-Madeira moist forests	purus-madeira-moist-forests	Purus-Madeira Moist Forests	norm_exact	1.0000
+498	Rio Negro campinarana	rio-negro-campinarana	Rio Negro Campinarana	norm_exact	1.0000
+499	Santa Marta montane forests	santa-marta-montane-forests	Santa Marta Montane Forests	norm_exact	1.0000
+500	Serra do Mar coastal forests	serra-do-mar-coastal-forests	Serra Do Mar Coastal Forests	norm_exact	1.0000
+501	Sierra de los Tuxtlas	sierra-de-los-tuxtlas	Sierra De Los Tuxtlas	norm_exact	1.0000
+502	Sierra Madre de Chiapas moist forests	sierra-madre-de-chiapas-moist-forests	Sierra Madre De Chiapas Moist Forests	norm_exact	1.0000
+503	Solimões-Japurá moist forests	solimoes-japura-moist-forests	Solimões-Japurá Moist Forests	norm_exact	1.0000
+504	Southern Andean Yungas	southern-andean-yungas	Southern Andean Yungas	norm_exact	1.0000
+505	Southwest Amazon moist forests	southwest-amazon-moist-forests	Southwest Amazon Moist Forests	norm_exact	1.0000
+506	Talamancan montane forests	talamancan-montane-forests	Talamancan Montane Forests	norm_exact	1.0000
+507	Tapajós-Xingu moist forests	tapajos-xingu-moist-forests	Tapajós-Xingu Moist Forests	norm_exact	1.0000
+508	Tocantins/Pindare moist forests	tocantins-pindare-moist-forests	Tocantins/Pindare Moist Forests	norm_exact	1.0000
+509	Trindade-Martin Vaz Islands tropical forests	trindade-martin-vaz-islands-tropical-forests	Trindade-Martin Vaz Islands Tropical Forests	norm_exact	1.0000
+510	Trinidad and Tobago moist forest	trinidad-and-tobago-moist-forest	Trinidad and Tobago Moist Forest	norm_exact	1.0000
+511	Uatumã-Trombetas moist forests	uatuma-trombetas-moist-forests	Uatumã-Trombetas Moist Forests	norm_exact	1.0000
+512	Ucayali moist forests	ucayali-moist-forests	Ucayali Moist Forests	norm_exact	1.0000
+513	Venezuelan Andes montane forests	venezuelan-andes-montane-forests	Venezuelan Andes Montane Forests	norm_exact	1.0000
+514	Veracruz moist forests	veracruz-moist-forests	Veracruz Moist Forests	norm_exact	1.0000
+515	Veracruz montane forests	veracruz-montane-forests	Veracruz Montane Forests	norm_exact	1.0000
+516	Western Ecuador moist forests	western-ecuador-moist-forests	Western Ecuador Moist Forests	norm_exact	1.0000
+517	Windward Islands moist forests	windward-islands-moist-forests	Windward Islands Moist Forests	norm_exact	1.0000
+518	Xingu-Tocantins-Araguaia moist forests	xingu-tocantins-araguaia-moist-forests	Xingu-Tocantins-Araguaia Moist Forests	norm_exact	1.0000
+519	Yucatán moist forests	yucatan-moist-forests	Yucatan Moist Forests	norm_exact	1.0000
+520	Apure-Villavicencio dry forests	apure-villavicencio-dry-forests	Apure-Villavicencio Dry Forests	norm_exact	1.0000
+521	Bajío dry forests	bajio-dry-forests	Bajío Dry Forests	norm_exact	1.0000
+522	Balsas dry forests	balsas-dry-forests	Balsas Dry Forests	norm_exact	1.0000
+523	Bolivian montane dry forests	bolivian-montane-dry-forests	Bolivian Montane Dry Forests	norm_exact	1.0000
+524	Brazilian Atlantic dry forests	brazilian-atlantic-dry-forests	Brazilian Atlantic Dry Forests	norm_exact	1.0000
+525	Caatinga	caatinga	Caatinga	norm_exact	1.0000
+526	Cauca Valley dry forests	cauca-valley-dry-forests	Cauca Valley Dry Forests	norm_exact	1.0000
+527	Central American dry forests	central-american-dry-forests	Central American Dry Forests	norm_exact	1.0000
+528	Chiapas Depression dry forests	chiapas-depression-dry-forests	Chiapas Depression Dry Forests	norm_exact	1.0000
+529	Chiquitano dry forests	chiquitano-dry-forests	Chiquitano Dry Forests	norm_exact	1.0000
+530	Cuban dry forests	cuban-dry-forests	Cuban Dry Forests	norm_exact	1.0000
+531	Ecuadorian dry forests	ecuadorian-dry-forests	Ecuadorian Dry Forests	norm_exact	1.0000
+532	Hispaniolan dry forests	hispaniolan-dry-forests	Hispaniolan Dry Forests	norm_exact	1.0000
+533	Islas Revillagigedo dry forests	islas-revillagigedo-dry-forests	Islas Revillagigedo Dry Forests	norm_exact	1.0000
+534	Jalisco dry forests	jalisco-dry-forests	Jalisco Dry Forests	norm_exact	1.0000
+535	Jamaican dry forests	jamaican-dry-forests	Jamaican Dry Forests	norm_exact	1.0000
+536	Lara-Falcón dry forests	lara-falcon-dry-forests	Lara-Falcón Dry Forests	norm_exact	1.0000
+537	Lesser Antillean dry forests	lesser-antillean-dry-forests	Lesser Antillean Dry Forests	norm_exact	1.0000
+538	Magdalena Valley dry forests	magdalena-valley-dry-forests	Magdalena Valley Dry Forests	norm_exact	1.0000
+539	Maracaibo dry forests	maracaibo-dry-forests	Maracaibo Dry Forests	norm_exact	1.0000
+540	Maranhão Babaçu forests	maranhao-babacu-forests	Maranhão Babaçu Forests	norm_exact	1.0000
+541	Panamanian dry forests	panamanian-dry-forests	Panamanian Dry Forests	norm_exact	1.0000
+542	Patía valley dry forests	patia-valley-dry-forests	Patía valley dry forests	norm_exact	1.0000
+543	Puerto Rican dry forests	puerto-rican-dry-forests	Puerto Rican Dry Forests	norm_exact	1.0000
+544	Sierra de la Laguna dry forests	sierra-de-la-laguna-dry-forests	Sierra de la Laguna Dry Forests	norm_exact	1.0000
+545	Sinaloan dry forests	sinaloan-dry-forests	Sinaloan Dry Forests	norm_exact	1.0000
+546	Sinú Valley dry forests	sinu-valley-dry-forests	Sinú Valley Dry Forests	norm_exact	1.0000
+547	Southern Pacific dry forests	southern-pacific-dry-forests	Southern Pacific Dry Forests	norm_exact	1.0000
+548	Trinidad and Tobago dry forest	trinidad-and-tobago-dry-forests	Trinidad and Tobago Dry Forests	fuzzy_auto	0.9836
+549	Tumbes-Piura dry forests	tumbes-piura-dry-forests	Tumbes-Piura Dry Forests	norm_exact	1.0000
+550	Veracruz dry forests	veracruz-dry-forests	Veracruz Dry Forests	norm_exact	1.0000
+551	Yucatán dry forests	yucatan-dry-forests	Yucatan Dry Forests	norm_exact	1.0000
+552	Bahamian pineyards	bahamian-pineyards	Bahamian Pineyards	norm_exact	1.0000
+553	Central American pine-oak forests	central-american-pine-oak-forests	Central American Pine-Oak Forests	norm_exact	1.0000
+554	Cuban pine forests	cuban-pine-forests	Cuban Pine Forests	norm_exact	1.0000
+555	Hispaniolan pine forests	hispaniolan-pine-forests	Hispaniolan Pine Forests	norm_exact	1.0000
+556	Sierra de la Laguna pine-oak forests	sierra-de-la-laguna-pine-oak-forests	Sierra de la Laguna Pine-Oak Forests	norm_exact	1.0000
+557	Sierra Madre de Oaxaca pine-oak forests	sierra-madre-de-oaxaca-pine-oak-forests	Sierra Madre De Oaxaca Pine-Oak Forests	norm_exact	1.0000
+558	Sierra Madre del Sur pine-oak forests	sierra-madre-del-sur-pine-oak-forests	Sierra Madre Del Sur Pine-Oak Forests	norm_exact	1.0000
+559	Trans-Mexican Volcanic Belt pine-oak forests	trans-mexican-volcanic-belt-pine-oak-forests	Trans-Mexican Volcanic Belt Pine-Oak Forests	norm_exact	1.0000
+560	Juan Fernández Islands temperate forests	juan-fernandez-islands-temperate-forests	Juan Fernández Islands Temperate Forests	norm_exact	1.0000
+561	Magellanic subpolar forests	magellanic-subpolar-forests	Magellanic Subpolar Forests	norm_exact	1.0000
+562	San Félix-San Ambrosio Islands temperate forests	san-felix-san-ambrosio-islands-temperate-forests	San Félix-San Ambrosio Islands Temperate Forests	norm_exact	1.0000
+563	Valdivian temperate forests	valdivian-temperate-forests	Valdivian Temperate Forests	norm_exact	1.0000
+564	Belizian pine savannas	belizian-pine-savannas	Belizian Pine Savannas	norm_exact	1.0000
+565	Beni savanna	beni-savanna	Beni Savanna	norm_exact	1.0000
+566	Campos Rupestres montane savanna	campos-rupestres-montane-savanna	Campos Rupestres Montane Savanna	norm_exact	1.0000
+567	Cerrado	cerrado	Cerrado	norm_exact	1.0000
+568	Clipperton Island shrub and grasslands	clipperton-island-shrub-and-grasslands	Clipperton Island Shrub and Grasslands	norm_exact	1.0000
+569	Dry Chaco	dry-chaco	Dry Chaco	norm_exact	1.0000
+570	Guianan savanna	guianan-savanna	Guianan Savanna	norm_exact	1.0000
+571	Humid Chaco	humid-chaco	Humid Chaco	norm_exact	1.0000
+572	Llanos	llanos	Llanos	norm_exact	1.0000
+573	Miskito pine forests	miskito-pine-forests	Miskito Pine Forests	norm_exact	1.0000
+574	Uruguayan savanna	uruguayan-savanna	Uruguayan Savanna	norm_exact	1.0000
+575	Espinal	espinal	Espinal	norm_exact	1.0000
+576	Humid Pampas	humid-pampas	Humid Pampas	norm_exact	1.0000
+577	Low Monte	low-monte	Low Monte	norm_exact	1.0000
+578	Patagonian steppe	patagonian-steppe	Patagonian Steppe	norm_exact	1.0000
+579	Cuban wetlands	cuban-wetlands	Cuban Wetlands	norm_exact	1.0000
+580	Enriquillo wetlands	enriquillo-wetlands	Enriquillo Wetlands	norm_exact	1.0000
+581	Everglades flooded grasslands	everglades-flooded-grasslands	Everglades Flooded Grasslands	norm_exact	1.0000
+582	Guayaquil flooded grasslands	guayaquil-flooded-grasslands	Guayaquil Flooded Grasslands	norm_exact	1.0000
+583	Orinoco wetlands	orinoco-wetlands	Orinoco Wetlands	norm_exact	1.0000
+584	Pantanal	pantanal	Pantanal	norm_exact	1.0000
+585	Paraná flooded savanna	parana-flooded-savanna	Paraná Flooded Savanna	norm_exact	1.0000
+586	Southern Cone Mesopotamian savanna	southern-cone-mesopotamian-savanna	Southern Cone Mesopotamian Savanna	norm_exact	1.0000
+587	Central Andean dry puna	central-andean-dry-puna	Central Andean Dry Puna	norm_exact	1.0000
+588	Central Andean puna	central-andean-puna	Central Andean Puna	norm_exact	1.0000
+589	Central Andean wet puna	central-andean-wet-puna	Central Andean Wet Puna	norm_exact	1.0000
+590	Cordillera Central páramo	cordillera-central-paramo	Cordillera Central Páramo	norm_exact	1.0000
+591	Cordillera de Merida páramo	cordillera-de-merida-paramo	Cordillera De Merida Páramo	norm_exact	1.0000
+592	High Monte	high-monte	High Monte	norm_exact	1.0000
+593	Northern Andean páramo	northern-andean-paramo	Northern Andean Páramo	norm_exact	1.0000
+594	Santa Marta páramo	santa-marta-paramo	Santa Marta Páramo	norm_exact	1.0000
+595	Southern Andean steppe	southern-andean-steppe	Southern Andean Steppe	norm_exact	1.0000
+596	Chilean Matorral	chilean-matorral	Chilean Matorral	norm_exact	1.0000
+597	Araya and Paria xeric scrub	araya-and-paria-xeric-scrub	Araya and Paria Xeric Scrub	norm_exact	1.0000
+598	Atacama desert	atacama-desert	Atacama Desert	norm_exact	1.0000
+599	Caribbean shrublands	caribbean-shrublands	Caribbean Shrublands	norm_exact	1.0000
+600	Cuban cactus scrub	cuban-cactus-scrub	Cuban Cactus Scrub	norm_exact	1.0000
+601	Galápagos Islands xeric scrub	galapagos-islands-xeric-scrub	Galápagos Islands Xeric Scrub	norm_exact	1.0000
+602	Guajira-Barranquilla xeric scrub	guajira-barranquilla-xeric-scrub	Guajira-Barranquilla Xeric Scrub	norm_exact	1.0000
+603	La Costa xeric shrublands	la-costa-xeric-shrublands	La Costa Xeric Shrublands	norm_exact	1.0000
+604	Malpelo Island xeric scrub	malpelo-island-xeric-scrub	Malpelo Island Xeric Scrub	norm_exact	1.0000
+605	Motagua Valley thornscrub	motagua-valley-thornscrub	Motagua Valley Thornscrub	norm_exact	1.0000
+606	Paraguaná xeric scrub	paraguana-xeric-scrub	Paraguana Xeric Scrub	norm_exact	1.0000
+607	San Lucan xeric scrub	san-lucan-xeric-scrub	San Lucan Xeric Scrub	norm_exact	1.0000
+608	Sechura desert	sechura-desert	Sechura Desert	norm_exact	1.0000
+609	St. Peter and St. Paul Rocks	st-peter-and-st-paul-rocks	St. Peter and St. Paul Rocks	norm_exact	1.0000
+610	Tehuacán Valley matorral	tehuacan-valley-matorral	Tehuacán Valley Matorral	norm_exact	1.0000
+611	Amazon-Orinoco-Southern Caribbean mangroves	amazon-orinoco-southern-caribbean-mangroves	Amazon-Orinoco-Southern Caribbean Mangroves	norm_exact	1.0000
+612	Bahamian-Antillean mangroves	bahamian-antillean-mangroves	Bahamian-Antillean Mangroves	norm_exact	1.0000
+613	Mesoamerican Gulf-Caribbean mangroves	mesoamerican-gulf-caribbean-mangroves	Mesoamerican Gulf-Caribbean Mangroves	norm_exact	1.0000
+614	Northern Mesoamerican Pacific mangroves	northern-mesoamerican-pacific-mangroves	Northern Mesoamerican Pacific Mangroves	norm_exact	1.0000
+615	South American Pacific mangroves	south-american-pacific-mangroves	South American Pacific Mangroves	norm_exact	1.0000
+616	Southern Atlantic Brazilian mangroves	southern-atlantic-brazilian-mangroves	Southern Atlantic Brazilian Mangroves	norm_exact	1.0000
+617	Southern Mesoamerican Pacific mangroves	southern-mesoamerican-pacific-mangroves	Southern Mesoamerican Pacific Mangroves	norm_exact	1.0000
+618	Carolines tropical moist forests	carolines-tropical-moist-forests	Carolines Tropical Moist Forests	norm_exact	1.0000
+619	Central Polynesian tropical moist forests	central-polynesian-tropical-moist-forests	Central Polynesian Tropical Moist Forests	norm_exact	1.0000
+620	Cook Islands tropical moist forests	cook-islands-tropical-moist-forests	Cook Islands Tropical Moist Forests	norm_exact	1.0000
+621	Eastern Micronesia tropical moist forests	eastern-micronesia-tropical-moist-forests	Eastern Micronesia Tropical Moist Forests	norm_exact	1.0000
+622	Fiji tropical moist forests	fiji-tropical-moist-forests	Fiji Tropical Moist Forests	norm_exact	1.0000
+623	Hawai'i tropical moist forests	hawaii-tropical-moist-forests	Hawai'I Tropical Moist Forests	norm_exact	1.0000
+624	Kermadec Islands subtropical moist forests	kermadec-islands-subtropical-moist-forests	Kermadec Islands Subtropical Moist Forests	norm_exact	1.0000
+625	Marquesas tropical moist forests	marquesas-tropical-moist-forests	Marquesas Tropical Moist Forests	norm_exact	1.0000
+626	Ogasawara subtropical moist forests	ogasawara-subtropical-moist-forests	Ogasawara Subtropical Moist Forests	norm_exact	1.0000
+627	Palau tropical moist forests	palau-tropical-moist-forests	Palau Tropical Moist Forests	norm_exact	1.0000
+629	Samoan tropical moist forests	samoan-tropical-moist-forests	Samoan Tropical Moist Forests	norm_exact	1.0000
+630	Society Islands tropical moist forests	society-islands-tropical-moist-forests	Society Islands Tropical Moist Forests	norm_exact	1.0000
+631	Tongan tropical moist forests	tongan-tropical-moist-forests	Tongan Tropical Moist Forests	norm_exact	1.0000
+632	Tuamotu tropical moist forests	tuamotu-tropical-moist-forests	Tuamotu Tropical Moist Forests	norm_exact	1.0000
+633	Tubuai tropical moist forests	tubuai-tropical-moist-forests	Tubuai Tropical Moist Forests	norm_exact	1.0000
+634	Western Polynesian tropical moist forests	western-polynesian-tropical-moist-forests	Western Polynesian Tropical Moist Forests	norm_exact	1.0000
+635	Fiji tropical dry forests	fiji-tropical-dry-forests	Fiji Tropical Dry Forests	norm_exact	1.0000
+636	Hawai'i tropical dry forests	hawaii-tropical-dry-forests	Hawai'I Tropical Dry Forests	norm_exact	1.0000
+637	Marianas tropical dry forests	marianas-tropical-dry-forests	Marianas Tropical Dry Forests	norm_exact	1.0000
+638	Yap tropical dry forests	yap-tropical-dry-forests	Yap Tropical Dry Forests	norm_exact	1.0000
+639	Hawai'i tropical high shrublands	hawaii-tropical-high-shrublands	Hawai'i Tropical High Shrublands	norm_exact	1.0000
+640	Hawai'i tropical low shrublands	hawaii-tropical-low-shrublands	Hawai'I Tropical Low Shrublands	norm_exact	1.0000
+641	Northwest Hawai'i scrub	northwest-hawaii-scrub	Northwest Hawai'I Scrub	norm_exact	1.0000
+642	Guizhou Plateau broadleaf and mixed forests	guizhou-plateau-broadleaf-and-mixed-forests	Guizhou Plateau Broadleaf and Mixed Forests	norm_exact	1.0000
+643	Yunnan Plateau subtropical evergreen forests	yunnan-plateau-subtropical-evergreen-forests	Yunnan Plateau Subtropical Evergreen Forests	norm_exact	1.0000
+644	Appenine deciduous montane forests	appenine-deciduous-montane-forests	Appenine Deciduous Montane Forests	norm_exact	1.0000
+645	Azores temperate mixed forests	azores-temperate-mixed-forests	Azores Temperate Mixed Forests	norm_exact	1.0000
+646	Balkan mixed forests	balkan-mixed-forests	Balkan Mixed Forests	norm_exact	1.0000
+647	Baltic mixed forests	baltic-mixed-forests	Baltic Mixed Forests	norm_exact	1.0000
+648	Cantabrian mixed forests	cantabrian-mixed-forests	Cantabrian Mixed Forests	norm_exact	1.0000
+649	Caspian Hyrcanian mixed forests	caspian-hyrcanian-mixed-forests	Caspian Hyrcanian Mixed Forests	norm_exact	1.0000
+650	Caucasus mixed forests	caucasus-mixed-forests	Caucasus Mixed Forests	norm_exact	1.0000
+651	Celtic broadleaf forests	celtic-broadleaf-forests	Celtic Broadleaf Forests	norm_exact	1.0000
+652	Central Anatolian steppe and woodlands	central-anatolian-steppe-and-woodlands	Central Anatolian Steppe and Woodlands	norm_exact	1.0000
+653	Central China Loess Plateau mixed forests	central-china-loess-plateau-mixed-forests	Central China Loess Plateau Mixed Forests	norm_exact	1.0000
+654	Central European mixed forests	central-european-mixed-forests	Central European Mixed Forests	norm_exact	1.0000
+655	Central Korean deciduous forests	central-korean-deciduous-forests	Central Korean Deciduous Forests	norm_exact	1.0000
+656	Changbai Mountains mixed forests	changbai-mountains-mixed-forests	Changbai Mountains Mixed Forests	norm_exact	1.0000
+657	Changjiang Plain evergreen forests	changjiang-plain-evergreen-forests	Changjiang Plain Evergreen Forests	norm_exact	1.0000
+658	Crimean Submediterranean forest complex	crimean-submediterranean-forest-complex	Crimean Submediterranean Forest Complex	norm_exact	1.0000
+659	Daba Mountains evergreen forests	daba-mountains-evergreen-forests	Daba Mountains Evergreen Forests	norm_exact	1.0000
+660	Dinaric Mountains mixed forests	dinaric-mountains-mixed-forests	Dinaric Mountains Mixed Forests	norm_exact	1.0000
+661	East European forest steppe	east-european-forest-steppe	East European Forest Steppe	norm_exact	1.0000
+662	Eastern Anatolian deciduous forests	eastern-anatolian-deciduous-forests	Eastern Anatolian Deciduous Forests	norm_exact	1.0000
+663	English Lowlands beech forests	english-lowlands-beech-forests	English Lowlands Beech Forests	norm_exact	1.0000
+664	European Atlantic mixed forests	european-atlantic-mixed-forests	European Atlantic Mixed Forests	norm_exact	1.0000
+665	Euxine-Colchic broadleaf forests	euxine-colchic-broadleaf-forests	Euxine-Colchic Broadleaf Forests	norm_exact	1.0000
+666	Hokkaido deciduous forests	hokkaido-deciduous-forests	Hokkaido Deciduous Forests	norm_exact	1.0000
+667	Huang He Plain mixed forests	huang-he-plain-mixed-forests	Huang He Plain Mixed Forests	norm_exact	1.0000
+668	Madeira evergreen forests	madeira-evergreen-forests	Madeira Evergreen Forests	norm_exact	1.0000
+669	Manchurian mixed forests	manchurian-mixed-forests	Manchurian Mixed Forests	norm_exact	1.0000
+670	Nihonkai evergreen forests	nihonkai-evergreen-forests	Nihonkai Evergreen Forests	norm_exact	1.0000
+671	Nihonkai montane deciduous forests	nihonkai-montane-deciduous-forests	Nihonkai Montane Deciduous Forests	norm_exact	1.0000
+672	North Atlantic moist mixed forests	north-atlantic-moist-mixed-forests	North Atlantic Moist Mixed Forests	norm_exact	1.0000
+673	Northeast China Plain deciduous forests	northeast-china-plain-deciduous-forests	Northeast China Plain Deciduous Forests	norm_exact	1.0000
+674	Pannonian mixed forests	pannonian-mixed-forests	Pannonian Mixed Forests	norm_exact	1.0000
+675	Po Basin mixed forests	po-basin-mixed-forests	Po Basin Mixed Forests	norm_exact	1.0000
+676	Pyrenees conifer and mixed forests	pyrenees-conifer-and-mixed-forests	Pyrenees Conifer and Mixed Forests	norm_exact	1.0000
+677	Qin Ling Mountains deciduous forests	qin-ling-mountains-deciduous-forests	Qin Ling Mountains Deciduous Forests	norm_exact	1.0000
+678	Rodope montane mixed forests	rodope-montane-mixed-forests	Rodope Montane Mixed Forests	norm_exact	1.0000
+679	Sarmatic mixed forests	sarmatic-mixed-forests	Sarmatic Mixed Forests	norm_exact	1.0000
+680	Sichuan Basin evergreen broadleaf forests	sichuan-basin-evergreen-broadleaf-forests	Sichuan Basin Evergreen Broadleaf Forests	norm_exact	1.0000
+681	Southern Korea evergreen forests	southern-korea-evergreen-forests	Southern Korea Evergreen Forests	norm_exact	1.0000
+682	Taiheiyo evergreen forests	taiheiyo-evergreen-forests	Taiheiyo Evergreen Forests	norm_exact	1.0000
+683	Taiheiyo montane deciduous forests	taiheiyo-montane-deciduous-forests	Taiheiyo Montane Deciduous Forests	norm_exact	1.0000
+684	Tarim Basin deciduous forests and steppe	tarim-basin-deciduous-forests-and-steppe	Tarim Basin Deciduous Forests and Steppe	norm_exact	1.0000
+685	Ussuri broadleaf and mixed forests	ussuri-broadleaf-and-mixed-forests	Ussuri Broadleaf and Mixed Forests	norm_exact	1.0000
+686	Western European broadleaf forests	western-european-broadleaf-forests	Western European Broadleaf Forests	norm_exact	1.0000
+687	Western Siberian hemiboreal forests	western-siberian-hemiboreal-forests	Western Siberian Hemiboreal Forests	norm_exact	1.0000
+688	Zagros Mountains forest steppe	zagros-mountains-forest-steppe	Zagros Mountains Forest Steppe	norm_exact	1.0000
+689	Alps conifer and mixed forests	alps-conifer-and-mixed-forests	Alps Conifer and Mixed Forests	norm_exact	1.0000
+690	Altai montane forest and forest steppe	altai-montane-forest-and-forest-steppe	Altai Montane Forest and Forest Steppe	norm_exact	1.0000
+691	Caledon conifer forests	caledon-conifer-forests	Caledon Conifer Forests	norm_exact	1.0000
+692	Carpathian montane forests	carpathian-montane-forests	Carpathian Montane Forests	norm_exact	1.0000
+693	Da Hinggan-Dzhagdy Mountains conifer forests	da-hinggan-dzhagdy-mountains-conifer-forests	Da Hinggan-Dzhagdy Mountains Conifer Forests	norm_exact	1.0000
+694	East Afghan montane conifer forests	east-afghan-montane-conifer-forests	East Afghan Montane Conifer Forests	norm_exact	1.0000
+695	Elburz Range forest steppe	elburz-range-forest-steppe	Elburz Range Forest Steppe	norm_exact	1.0000
+696	Helanshan montane conifer forests	helanshan-montane-conifer-forests	Helanshan Montane Conifer Forests	norm_exact	1.0000
+697	Hengduan Mountains subalpine conifer forests	hengduan-mountains-subalpine-conifer-forests	Hengduan Mountains Subalpine Conifer Forests	norm_exact	1.0000
+698	Hokkaido montane conifer forests	hokkaido-montane-conifer-forests	Hokkaido Montane Conifer Forests	norm_exact	1.0000
+699	Honshu alpine conifer forests	honshu-alpine-conifer-forests	Honshu Alpine Conifer Forests	norm_exact	1.0000
+700	Khangai Mountains conifer forests	khangai-mountains-conifer-forests	Khangai Mountains Conifer Forests	norm_exact	1.0000
+701	Mediterranean conifer and mixed forests	mediterranean-conifer-and-mixed-forests	Mediterranean Conifer and Mixed Forests	norm_exact	1.0000
+702	Northeast Himalayan subalpine conifer forests	northeastern-himalayan-subalpine-conifer-forests	Northeastern Himalayan Subalpine Conifer Forests	fuzzy_auto	0.9677
+703	Northern Anatolian conifer and deciduous forests	northern-anatolian-conifer-and-deciduous-forests	Northern Anatolian Conifer and Deciduous Forests	norm_exact	1.0000
+704	Nujiang Langcang Gorge alpine conifer and mixed forests	nujiang-lancang-gorge-subalpine-conifer-and-mixed-forests	Nujiang Lancang Gorge Subalpine Conifer and Mixed Forests	fuzzy_auto	0.9643
+705	Qilian Mountains conifer forests	qilian-mountains-conifer-forests	Qilian Mountains Conifer Forests	norm_exact	1.0000
+706	Qionglai-Minshan conifer forests	qionglai-minshan-conifer-forests	Qionglai-Minshan Conifer Forests	norm_exact	1.0000
+707	Sayan montane conifer forests	sayan-montane-conifer-forests	Sayan Montane Conifer Forests	norm_exact	1.0000
+708	Scandinavian coastal conifer forests	scandinavian-coastal-conifer-forests	Scandinavian Coastal Conifer Forests	norm_exact	1.0000
+709	Tian Shan montane conifer forests	tian-shan-montane-conifer-forests	Tian Shan Montane Conifer Forests	norm_exact	1.0000
+710	East Siberian taiga	east-siberian-taiga	East Siberian Taiga	norm_exact	1.0000
+711	Iceland boreal birch forests and alpine tundra	iceland-boreal-birch-forests-and-alpine-tundra	Iceland Boreal Birch Forests and Alpine Tundra	norm_exact	1.0000
+712	Kamchatka taiga	kamchatka-taiga	Kamchatka Taiga	norm_exact	1.0000
+713	Kamchatka-Kurile meadows and sparse forests	kamchatka-kurile-meadows-and-sparse-forests	Kamchatka-Kurile Meadows and Sparse Forests	norm_exact	1.0000
+714	Northeast Siberian taiga	northeast-siberian-taiga	Northeast Siberian Taiga	norm_exact	1.0000
+715	Okhotsk-Manchurian taiga	okhotsk-manchurian-taiga	Okhotsk-Manchurian Taiga	norm_exact	1.0000
+716	Sakhalin Island taiga	sakhalin-island-taiga	Sakhalin Island Taiga	norm_exact	1.0000
+717	Scandinavian and Russian taiga	scandinavian-and-russian-taiga	Scandinavian and Russian Taiga	norm_exact	1.0000
+718	Trans-Baikal conifer forests	trans-baikal-conifer-forests	Trans-Baikal Conifer Forests	norm_exact	1.0000
+719	Urals montane forest and taiga	urals-montane-forest-and-taiga	Urals Montane Forest and Taiga	norm_exact	1.0000
+720	West Siberian taiga	west-siberian-taiga	West Siberian Taiga	norm_exact	1.0000
+721	Alai-Western Tian Shan steppe	alai-western-tian-shan-steppe	Alai-Western Tian Shan Steppe	norm_exact	1.0000
+722	Al-Hajar foothill xeric woodlands and shrublands	al-hajar-foothill-xeric-woodlands-and-shrublands	Al-Hajar Foothill Xeric Woodlands and Shrublands	norm_exact	1.0000
+723	Al-Hajar montane woodlands and shrublands	al-hajar-montane-woodlands-and-shrublands	Al-Hajar Montane Woodlands and Shrublands	norm_exact	1.0000
+724	Altai steppe and semi-desert	altai-steppe-and-semi-desert	Altai Steppe and Semi-Desert	norm_exact	1.0000
+725	Central Anatolian steppe	central-anatolian-steppe	Central Anatolian Steppe	norm_exact	1.0000
+726	Daurian forest steppe	daurian-forest-steppe	Daurian Forest Steppe	norm_exact	1.0000
+727	Eastern Anatolian montane steppe	eastern-anatolian-montane-steppe	Eastern Anatolian Montane Steppe	norm_exact	1.0000
+728	Emin Valley steppe	emin-valley-steppe	Emin Valley Steppe	norm_exact	1.0000
+729	Faroe Islands boreal grasslands	faroe-islands-boreal-grasslands	Faroe Islands Boreal Grasslands	norm_exact	1.0000
+730	Gissaro-Alai open woodlands	gissaro-alai-open-woodlands	Gissaro-Alai Open Woodlands	norm_exact	1.0000
+731	Kazakh forest steppe	kazakh-forest-steppe	Kazakh Forest Steppe	norm_exact	1.0000
+732	Kazakh steppe	kazakh-steppe	Kazakh Steppe	norm_exact	1.0000
+733	Kazakh upland steppe	kazakh-upland-steppe	Kazakh Upland Steppe	norm_exact	1.0000
+734	Mongolian-Manchurian grassland	mongolian-manchurian-grassland	Mongolian-Manchurian Grassland	norm_exact	1.0000
+735	Pontic steppe	pontic-steppe	Pontic Steppe	norm_exact	1.0000
+736	Sayan Intermontane steppe	sayan-intermontane-steppe	Sayan Intermontane Steppe	norm_exact	1.0000
+737	Selenge-Orkhon forest steppe	selenge-orkhon-forest-steppe	Selenge-Orkhon Forest Steppe	norm_exact	1.0000
+738	South Siberian forest steppe	south-siberian-forest-steppe	South Siberian Forest Steppe	norm_exact	1.0000
+739	Syrian xeric grasslands and shrublands	syrian-xeric-grasslands-and-shrublands	Syrian Xeric Grasslands and Shrublands	norm_exact	1.0000
+740	Tian Shan foothill arid steppe	tian-shan-foothill-arid-steppe	Tian Shan Foothill Arid Steppe	norm_exact	1.0000
+741	Amur meadow steppe	amur-meadow-steppe	Amur Meadow Steppe	norm_exact	1.0000
+742	Bohai Sea saline meadow	bohai-sea-saline-meadow	Bohai Sea Saline Meadow	norm_exact	1.0000
+743	Nenjiang River grassland	nenjiang-river-grassland	Nenjiang River Grassland	norm_exact	1.0000
+744	Nile Delta flooded savanna	nile-delta-flooded-savanna	Nile Delta Flooded Savanna	norm_exact	1.0000
+745	Saharan halophytics	saharan-halophytic	Saharan Halophytic	fuzzy_auto	0.9730
+746	Suiphun-Khanka meadows and forest meadows	suiphun-khanka-meadows-and-forest-meadows	Suiphun-Khanka Meadows and Forest Meadows	norm_exact	1.0000
+747	Tigris-Euphrates alluvial salt marsh	tigris-euphrates-alluvial-salt-marsh	Tigris-Euphrates Alluvial Salt Marsh	norm_exact	1.0000
+748	Yellow Sea saline meadow	yellow-sea-saline-meadow	Yellow Sea Saline Meadow	norm_exact	1.0000
+749	Altai alpine meadow and tundra	altai-alpine-meadow-and-tundra	Altai Alpine Meadow and Tundra	norm_exact	1.0000
+750	Central Tibetan Plateau alpine steppe	central-tibetan-plateau-alpine-steppe	Central Tibetan Plateau Alpine Steppe	norm_exact	1.0000
+751	Eastern Himalayan alpine shrub and meadows	eastern-himalayan-alpine-shrub-and-meadows	Eastern Himalayan Alpine Shrub and Meadows	norm_exact	1.0000
+752	Ghorat-Hazarajat alpine meadow	ghorat-hazarajat-alpine-meadow	Ghorat-Hazarajat Alpine Meadow	norm_exact	1.0000
+753	Hindu Kush alpine meadow	hindu-kush-alpine-meadow	Hindu Kush Alpine Meadow	norm_exact	1.0000
+754	Karakoram-West Tibetan Plateau alpine steppe	karakoram-west-tibetan-plateau-alpine-steppe	Karakoram-West Tibetan Plateau Alpine Steppe	norm_exact	1.0000
+755	Khangai Mountains alpine meadow	khangai-mountains-alpine-meadow	Khangai Mountains Alpine Meadow	norm_exact	1.0000
+756	Kopet Dag woodlands and forest steppe	kopet-dag-woodlands-and-forest-steppe	Kopet Dag Woodlands and Forest Steppe	norm_exact	1.0000
+757	Kuh Rud and Eastern Iran montane woodlands	kuh-rud-and-eastern-iran-montane-woodlands	Kuh Rud and Eastern Iran Montane Woodlands	norm_exact	1.0000
+758	Mediterranean High Atlas juniper steppe	mediterranean-high-atlas-juniper-steppe	Mediterranean High Atlas Juniper Steppe	norm_exact	1.0000
+759	North Tibetan Plateau-Kunlun Mountains alpine desert	north-tibetan-plateau-kunlun-mountains-alpine-desert	North Tibetan Plateau-Kunlun Mountains Alpine Desert	norm_exact	1.0000
+760	Northwestern Himalayan alpine shrub and meadows	northwestern-himalayan-alpine-shrub-and-meadows	Northwestern Himalayan Alpine Shrub and Meadows	norm_exact	1.0000
+761	Ordos Plateau steppe	ordos-plateau-steppe	Ordos Plateau Steppe	norm_exact	1.0000
+762	Pamir alpine desert and tundra	pamir-alpine-desert-and-tundra	Pamir Alpine Desert and Tundra	norm_exact	1.0000
+763	Qilian Mountains subalpine meadows	qilian-mountains-subalpine-meadows	Qilian Mountains Subalpine Meadows	norm_exact	1.0000
+764	Sayan alpine meadows and tundra	sayan-alpine-meadows-and-tundra	Sayan Alpine Meadows and Tundra	norm_exact	1.0000
+765	Southeast Tibet shrublands and meadows	southeast-tibet-shrublands-and-meadows	Southeast Tibet Shrublands and Meadows	norm_exact	1.0000
+766	Sulaiman Range alpine meadows	sulaiman-range-alpine-meadows	Sulaiman Range Alpine Meadows	norm_exact	1.0000
+767	Tian Shan montane steppe and meadows	tian-shan-montane-steppe-and-meadows	Tian Shan Montane Steppe and Meadows	norm_exact	1.0000
+768	Tibetan Plateau alpine shrublands and meadows	tibetan-plateau-alpine-shrublands-and-meadows	Tibetan Plateau Alpine Shrublands and Meadows	norm_exact	1.0000
+769	Western Himalayan alpine shrub and meadows	western-himalayan-alpine-shrub-and-meadows	Western Himalayan Alpine Shrub and Meadows	norm_exact	1.0000
+770	Yarlung Zanbo arid steppe	yarlung-zanbo-arid-steppe	Yarlung Zanbo Arid Steppe	norm_exact	1.0000
+771	Cherskii-Kolyma mountain tundra	cherskii-kolyma-mountain-tundra	Cherskii-Kolyma Mountain Tundra	norm_exact	1.0000
+772	Chukchi Peninsula tundra	chukchi-peninsula-tundra	Chukchi Peninsula Tundra	norm_exact	1.0000
+773	Kamchatka tundra	kamchatka-tundra	Kamchatka Tundra	norm_exact	1.0000
+774	Kola Peninsula tundra	kola-peninsula-tundra	Kola Peninsula Tundra	norm_exact	1.0000
+775	Northeast Siberian coastal tundra	northeast-siberian-coastal-tundra	Northeast Siberian Coastal Tundra	norm_exact	1.0000
+776	Northwest Russian-Novaya Zemlya tundra	northwest-russian-novaya-zemlya-tundra	Northwest Russian-Novaya Zemlya Tundra	norm_exact	1.0000
+777	Novosibirsk Islands Arctic desert	novosibirsk-islands-arctic-desert	Novosibirsk Islands Arctic Desert	norm_exact	1.0000
+778	Russian Arctic desert	russian-arctic-desert	Russian Arctic Desert	norm_exact	1.0000
+779	Russian Bering tundra	russian-bering-tundra	Russian Bering Tundra	norm_exact	1.0000
+780	Scandinavian Montane Birch forest and grasslands	scandinavian-montane-birch-forest-and-grasslands	Scandinavian Montane Birch Forest and Grasslands	norm_exact	1.0000
+781	Taimyr-Central Siberian tundra	taimyr-central-siberian-tundra	Taimyr-Central Siberian Tundra	norm_exact	1.0000
+782	Trans-Baikal Bald Mountain tundra	trans-baikal-bald-mountain-tundra	Trans-Baikal Bald Mountain Tundra	norm_exact	1.0000
+783	Wrangel Island Arctic desert	wrangel-island-arctic-desert	Wrangel Island Arctic Desert	norm_exact	1.0000
+784	Yamal-Gydan tundra	yamal-gydan-tundra	Yamal-Gydan Tundra	norm_exact	1.0000
+785	Aegean and Western Turkey sclerophyllous and mixed forests	aegean-and-western-turkey-sclerophyllous-and-mixed-forests	Aegean and Western Turkey Sclerophyllous and Mixed Forests	norm_exact	1.0000
+786	Anatolian conifer and deciduous mixed forests	anatolian-conifer-and-deciduous-mixed-forests	Anatolian Conifer and Deciduous Mixed Forests	norm_exact	1.0000
+787	Canary Islands dry woodlands and forests	canary-islands-dry-woodlands-and-forests	Canary Islands Dry Woodlands and Forests	norm_exact	1.0000
+788	Corsican montane broadleaf and mixed forests	corsican-montane-broadleaf-and-mixed-forests	Corsican Montane Broadleaf and Mixed Forests	norm_exact	1.0000
+789	Crete Mediterranean forests	crete-mediterranean-forests	Crete Mediterranean Forests	norm_exact	1.0000
+790	Cyprus Mediterranean forests	cyprus-mediterranean-forests	Cyprus Mediterranean Forests	norm_exact	1.0000
+791	Eastern Mediterranean conifer-broadleaf forests	eastern-mediterranean-conifer-broadleaf-forests	Eastern Mediterranean Conifer-Broadleaf Forests	norm_exact	1.0000
+792	Iberian conifer forests	iberian-conifer-forests	Iberian Conifer Forests	norm_exact	1.0000
+793	Iberian sclerophyllous and semi-deciduous forests	iberian-sclerophyllous-and-semi-deciduous-forests	Iberian Sclerophyllous and Semi-Deciduous Forests	norm_exact	1.0000
+794	Illyrian deciduous forests	illyrian-deciduous-forests	Illyrian Deciduous Forests	norm_exact	1.0000
+795	Italian sclerophyllous and semi-deciduous forests	italian-sclerophyllous-and-semi-deciduous-forests	Italian Sclerophyllous and Semi-Deciduous Forests	norm_exact	1.0000
+796	Mediterranean Acacia-Argania dry woodlands and succulent thickets	mediterranean-acacia-argania-dry-woodlands-and-succulent-thickets	Mediterranean Acacia-Argania Dry Woodlands and Succulent Thickets	norm_exact	1.0000
+797	Mediterranean dry woodlands and steppe	mediterranean-dry-woodlands-and-steppe	Mediterranean Dry Woodlands and Steppe	norm_exact	1.0000
+798	Mediterranean woodlands and forests	mediterranean-woodlands-and-forests	Mediterranean Woodlands and Forests	norm_exact	1.0000
+799	Northeast Spain and Southern France Mediterranean forests	northeastern-spain-and-southern-france-mediterranean-forests	Northeastern Spain and Southern France Mediterranean Forests	fuzzy_auto	0.9744
+800	Northwest Iberian montane forests	northwest-iberian-montane-forests	Northwest Iberian Montane Forests	norm_exact	1.0000
+801	Pindus Mountains mixed forests	pindus-mountains-mixed-forests	Pindus Mountains Mixed Forests	norm_exact	1.0000
+802	South Apennine mixed montane forests	south-apennine-mixed-montane-forests	South Apennine Mixed Montane Forests	norm_exact	1.0000
+803	Southeast Iberian shrubs and woodlands	southeastern-iberian-shrubs-and-woodlands	Southeastern Iberian Shrubs and Woodlands	fuzzy_auto	0.9620
+804	Southern Anatolian montane conifer and deciduous forests	southern-anatolian-montane-conifer-and-deciduous-forests	Southern Anatolian Montane Conifer and Deciduous Forests	norm_exact	1.0000
+805	Southwest Iberian Mediterranean sclerophyllous and mixed forests	southwest-iberian-mediterranean-sclerophyllous-and-mixed-forests	Southwest Iberian Mediterranean Sclerophyllous and Mixed Forests	norm_exact	1.0000
+806	Tyrrhenian-Adriatic sclerophyllous and mixed forests	tyrrhenian-adriatic-sclerophyllous-and-mixed-forests	Tyrrhenian-Adriatic Sclerophyllous and Mixed Forests	norm_exact	1.0000
+807	Afghan Mountains semi-desert	afghan-mountains-semi-desert	Afghan Mountains Semi-Desert	norm_exact	1.0000
+808	Alashan Plateau semi-desert	alashan-plateau-semi-desert	Alashan Plateau Semi-Desert	norm_exact	1.0000
+809	Arabian desert	arabian-desert	Arabian Desert	norm_exact	1.0000
+810	Arabian sand desert	arabian-sand-desert	Arabian Sand Desert	norm_exact	1.0000
+811	Arabian-Persian Gulf coastal plain desert	arabian-persian-gulf-coastal-plain-desert	Arabian-Persian Gulf Coastal Plain Desert	norm_exact	1.0000
+812	Azerbaijan shrub desert and steppe	azerbaijan-shrub-desert-and-steppe	Azerbaijan Shrub Desert and Steppe	norm_exact	1.0000
+813	Badghyz and Karabil semi-desert	badghyz-and-karabil-semi-desert	Badghyz and Karabil Semi-Desert	norm_exact	1.0000
+814	Baluchistan xeric woodlands	baluchistan-xeric-woodlands	Baluchistan Xeric Woodlands	norm_exact	1.0000
+815	Caspian lowland desert	caspian-lowland-desert	Caspian Lowland Desert	norm_exact	1.0000
+816	Central Afghan Mountains xeric woodlands	central-afghan-mountains-xeric-woodlands	Central Afghan Mountains Xeric Woodlands	norm_exact	1.0000
+817	Central Asian northern desert	central-asian-northern-desert	Central Asian Northern Desert	norm_exact	1.0000
+818	Central Asian riparian woodlands	central-asian-riparian-woodlands	Central Asian Riparian Woodlands	norm_exact	1.0000
+819	Central Asian southern desert	central-asian-southern-desert	Central Asian Southern Desert	norm_exact	1.0000
+820	Central Persian desert basins	central-persian-desert-basins	Central Persian Desert Basins	norm_exact	1.0000
+821	East Arabian fog shrublands and sand desert	east-arabian-fog-shrublands-and-sand-desert	East Arabian Fog Shrublands and Sand Desert	norm_exact	1.0000
+822	East Sahara Desert	east-sahara-desert	East Sahara Desert	norm_exact	1.0000
+823	East Saharan montane xeric woodlands	east-saharan-montane-xeric-woodlands	East Saharan Montane Xeric Woodlands	norm_exact	1.0000
+824	Eastern Gobi desert steppe	eastern-gobi-desert-steppe	Eastern Gobi Desert Steppe	norm_exact	1.0000
+825	Gobi Lakes Valley desert steppe	gobi-lakes-valley-desert-steppe	Gobi Lakes Valley Desert Steppe	norm_exact	1.0000
+826	Great Lakes Basin desert steppe	great-lakes-basin-desert-steppe	Great Lakes Basin Desert Steppe	norm_exact	1.0000
+827	Junggar Basin semi-desert	junggar-basin-semi-desert	Junggar Basin Semi-Desert	norm_exact	1.0000
+828	Kazakh semi-desert	kazakh-semi-desert	Kazakh Semi-Desert	norm_exact	1.0000
+829	Kopet Dag semi-desert	kopet-dag-semi-desert	Kopet Dag Semi-Desert	norm_exact	1.0000
+830	Mesopotamian shrub desert	mesopotamian-shrub-desert	Mesopotamian Shrub Desert	norm_exact	1.0000
+831	North Arabian desert	north-arabian-desert	North Arabian Desert	norm_exact	1.0000
+832	North Arabian highland shrublands	north-arabian-highland-shrublands	North Arabian Highland Shrublands	norm_exact	1.0000
+833	North Saharan Xeric Steppe and Woodland	north-saharan-xeric-steppe-and-woodlands	North Saharan Xeric Steppe and Woodlands	fuzzy_auto	0.9873
+834	Paropamisus xeric woodlands	paropamisus-xeric-woodlands	Paropamisus Xeric Woodlands	norm_exact	1.0000
+835	Qaidam Basin semi-desert	qaidam-basin-semi-desert	Qaidam Basin Semi-Desert	norm_exact	1.0000
+836	Red Sea coastal desert	red-sea-coastal-desert	Red Sea Coastal Desert	norm_exact	1.0000
+837	Red Sea-Arabian Desert shrublands	red-sea-arabian-desert-shrublands	Red Sea-Arabian Desert Shrublands	norm_exact	1.0000
+838	Registan-North Pakistan sandy desert	registan-north-pakistan-sandy-desert	Registan-North Pakistan Sandy Desert	norm_exact	1.0000
+839	Saharan Atlantic coastal desert	saharan-atlantic-coastal-desert	Saharan Atlantic Coastal Desert	norm_exact	1.0000
+840	South Arabian plains and plateau desert	south-arabian-plains-and-plateau-desert	South Arabian Plains and Plateau Desert	norm_exact	1.0000
+841	South Iran Nubo-Sindian desert and semi-desert	south-iran-nubo-sindian-desert-and-semi-desert	South Iran Nubo-Sindian Desert and Semi-Desert	norm_exact	1.0000
+842	South Sahara desert	south-sahara-desert	South Sahara Desert	norm_exact	1.0000
+843	Taklimakan desert	taklimakan-desert	Taklimakan Desert	norm_exact	1.0000
+844	Tibesti-Jebel Uweinat montane xeric woodlands	tibesti-jebel-uweinat-montane-xeric-woodlands	Tibesti-Jebel Uweinat Montane Xeric Woodlands	norm_exact	1.0000
+845	West Sahara desert	west-sahara-desert	West Sahara Desert	norm_exact	1.0000
+846	West Saharan montane xeric woodlands	west-saharan-montane-xeric-woodlands	West Saharan Montane Xeric Woodlands	norm_exact	1.0000
