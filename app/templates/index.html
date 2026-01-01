@@ -37,7 +37,7 @@
             <div class="mb-2">
               <label class="form-label" for="main-name">Place name (WHG suggest; first hit only)</label>
               <input class="form-control" id="main-name" name="name" type="text" placeholder="e.g. Timbuktu" />
-              <div class="form-text">For now, name resolution uses WHG <code>/suggest/entity</code> and returns the top-ranked entity. Coordinates are not available until token-based entity detail access is working.</div>
+              <div class="form-text">Name resolution uses WHG via the EDOP backend (top-ranked hit only); the WHG token is never sent to the browser.</div>
             </div>
 
             <div class="d-flex gap-2 mt-3">
@@ -46,18 +46,18 @@
             </div>
           </form>
 
-          <div class="mb-3">
-            <h5 class="mb-2">Resolved place</h5>
-            <pre id="main-resolved" class="bg-light p-2" style="min-height: 7rem;"></pre>
-          </div>
-
           <div>
             <h5 class="mb-2">Environmental profile</h5>
             <pre id="output" class="bg-light p-2" style="min-height: 12rem;"></pre>
           </div>
+
+          <div class="mb-3 mt-3">
+            <h5 class="mb-2">Resolved place</h5>
+            <pre id="main-resolved" class="bg-light p-2" style="min-height: 7rem;"></pre>
+          </div>
         </div>
 
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-lg-7">
           <h4 class="mb-3">Map</h4>
           <div id="map" style="height: 420px; border: 1px solid #ddd;"></div>
           <div class="form-text mt-2">Map plumbing is wired for a marker now; polygon overlay can be added once <code>/api/signature</code> returns GeoJSON geometry.</div>
@@ -149,44 +149,31 @@
   }
 
   async function resolveByName(name) {
-    const q = `https://whgazetteer.org/suggest/entity?prefix=${encodeURIComponent(name)}&limit=3&cursor=0&exact=false`;
-    const resp = await fetch(q);
+    // Call EDOP backend resolver (server-side WHG token usage)
+    const url = `/api/resolve?name=${encodeURIComponent(name)}`;
+    const resp = await fetch(url);
     if (!resp.ok) {
       const txt = await resp.text();
-      throw new Error(`WHG suggest failed (${resp.status}): ${txt}`);
+      throw new Error(`Resolve request failed (${resp.status}): ${txt}`);
     }
-    const data = await resp.json();
-    const first = data && data.result && data.result.length ? data.result[0] : null;
 
-    if (!first) {
-      const resolved = {
-        label: name,
-        source: 'whg_suggest',
-        meta: { status: 'not_found' }
-      };
-      renderResolvedPlace(resolved);
-      renderSignature({ detail: 'Not found in WHG suggest (no candidates).' });
+    const resolved = await resp.json();
+    renderResolvedPlace(resolved);
+
+    // If we got coordinates back, proceed to signature
+    if (resolved && resolved.location && resolved.location.type === 'Point' && resolved.location.coordinates) {
+      const lon = resolved.location.coordinates[0];
+      const lat = resolved.location.coordinates[1];
+      setMarkerFromLonLat(Number(lon), Number(lat));
+      const sig = await fetchSignature(lon, lat);
+      renderSignature(sig);
       return;
     }
 
-    const resolved = {
-      label: first.name,
-      source: 'whg_suggest',
-      meta: {
-        whg_id: first.id,
-        score: first.score,
-        description: first.description,
-        match: first.match,
-        alt_names: first.alt_names || []
-      }
-    };
-    renderResolvedPlace(resolved);
-
-    // No coordinates available from suggest; cannot fetch signature yet.
+    // Otherwise show why we couldn't proceed
     renderSignature({
-      detail: 'Resolved to top WHG entity via /suggest/entity, but coordinates are unavailable until token-based entity detail access works.',
-      whg_id: first.id,
-      name: first.name
+      detail: 'Resolved via WHG, but no coordinates were returned; cannot compute environmental profile.',
+      resolved
     });
   }
 
@@ -238,9 +225,11 @@
     // Initialize map if Leaflet is present
     ensureMap();
 
-    // Leaflet sometimes needs an explicit size recalculation when inside tabs.
-    document.getElementById('tab-main').addEventListener('shown.bs.tab', () => {
-      if (map) map.invalidateSize();
+    // Leaflet often needs an explicit size recalculation when switching tabs.
+    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach((btn) => {
+      btn.addEventListener('shown.bs.tab', () => {
+        if (map) map.invalidateSize();
+      });
     });
   });
 </script>
