@@ -2,8 +2,17 @@
 ----
 #### 01 Jan 2026
 - wired a "Resolve" button to WHG API endpoints (run a `/suggest/entity?` call, then an `/entity/{entity_id}/api` call with a resulting place id and it works nicely, ~1.8s
-- index.html now with inputs for lon/lat or name, returning an "Envirnmental profile" (`signature` internally), and point feature on Leaflet map
-- 
+- index.html now with inputs for lon/lat or name, returning an "Environmental profile" (`signature` internally), and point feature on Leaflet map
+- implemented World Heritage Site lookup for 20 varied locales on its own tab
+- added point elevation from external sources (try OpenTopoData (mapzen) first, then Open-Meteo elevation API
+- TODO: compute relative elevation position within the basin
+
+```
+Interpretation:
+	•	~0.0 → near basin minimum (valley floor / lowlands)
+	•	~1.0 → near basin maximum (ridge / highlands)
+	•	~0.5 → mid-slope / plateau-ish
+```
 
 #### 31 Dec 2025
 ```

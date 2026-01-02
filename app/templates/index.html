@@ -110,6 +110,7 @@
 
   let map = null;
   let marker = null;
+  let basinLayer = null; // GeoJSON polygon overlay from signature (sub-basin)
   // World Heritage seed list state
   let whSites = [];
   let whSelected = null;
@@ -224,6 +225,7 @@
       whSetStatus('Computing environmental profile…');
       const sig = await fetchSignature(lon, lat);
       renderSignature(sig);
+      setBasinFromSignature(sig);
       whSetStatus('');
       if (marker && marker.getPopup()) marker.openPopup();
     } catch (e) {
@@ -257,6 +259,57 @@
     map.setView(ll, 9);
   }
 
+  function clearBasinLayer() {
+    if (basinLayer && map) {
+      map.removeLayer(basinLayer);
+    }
+    basinLayer = null;
+  }
+
+  function tryParseGeojson(value) {
+    // Signature may return geojson as an object or as a JSON-encoded string.
+    if (!value) return null;
+    if (typeof value === 'object') return value;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  function setBasinFromSignature(sig) {
+    ensureMap();
+    if (!map) return;
+
+    // Field currently named `geom_geojson` in your signature payload.
+    const gj = tryParseGeojson(sig && sig.geom_geojson);
+    if (!gj) {
+      clearBasinLayer();
+      return;
+    }
+
+    // Replace prior overlay
+    clearBasinLayer();
+
+    // Add GeoJSON overlay (supports Polygon/MultiPolygon)
+    basinLayer = L.geoJSON(gj, {
+      // keep styling minimal; Leaflet defaults are fine for now
+    }).addTo(map);
+
+    // Optional: fit to polygon bounds if they are reasonable
+    try {
+      const b = basinLayer.getBounds();
+      if (b && b.isValid()) {
+        map.fitBounds(b.pad(0.05));
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
   function renderResolvedPlace(obj) {
     const pre = document.getElementById('main-resolved');
     pre.textContent = obj ? JSON.stringify(obj, null, 2) : '';
@@ -288,6 +341,7 @@
 
     const sig = await fetchSignature(lon, lat);
     renderSignature(sig);
+    setBasinFromSignature(sig);
   }
 
   async function resolveByName(name) {
@@ -309,6 +363,7 @@
       setMarkerFromLonLat(Number(lon), Number(lat));
       const sig = await fetchSignature(lon, lat);
       renderSignature(sig);
+      setBasinFromSignature(sig);
       return;
     }
 
@@ -331,6 +386,7 @@
       document.getElementById('main-name').value = '';
       renderResolvedPlace(null);
       renderSignature(null);
+      clearBasinLayer();
       try {
         await resolveByLonLat(lon, lat);
       } catch (e) {
@@ -344,6 +400,7 @@
       evt.preventDefault();
       renderResolvedPlace(null);
       renderSignature(null);
+      clearBasinLayer();
 
       const lon = document.getElementById('main-lon').value.trim();
       const lat = document.getElementById('main-lat').value.trim();

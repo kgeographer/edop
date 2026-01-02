@@ -1,0 +1,450 @@
+Eco_ID	Ecoregion_Name	MHT_ID	MHT_Name
+101	Alaskan Coastal	11	Polar freshwaters
+102	Upper Yukon	11	Polar freshwaters
+103	Alaska & Canada Pacific Coastal	5	Temperate coastal rivers
+104	Upper Mackenzie	7	Temperate floodplain rivers and wetlands
+105	Lower Mackenzie	11	Polar freshwaters
+106	Central Arctic Coastal	11	Polar freshwaters
+107	Upper Saskatchewan	6	Temperate upland rivers
+108	Middle Saskatchewan	6	Temperate upland rivers
+109	English - Winnipeg Lakes	1	Large lakes
+110	Southern Hudson Bay	5	Temperate coastal rivers
+111	Western Hudson Bay	11	Polar freshwaters
+112	Canadian Arctic Archipelago	11	Polar freshwaters
+113	Eastern Hudson Bay - Ungava	5	Temperate coastal rivers
+114	Gulf of St.Lawrence Coastal Drainages	5	Temperate coastal rivers
+115	Canadian Atlantic Islands	5	Temperate coastal rivers
+116	Laurentian Great Lakes	1	Large lakes
+117	St.Lawrence	5	Temperate coastal rivers
+118	Northeast US & Southeast Canada Atlantic Drainages	5	Temperate coastal rivers
+119	Scotia - Fundy	5	Temperate coastal rivers
+120	Columbia Glaciated	6	Temperate upland rivers
+121	Columbia Unglaciated	7	Temperate floodplain rivers and wetlands
+122	Upper Snake	6	Temperate upland rivers
+123	Oregon & Northern California Coastal	5	Temperate coastal rivers
+124	Oregon Lakes	4	Xeric freshwaters and endorheic basins
+125	Sacramento - San Joaquin	5	Temperate coastal rivers
+126	Lahontan	4	Xeric freshwaters and endorheic basins
+127	Bonneville	4	Xeric freshwaters and endorheic basins
+128	Death Valley	4	Xeric freshwaters and endorheic basins
+129	Vegas - Virgin	4	Xeric freshwaters and endorheic basins
+130	Colorado	4	Xeric freshwaters and endorheic basins
+131	Gila	4	Xeric freshwaters and endorheic basins
+132	Upper Rio Grande - Bravo	6	Temperate upland rivers
+133	Pecos	4	Xeric freshwaters and endorheic basins
+134	Rio Conchos	4	Xeric freshwaters and endorheic basins
+135	Lower Rio Grande - Bravo	7	Temperate floodplain rivers and wetlands
+136	Cuatro Cienegas	4	Xeric freshwaters and endorheic basins
+137	Rio Salado	4	Xeric freshwaters and endorheic basins
+138	Rio San Juan (Mexico)	4	Xeric freshwaters and endorheic basins
+139	West Texas Gulf	8	Tropical and subtropical coastal rivers
+140	East Texas Gulf	5	Temperate coastal rivers
+141	Sabine - Galveston	5	Temperate coastal rivers
+142	Upper Missouri	6	Temperate upland rivers
+143	Middle Missouri	7	Temperate floodplain rivers and wetlands
+144	US Southern Plains	6	Temperate upland rivers
+145	Ouachita Highlands	6	Temperate upland rivers
+146	Central Prairie	6	Temperate upland rivers
+147	Ozark Highlands	6	Temperate upland rivers
+148	Upper Mississippi	7	Temperate floodplain rivers and wetlands
+149	Lower Mississippi	7	Temperate floodplain rivers and wetlands
+150	Teays - Old Ohio	6	Temperate upland rivers
+151	Cumberland	6	Temperate upland rivers
+152	Tennessee	6	Temperate upland rivers
+153	Mobile Bay	7	Temperate floodplain rivers and wetlands
+154	West Florida Gulf	5	Temperate coastal rivers
+155	Apalachicola	7	Temperate floodplain rivers and wetlands
+156	Florida Peninsula	8	Tropical and subtropical coastal rivers
+157	Appalachian Piedmont	5	Temperate coastal rivers
+158	Chesapeake Bay	5	Temperate coastal rivers
+159	Southern California Coastal - Baja California	4	Xeric freshwaters and endorheic basins
+160	Sonora	4	Xeric freshwaters and endorheic basins
+161	Guzman - Samalayuca	4	Xeric freshwaters and endorheic basins
+162	Sinaloa	8	Tropical and subtropical coastal rivers
+163	Mayran - Viesca	4	Xeric freshwaters and endorheic basins
+164	Rio Santiago	8	Tropical and subtropical coastal rivers
+165	Lerma - Chapala	4	Xeric freshwaters and endorheic basins
+166	Llanos El Salado	4	Xeric freshwaters and endorheic basins
+167	Panuco	8	Tropical and subtropical coastal rivers
+168	Ameca - Manantlan	8	Tropical and subtropical coastal rivers
+169	Rio Balsas	8	Tropical and subtropical coastal rivers
+170	Sierra Madre del Sur	8	Tropical and subtropical coastal rivers
+171	Papaloapan	8	Tropical and subtropical coastal rivers
+172	Coatzacoalcos	8	Tropical and subtropical coastal rivers
+173	Grijalva - Usumacinta	8	Tropical and subtropical coastal rivers
+174	Upper Usumacinta	9	Tropical and subtropical upland rivers
+175	Yucatan	8	Tropical and subtropical coastal rivers
+176	Bermuda	12	Oceanic islands
+201	Chiapas - Fonseca	8	Tropical and subtropical coastal rivers
+202	Quintana Roo - Motagua	8	Tropical and subtropical coastal rivers
+203	Mosquitia	8	Tropical and subtropical coastal rivers
+204	Estero Real - Tempisque	8	Tropical and subtropical coastal rivers
+205	San Juan (Nicaragua/Costa Rica)	8	Tropical and subtropical coastal rivers
+206	Chiriqui	8	Tropical and subtropical coastal rivers
+207	Isthmus Caribbean	8	Tropical and subtropical coastal rivers
+208	Santa Maria	8	Tropical and subtropical coastal rivers
+209	Chagres	8	Tropical and subtropical coastal rivers
+210	Rio Tuira	8	Tropical and subtropical coastal rivers
+211	Cuba - Cayman Islands	8	Tropical and subtropical coastal rivers
+212	Bahama Archipelago	8	Tropical and subtropical coastal rivers
+213	Jamaica	8	Tropical and subtropical coastal rivers
+214	Hispaniola	8	Tropical and subtropical coastal rivers
+215	Puerto Rico - Virgin Islands	8	Tropical and subtropical coastal rivers
+216	Windward & Leeward Islands	8	Tropical and subtropical coastal rivers
+217	Cocos Island (Costa Rica)	12	Oceanic islands
+301	North Andean Pacific Slopes - Rio Atrato	8	Tropical and subtropical coastal rivers
+302	Magdalena - Sinu	9	Tropical and subtropical upland rivers
+303	Maracaibo	1	Large lakes
+304	South America Caribbean Drainages - Trinidad	8	Tropical and subtropical coastal rivers
+305	Orinoco High Andes	3	Montane freshwaters
+306	Orinoco Piedmont	3	Montane freshwaters
+307	Orinoco Llanos	10	Tropical and subtropical floodplain rivers and wetlands
+308	Orinoco Guiana Shield	9	Tropical and subtropical upland rivers
+309	Orinoco Delta & Coastal Drainages	2	Large river deltas
+310	Essequibo	9	Tropical and subtropical upland rivers
+311	Guianas	9	Tropical and subtropical upland rivers
+312	Amazonas High Andes	3	Montane freshwaters
+313	Western Amazon Piedmont	3	Montane freshwaters
+314	Rio Negro	10	Tropical and subtropical floodplain rivers and wetlands
+315	Amazonas Guiana Shield	9	Tropical and subtropical upland rivers
+316	Amazonas Lowlands	10	Tropical and subtropical floodplain rivers and wetlands
+317	Ucayali - Urubamba Piedmont	3	Montane freshwaters
+318	Mamore - Madre de Dios Piedmont	9	Tropical and subtropical upland rivers
+319	Guapore - Itenez	9	Tropical and subtropical upland rivers
+320	Tapajos - Juruena	9	Tropical and subtropical upland rivers
+321	Madeira Brazilian Shield	9	Tropical and subtropical upland rivers
+322	Xingu	9	Tropical and subtropical upland rivers
+323	Amazonas Estuary & Coastal Drainages	2	Large river deltas
+324	Tocantins - Araguaia	9	Tropical and subtropical upland rivers
+325	Parnaiba	9	Tropical and subtropical upland rivers
+326	Northeastern Caatinga & Coastal Drainages	8	Tropical and subtropical coastal rivers
+327	S. Francisco	9	Tropical and subtropical upland rivers
+328	Northeastern Mata Atlantica	8	Tropical and subtropical coastal rivers
+329	Paraiba do Sul	8	Tropical and subtropical coastal rivers
+330	Ribeira de Iguape	8	Tropical and subtropical coastal rivers
+331	Southeastern Mata Atlantica	8	Tropical and subtropical coastal rivers
+332	Lower Uruguay	9	Tropical and subtropical upland rivers
+333	Upper Uruguay	9	Tropical and subtropical upland rivers
+334	Laguna dos Patos	5	Temperate coastal rivers
+335	Tramandai - Mampituba	8	Tropical and subtropical coastal rivers
+336	Central Andean Pacific Slopes	4	Xeric freshwaters and endorheic basins
+337	Titicaca	4	Xeric freshwaters and endorheic basins
+338	Atacama	4	Xeric freshwaters and endorheic basins
+339	Mar Chiquita - Salinas Grandes	4	Xeric freshwaters and endorheic basins
+340	Cuyan - Desaguadero	3	Montane freshwaters
+341	South Andean Pacific Slopes	5	Temperate coastal rivers
+342	Chaco	10	Tropical and subtropical floodplain rivers and wetlands
+343	Paraguay	10	Tropical and subtropical floodplain rivers and wetlands
+344	Upper Parana	9	Tropical and subtropical upland rivers
+345	Lower Parana	7	Temperate floodplain rivers and wetlands
+346	Iguassu	9	Tropical and subtropical upland rivers
+347	Bonaerensean Drainages	5	Temperate coastal rivers
+348	Patagonia	5	Temperate coastal rivers
+349	Valdivian Lakes	5	Temperate coastal rivers
+350	Galapagos Islands	12	Oceanic islands
+351	Juan Fernandez Island	12	Oceanic islands
+352	Fluminense	8	Tropical and subtropical coastal rivers
+401	Iceland - Jan Mayen	11	Polar freshwaters
+402	Northern British Isles	5	Temperate coastal rivers
+403	Cantabric Coast - Languedoc	5	Temperate coastal rivers
+404	Central & Western Europe	7	Temperate floodplain rivers and wetlands
+405	Norwegian Sea Drainages	11	Polar freshwaters
+406	Northern Baltic Drainages	11	Polar freshwaters
+407	Barents Sea Drainages	11	Polar freshwaters
+408	Southern Baltic Lowlands	5	Temperate coastal rivers
+409	Lake Onega - Lake Ladoga	1	Large lakes
+410	Volga - Ural	7	Temperate floodplain rivers and wetlands
+411	Western Caspian Drainages	4	Xeric freshwaters and endorheic basins
+412	Western Iberia	5	Temperate coastal rivers
+413	Southern Iberia	7	Temperate floodplain rivers and wetlands
+414	Eastern Iberia	7	Temperate floodplain rivers and wetlands
+415	Gulf of Venice Drainages	5	Temperate coastal rivers
+416	Italian Peninsula & Islands	5	Temperate coastal rivers
+417	Upper Danube	6	Temperate upland rivers
+418	Dniester - Lower Danube	7	Temperate floodplain rivers and wetlands
+419	Dalmatia	5	Temperate coastal rivers
+420	Southeast Adriatic Drainages	5	Temperate coastal rivers
+421	Ionian Drainages	5	Temperate coastal rivers
+422	Vardar	5	Temperate coastal rivers
+423	Thrace	5	Temperate coastal rivers
+424	Aegean Drainages	5	Temperate coastal rivers
+425	Dnieper - South Bug	7	Temperate floodplain rivers and wetlands
+426	Crimea Peninsula	5	Temperate coastal rivers
+427	Don	7	Temperate floodplain rivers and wetlands
+428	Kuban	5	Temperate coastal rivers
+429	Western Anatolia	5	Temperate coastal rivers
+430	Northern Anatolia	5	Temperate coastal rivers
+431	Central Anatolia	4	Xeric freshwaters and endorheic basins
+432	Southern Anatolia	5	Temperate coastal rivers
+433	Western Transcaucasia	5	Temperate coastal rivers
+434	Kura - South Caspian Drainages	7	Temperate floodplain rivers and wetlands
+435	Sinai	4	Xeric freshwaters and endorheic basins
+436	Coastal Levant	4	Xeric freshwaters and endorheic basins
+437	Orontes	5	Temperate coastal rivers
+438	Jordan River	4	Xeric freshwaters and endorheic basins
+439	Southwestern Arabian Coast	4	Xeric freshwaters and endorheic basins
+440	Arabian Interior	4	Xeric freshwaters and endorheic basins
+441	Lower Tigris & Euphrates	7	Temperate floodplain rivers and wetlands
+442	Upper Tigris & Euphrates	7	Temperate floodplain rivers and wetlands
+443	Oman Mountains	4	Xeric freshwaters and endorheic basins
+444	Lake Van	4	Xeric freshwaters and endorheic basins
+445	Orumiyeh	4	Xeric freshwaters and endorheic basins
+446	Caspian Highlands	4	Xeric freshwaters and endorheic basins
+447	Namak	4	Xeric freshwaters and endorheic basins
+448	Kavir & Lut Deserts	4	Xeric freshwaters and endorheic basins
+449	Esfahan	4	Xeric freshwaters and endorheic basins
+450	Turan Plain	4	Xeric freshwaters and endorheic basins
+451	Northern Hormuz Drainages	5	Temperate coastal rivers
+452	Caspian Marine	1	Large lakes
+453	Volga Delta - Northern Caspian Drainages	1	Large lakes
+501	Atlantic Northwest Africa	5	Temperate coastal rivers
+502	Mediterranean Northwest Africa	5	Temperate coastal rivers
+503	Sahara	4	Xeric freshwaters and endorheic basins
+504	Dry Sahel	4	Xeric freshwaters and endorheic basins
+505	Lower Niger - Benue	10	Tropical and subtropical floodplain rivers and wetlands
+506	Niger Delta	2	Large river deltas
+507	Upper Niger	9	Tropical and subtropical upland rivers
+508	Inner Niger Delta	10	Tropical and subtropical floodplain rivers and wetlands
+509	Senegal - Gambia	10	Tropical and subtropical floodplain rivers and wetlands
+510	Fouta - Djalon	3	Montane freshwaters
+511	Northern Upper Guinea	8	Tropical and subtropical coastal rivers
+512	Southern Upper Guinea	8	Tropical and subtropical coastal rivers
+513	Mount Nimba	3	Montane freshwaters
+514	Eburneo	8	Tropical and subtropical coastal rivers
+515	Ashanti	8	Tropical and subtropical coastal rivers
+516	Volta	10	Tropical and subtropical floodplain rivers and wetlands
+517	Bight Drainages	8	Tropical and subtropical coastal rivers
+518	Northern Gulf of Guinea Drainages	8	Tropical and subtropical coastal rivers
+519	Western Equatorial Crater Lakes	3	Montane freshwaters
+520	Lake Chad	4	Xeric freshwaters and endorheic basins
+521	Lake Victoria Basin	1	Large lakes
+522	Upper Nile	10	Tropical and subtropical floodplain rivers and wetlands
+523	Lower Nile	4	Xeric freshwaters and endorheic basins
+524	Nile Delta	2	Large river deltas
+525	Ethiopian Highlands	3	Montane freshwaters
+526	Lake Tana	3	Montane freshwaters
+527	Western Red Sea Drainages	4	Xeric freshwaters and endorheic basins
+528	Northern Eastern Rift	4	Xeric freshwaters and endorheic basins
+529	Horn of Africa	4	Xeric freshwaters and endorheic basins
+530	Lake Turkana	1	Large lakes
+531	Shebelle - Juba	4	Xeric freshwaters and endorheic basins
+532	Ogooue - Nyanga - Kouilou - Niari	8	Tropical and subtropical coastal rivers
+533	Southern Gulf of Guinea Drainages - Bioko	8	Tropical and subtropical coastal rivers
+534	Sangha	10	Tropical and subtropical floodplain rivers and wetlands
+535	Sudanic Congo - Oubangi	10	Tropical and subtropical floodplain rivers and wetlands
+536	Uele	9	Tropical and subtropical upland rivers
+537	Cuvette Centrale	10	Tropical and subtropical floodplain rivers and wetlands
+538	Tumba	10	Tropical and subtropical floodplain rivers and wetlands
+539	Upper Congo Rapids	10	Tropical and subtropical floodplain rivers and wetlands
+540	Upper Congo	9	Tropical and subtropical upland rivers
+541	Albertine Highlands	3	Montane freshwaters
+542	Lake Tanganyika	1	Large lakes
+543	Malagarasi - Moyowosi	10	Tropical and subtropical floodplain rivers and wetlands
+544	Bangweulu - Mweru	10	Tropical and subtropical floodplain rivers and wetlands
+545	Upper Lualaba	10	Tropical and subtropical floodplain rivers and wetlands
+546	Kasai	10	Tropical and subtropical floodplain rivers and wetlands
+547	Mai Ndombe	10	Tropical and subtropical floodplain rivers and wetlands
+548	Malebo Pool	10	Tropical and subtropical floodplain rivers and wetlands
+549	Lower Congo Rapids	10	Tropical and subtropical floodplain rivers and wetlands
+550	Lower Congo	10	Tropical and subtropical floodplain rivers and wetlands
+551	Cuanza	8	Tropical and subtropical coastal rivers
+552	Namib	4	Xeric freshwaters and endorheic basins
+553	Etosha	4	Xeric freshwaters and endorheic basins
+554	Karstveld Sink Holes	4	Xeric freshwaters and endorheic basins
+555	Zambezian Headwaters	9	Tropical and subtropical upland rivers
+556	Upper Zambezi Floodplains	10	Tropical and subtropical floodplain rivers and wetlands
+557	Kafue	10	Tropical and subtropical floodplain rivers and wetlands
+558	Middle Zambezi - Luangwa	10	Tropical and subtropical floodplain rivers and wetlands
+559	Lake Malawi	1	Large lakes
+560	Zambezian Highveld	9	Tropical and subtropical upland rivers
+561	Lower Zambezi	10	Tropical and subtropical floodplain rivers and wetlands
+562	Mulanje	3	Montane freshwaters
+563	Eastern Zimbabwe Highlands	3	Montane freshwaters
+564	Coastal East Africa	8	Tropical and subtropical coastal rivers
+565	Lake Rukwa	1	Large lakes
+566	Southern Eastern Rift	4	Xeric freshwaters and endorheic basins
+567	Tana, Athi & Coastal Drainages	8	Tropical and subtropical coastal rivers
+568	Pangani	8	Tropical and subtropical coastal rivers
+569	Okavango	10	Tropical and subtropical floodplain rivers and wetlands
+570	Kalahari	4	Xeric freshwaters and endorheic basins
+571	Southern Kalahari	4	Xeric freshwaters and endorheic basins
+572	Western Orange	4	Xeric freshwaters and endorheic basins
+573	Karoo	4	Xeric freshwaters and endorheic basins
+574	Drakensberg - Maloti Highlands	3	Montane freshwaters
+575	Southern Temperate Highveld	6	Temperate upland rivers
+576	Zambezian Lowveld	8	Tropical and subtropical coastal rivers
+577	Amatolo - Winterberg Highlands	3	Montane freshwaters
+578	Cape Fold	5	Temperate coastal rivers
+579	Western Madagascar	4	Xeric freshwaters and endorheic basins
+580	Northwestern Madagascar	10	Tropical and subtropical floodplain rivers and wetlands
+581	Madagascar Eastern Highlands	3	Montane freshwaters
+582	Southern Madagascar	4	Xeric freshwaters and endorheic basins
+583	Madagascar Eastern Lowlands	8	Tropical and subtropical coastal rivers
+584	Comoros - Mayotte	12	Oceanic islands
+585	Seychelles	12	Oceanic islands
+586	Mascarenes	12	Oceanic islands
+587	S. Tome & Principe - Annobon	8	Tropical and subtropical coastal rivers
+601	Irgyz -Turgai	4	Xeric freshwaters and endorheic basins
+602	Ob	11	Polar freshwaters
+603	Upper Irtysh	6	Temperate upland rivers
+604	Chuya	3	Montane freshwaters
+605	Yenisei	11	Polar freshwaters
+606	Lake Baikal	1	Large lakes
+607	Taimyr	11	Polar freshwaters
+608	Lena	11	Polar freshwaters
+609	Kolyma	11	Polar freshwaters
+610	Anadyr	11	Polar freshwaters
+611	East Chukotka	11	Polar freshwaters
+612	Koryakia	5	Temperate coastal rivers
+613	Kamchatka & Northern Kurils	5	Temperate coastal rivers
+614	Okhotsk Coast	5	Temperate coastal rivers
+615	Coastal Amur	5	Temperate coastal rivers
+616	Lower Amur	7	Temperate floodplain rivers and wetlands
+617	Middle Amur	6	Temperate upland rivers
+618	Argun	6	Temperate upland rivers
+619	Shilka (Amur)	6	Temperate upland rivers
+620	Songhua Jiang	7	Temperate floodplain rivers and wetlands
+621	Inner Mongolia Endorheic Basins	4	Xeric freshwaters and endorheic basins
+622	Western Mongolia	4	Xeric freshwaters and endorheic basins
+623	Dzungaria	4	Xeric freshwaters and endorheic basins
+624	Balkash - Alakul	4	Xeric freshwaters and endorheic basins
+625	Tarim	4	Xeric freshwaters and endorheic basins
+626	Lower & Middle Syr Darya	6	Temperate upland rivers
+627	Lake Issyk Kul - Upper Chu	1	Large lakes
+628	Northern Central Asian Highlands	6	Temperate upland rivers
+629	Aral Sea Drainages	1	Large lakes
+630	Middle Amu Darya	6	Temperate upland rivers
+631	Upper Amu Darya	4	Xeric freshwaters and endorheic basins
+632	Qaidan	6	Temperate upland rivers
+633	Upper Huang He	3	Montane freshwaters
+634	Upper Huang He Corridor	3	Montane freshwaters
+635	Huang He Great Bend	7	Temperate floodplain rivers and wetlands
+636	Lower Huang He	7	Temperate floodplain rivers and wetlands
+637	Liao He	7	Temperate floodplain rivers and wetlands
+638	Eastern Yellow Sea Drainages	5	Temperate coastal rivers
+639	Southeastern Korean Peninsula	5	Temperate coastal rivers
+640	Hamgyong - Sanmaek	5	Temperate coastal rivers
+641	Sakhalin, Hokkaido, & Sikhote - Alin Coast	5	Temperate coastal rivers
+642	Honshu - Shikoku - Kyushu	5	Temperate coastal rivers
+643	Biwa Ko	1	Large lakes
+701	Baluchistan	4	Xeric freshwaters and endorheic basins
+702	Helmand - Sistan	4	Xeric freshwaters and endorheic basins
+703	Lower & Middle Indus	10	Tropical and subtropical floodplain rivers and wetlands
+704	Yaghistan	3	Montane freshwaters
+705	Indus Himalayan Foothills	3	Montane freshwaters
+706	Upper Indus	3	Montane freshwaters
+707	Tibetan Plateau Endorheic Drainages	4	Xeric freshwaters and endorheic basins
+708	Namuda - Tapi	10	Tropical and subtropical floodplain rivers and wetlands
+709	Ganges Delta & Plain	10	Tropical and subtropical floodplain rivers and wetlands
+710	Ganges Himalayan Foothills	3	Montane freshwaters
+711	Upper Brahmaputra	9	Tropical and subtropical upland rivers
+712	Middle Brahmaputra	9	Tropical and subtropical upland rivers
+713	Northern Deccan Plateau	10	Tropical and subtropical floodplain rivers and wetlands
+714	Southern Deccan Plateau	10	Tropical and subtropical floodplain rivers and wetlands
+715	Western Ghats	8	Tropical and subtropical coastal rivers
+716	Southeastern Ghats	8	Tropical and subtropical coastal rivers
+717	Sri Lanka Dry Zone	8	Tropical and subtropical coastal rivers
+718	Sri Lanka Wet Zone	8	Tropical and subtropical coastal rivers
+719	Chin Hills - Arakan Coast	8	Tropical and subtropical coastal rivers
+720	Sitang - Irawaddy	10	Tropical and subtropical floodplain rivers and wetlands
+721	Upper Salween	9	Tropical and subtropical upland rivers
+722	Lower & Middle Salween	10	Tropical and subtropical floodplain rivers and wetlands
+723	Inle Lake	3	Montane freshwaters
+724	Upper Lancang (Mekong)	9	Tropical and subtropical upland rivers
+725	Er Hai	3	Montane freshwaters
+726	Lower Lancang (Mekong)	10	Tropical and subtropical floodplain rivers and wetlands
+727	Khorat Plateau (Mekong)	9	Tropical and subtropical upland rivers
+728	Kratie - Stung Treng (Mekong)	10	Tropical and subtropical floodplain rivers and wetlands
+729	Mekong Delta	2	Large river deltas
+730	Southern Annam	8	Tropical and subtropical coastal rivers
+731	Eastern Gulf of Thailand Drainages	8	Tropical and subtropical coastal rivers
+732	Chao Phraya	10	Tropical and subtropical floodplain rivers and wetlands
+733	Mae Khlong	10	Tropical and subtropical floodplain rivers and wetlands
+734	Malay Peninsula Eastern Slope	8	Tropical and subtropical coastal rivers
+735	Northern Central Sumatra - Western Malaysia	8	Tropical and subtropical coastal rivers
+736	Aceh	8	Tropical and subtropical coastal rivers
+737	Indian Ocean Slope of Sumatra & Java	8	Tropical and subtropical coastal rivers
+738	Southern Central Sumatra	8	Tropical and subtropical coastal rivers
+739	Southern Sumatra - Western Java	8	Tropical and subtropical coastal rivers
+740	Central & Eastern Java	8	Tropical and subtropical coastal rivers
+741	Kapuas	8	Tropical and subtropical coastal rivers
+742	Northwestern Borneo	8	Tropical and subtropical coastal rivers
+743	Borneo Highlands	3	Montane freshwaters
+744	Northeastern Borneo	8	Tropical and subtropical coastal rivers
+745	Eastern Borneo	8	Tropical and subtropical coastal rivers
+746	Southeastern Borneo	8	Tropical and subtropical coastal rivers
+747	Malukku	8	Tropical and subtropical coastal rivers
+748	Lesser Sunda Islands	8	Tropical and subtropical coastal rivers
+749	Sulawesi	8	Tropical and subtropical coastal rivers
+750	Matano - Southern Malili Lakes	3	Montane freshwaters
+751	Lake Poso	3	Montane freshwaters
+752	Mindanao	8	Tropical and subtropical coastal rivers
+753	Lake Lanao	3	Montane freshwaters
+755	Northern Philippine Islands	8	Tropical and subtropical coastal rivers
+756	Palawan - Busuanga - Mindoro	8	Tropical and subtropical coastal rivers
+757	Western Taiwan	8	Tropical and subtropical coastal rivers
+758	Eastern Taiwan	8	Tropical and subtropical coastal rivers
+759	Hainan	8	Tropical and subtropical coastal rivers
+760	Northern Annam	8	Tropical and subtropical coastal rivers
+761	Song Hong	10	Tropical and subtropical floodplain rivers and wetlands
+762	Yunnan Lakes	3	Montane freshwaters
+763	Xi Yiang	10	Tropical and subtropical floodplain rivers and wetlands
+764	Upper Yangtze	6	Temperate upland rivers
+765	Middle Yangtze	6	Temperate upland rivers
+766	Lower Yangtze	7	Temperate floodplain rivers and wetlands
+767	Coastal Fujian - Zeijang	8	Tropical and subtropical coastal rivers
+768	Andaman Islands	12	Oceanic islands
+769	Nicobar Islands	12	Oceanic islands
+801	Southwestern Australia	5	Temperate coastal rivers
+802	Pilbara	4	Xeric freshwaters and endorheic basins
+803	Kimberley	8	Tropical and subtropical coastal rivers
+804	Paleo	4	Xeric freshwaters and endorheic basins
+805	Arafura - Carpentaria	8	Tropical and subtropical coastal rivers
+806	Lake Eyre Basin	4	Xeric freshwaters and endorheic basins
+807	Eastern Coastal Australia	5	Temperate coastal rivers
+808	Murray - Darling	7	Temperate floodplain rivers and wetlands
+809	Bass Strait Drainages	5	Temperate coastal rivers
+810	Southern Tasmania	5	Temperate coastal rivers
+811	New Zealand	5	Temperate coastal rivers
+812	Vogelkop - Bomberai	8	Tropical and subtropical coastal rivers
+813	New Guinea North Coast	3	Montane freshwaters
+814	New Guinea Central Mountains	3	Montane freshwaters
+815	Southwest New Guinea - Trans-Fly Lowland	8	Tropical and subtropical coastal rivers
+816	Papuan Peninsula	8	Tropical and subtropical coastal rivers
+817	Bismarck Archipelago	8	Tropical and subtropical coastal rivers
+818	Solomon Islands	8	Tropical and subtropical coastal rivers
+819	Vanuatu	12	Oceanic islands
+820	New Caledonia	8	Tropical and subtropical coastal rivers
+821	Fiji	12	Oceanic islands
+822	Wallis - Futuna	12	Oceanic islands
+823	Samoas	12	Oceanic islands
+824	Society Islands	12	Oceanic islands
+825	Tubuai Islands	12	Oceanic islands
+826	Marquesas Islands	12	Oceanic islands
+827	Rapa	12	Oceanic islands
+828	Hawaiian Islands	12	Oceanic islands
+829	East Caroline Islands	12	Oceanic islands
+830	West Caroline Islands	12	Oceanic islands
+901	Azores	12	Oceanic islands
+902	Cape Verde	12	Oceanic islands
+903	Canary Islands	12	Oceanic islands
+904	Madeira Archipelago	12	Oceanic islands
+905	Socotra	12	Oceanic islands
+906	Maldives - Lakshadweep	12	Oceanic islands
+907	Chagos	12	Oceanic islands
+908	Cocos Islands	12	Oceanic islands
+909	Christmas Island	12	Oceanic islands
+910	Ogasarawa Islands - Kazan Archipelago	12	Oceanic islands
+911	Mariana Islands	12	Oceanic islands
+912	Central Caroline Islands	12	Oceanic islands
+913	Wake Island	12	Oceanic islands
+914	Marshall Islands	12	Oceanic islands
+915	Lord Howe Island	12	Oceanic islands
+916	Norfolk Island	12	Oceanic islands
+917	Tonga	12	Oceanic islands
+918	Cook Islands	12	Oceanic islands
+919	Tuamotu Islands	12	Oceanic islands
+920	Gambier Islands	12	Oceanic islands
+921	Pitcairn Island	12	Oceanic islands
+998	Greenland	98	Greenland
+999	No Data	99	No Data

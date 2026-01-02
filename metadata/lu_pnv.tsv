@@ -1,0 +1,17 @@
+PNV_ID	PNV_Name
+1	Tropical evergreen forest
+2	Tropical deciduous forest
+3	Temperate broadleaf evergreen forest
+4	Temperate needleleaf evergreen forest
+5	Temperate deciduous forest
+6	Boreal evergreen forest
+7	Boreal deciduous forest
+8	Evergreen/deciduous mixed forest
+9	Savanna
+10	Grassland/steppe
+11	Dense shrubland
+12	Open shrubland
+13	Tundra
+14	Desert
+15	Polar/rock/ice
+99	Greenland (no data)
