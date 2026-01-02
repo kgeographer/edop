@@ -9,6 +9,9 @@ import certifi
 from app.db.signature import get_signature
 from app.settings import settings
 
+from pathlib import Path
+import re
+
 router = APIRouter(prefix="/api", tags=["api"])
 
 
@@ -81,6 +84,55 @@ def _extract_lonlat(entity: Dict[str, Any]) -> Optional[Tuple[float, float]]:
         return float(centroid[0]), float(centroid[1])
 
     return None
+
+
+# -----------------------
+# World Heritage seed helpers
+# -----------------------
+
+_WH_SEED_PATH = Path(__file__).resolve().parents[1] / "data" / "world_heritage_seed.json"
+
+
+def _parse_wkt_point(wkt: str) -> Optional[Tuple[float, float]]:
+    """Parse WKT like 'POINT (lon lat)' or 'POINT(lon lat)' into (lon, lat)."""
+    if not wkt:
+        return None
+    m = re.match(r"^\s*POINT\s*\(\s*([-0-9.]+)\s+([-0-9.]+)\s*\)\s*$", wkt)
+    if not m:
+        return None
+    return float(m.group(1)), float(m.group(2))
+
+
+def _load_wh_seed() -> list[Dict[str, Any]]:
+    """Load and normalize the WH seed JSON into a list of dicts with GeoJSON Point."""
+    if not _WH_SEED_PATH.exists():
+        raise FileNotFoundError(f"World Heritage seed file not found at {_WH_SEED_PATH}")
+
+    raw = json.loads(_WH_SEED_PATH.read_text(encoding="utf-8"))
+    out: list[Dict[str, Any]] = []
+
+    if not isinstance(raw, list):
+        raise ValueError("World Heritage seed file must be a JSON array")
+
+    for row in raw:
+        if not isinstance(row, dict):
+            continue
+        wkt = row.get("geom")
+        lonlat = _parse_wkt_point(wkt) if isinstance(wkt, str) else None
+        if not lonlat:
+            continue
+        lon, lat = lonlat
+        out.append(
+            {
+                "id_no": row.get("id_no"),
+                "name_en": row.get("name_en"),
+                "states_name_en": row.get("states_name_en"),
+                "short_description_en": row.get("short_description_en"),
+                "location": {"type": "Point", "coordinates": [lon, lat]},
+            }
+        )
+
+    return out
 
 
 # -----------------------
@@ -169,3 +221,13 @@ def resolve(name: str):
             "dataset_id": entity.get("dataset_id"),
         },
     }
+
+@router.get("/wh-sites")
+def wh_sites():
+    """Return the small World Heritage seed set used by the pilot UI."""
+    try:
+        sites = _load_wh_seed()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+    return {"count": len(sites), "sites": sites}
