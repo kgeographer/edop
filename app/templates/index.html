@@ -265,6 +265,17 @@
     map.setView(ll, 9);
   }
 
+  function clearMarker() {
+    if (marker && map) {
+      try {
+        map.removeLayer(marker);
+      } catch (e) {
+        // ignore
+      }
+    }
+    marker = null;
+  }
+
   function clearBasinLayer() {
     if (basinLayer && map) {
       map.removeLayer(basinLayer);
@@ -594,9 +605,35 @@
     }
 
     // Leaflet often needs an explicit size recalculation when switching tabs.
+    // Pilot behavior: treat each tab as its own workflow; clear shared UI + map state on ANY tab change.
     document.querySelectorAll('button[data-bs-toggle="tab"]').forEach((btn) => {
-      btn.addEventListener('shown.bs.tab', () => {
+      btn.addEventListener('shown.bs.tab', (evt) => {
         if (map) map.invalidateSize();
+
+        // Always clear shared panels
+        renderResolvedPlace(null);
+        renderSignature(null);
+
+        // Always clear map overlays and reset view
+        clearBasinLayer();
+        clearMarker();
+        if (map) {
+          map.setView([0, 0], 2);
+        }
+
+        // WH-specific UI reset only when entering WH tab
+        const targetSel = (evt && evt.target && evt.target.getAttribute)
+          ? evt.target.getAttribute('data-bs-target')
+          : null;
+
+        if (targetSel === '#panel-wh') {
+          whSetStatus('');
+          const descBox = document.getElementById('wh-desc');
+          if (descBox) {
+            descBox.style.display = 'none';
+            descBox.textContent = '';
+          }
+        }
       });
     });
   });
