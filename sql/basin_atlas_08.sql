@@ -161,15 +161,17 @@ LEFT JOIN public.lu_cls s
   ON s.gens_id = b.cls_cl_smj::varchar
 LEFT JOIN public.lu_glc g
   ON g.glc_id = b.glc_cl_smj::varchar
---WHERE ST_Covers(
---  b.geom,
---  ST_SetSRID(ST_MakePoint(-3.00777252, 16.76618535), 4326)
---)
---ORDER BY ST_Area(b.geom::geography) ASC
---LIMIT 1;
+WHERE ST_Covers(
+  b.geom,
+  ST_SetSRID(ST_MakePoint(-3.00777252, 16.76618535), 4326)
+)
+ORDER BY ST_Area(b.geom::geography) ASC
+LIMIT 1;
 
 -- pass coordinates
-select * FROM public.v_basin08_basic
+select zone_id, zone_name, strata_id, strata_code, land_cover_id,
+	land_cover_name, pop_density, elev_min, elev_max, runoff, discharge_yr, geom
+FROM public.v_basin08_basic
 WHERE ST_Covers(
   geom,
   ST_SetSRID(ST_MakePoint(-3.00777252, 16.76618535), 4326)

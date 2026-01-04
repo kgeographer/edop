@@ -1,5 +1,13 @@
 ### EDOP LOG
 ----
+#### 03 Jan 2026
+- using Claude Code created persistence matrix for 20 WH sites: 1561 dimensions (27 numerical normalized, 9 categorical one-hot encoded [1519 total categories], 15 PNV share columns)
+- new schema: `edop_norm_ranges`, `edop_wh_sites`, `edop_matrix` (20×1565)
+- PCA analysis: 19 components, no dominant axis; PC1 (11.8%) temp/terrain, PC2 (10.6%) hydro/development, PC3 (8.7%) wetland
+- persisted PCA products: `edop_pca_coords`, `edop_pca_variance`, `edop_similarity` (380 pairwise distances), `edop_clusters` (k=5)
+- clustering reveals: temperate/urban (8 sites), extreme environments (3), high altitude (3), arid/warm (5), outlier Cahokia
+- similarity queries now possible: e.g. sites most like Timbuktu → Göbekli Tepe, Uluru, Beijing, Samarkand
+
 #### 02 Jan 2026
 - gathered 47 attributes from `basins08` into a signature in 4 groups (A-D) in order of "peristence" as proposed by Gemini and agreed by committee (3 ots and KG). 
 - new payload of all signature data to main UI page, rendered as a Summary (11 seleted fields, followed by 4 accordions for the groups
