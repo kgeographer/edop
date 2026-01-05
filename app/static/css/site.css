@@ -1,6 +1,17 @@
+:root {
+  --page-inline-padding: 1.5rem;
+}
+
 body {
   font-family: system-ui, sans-serif;
-  margin: 2rem;
+}
+
+header, main {
+  padding-inline: var(--page-inline-padding);
+}
+
+header {
+  padding-block: 1rem;
 }
 
 pre {
@@ -8,4 +19,8 @@ pre {
   padding: 1rem;
   max-height: 400px;
   overflow: auto;
+}
+
+.subhead5 {
+  margin_bottom: 0.5rem;
 }

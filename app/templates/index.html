@@ -8,20 +8,20 @@
     <div class="col-12 col-lg-4">
       <ul class="nav nav-tabs" id="edopTabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="tab-main" data-bs-toggle="tab" data-bs-target="#panel-main" type="button" role="tab" aria-controls="panel-main" aria-selected="true">Main</button>
+          <button class="nav-link" id="tab-main" data-bs-toggle="tab" data-bs-target="#panel-main" type="button" role="tab" aria-controls="panel-main" aria-selected="true">Main</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tab-compare" data-bs-toggle="tab" data-bs-target="#panel-compare" type="button" role="tab" aria-controls="panel-compare" aria-selected="false">Compare</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tab-wh" data-bs-toggle="tab" data-bs-target="#panel-wh" type="button" role="tab" aria-controls="panel-wh" aria-selected="false">World Heritage</button>
+          <button class="nav-link active" id="tab-wh" data-bs-toggle="tab" data-bs-target="#panel-wh" type="button" role="tab" aria-controls="panel-wh" aria-selected="false">World Heritage</button>
         </li>
       </ul>
 
       <div class="tab-content pt-3" id="edopTabContent">
 
         <!-- MAIN TAB -->
-        <div class="tab-pane fade show active" id="panel-main" role="tabpanel" aria-labelledby="tab-main">
+        <div class="tab-pane fade" id="panel-main" role="tabpanel" aria-labelledby="tab-main">
           <h4 class="mb-3">Resolve place</h4>
 
           <form id="main-form" class="mb-3">
@@ -55,15 +55,15 @@
         </div>
 
         <!-- WORLD HERITAGE TAB -->
-        <div class="tab-pane fade" id="panel-wh" role="tabpanel" aria-labelledby="tab-wh">
-          <h4 class="mb-3">World Heritage sites</h4>
+        <div class="tab-pane fade show active" id="panel-wh" role="tabpanel" aria-labelledby="tab-wh">
+          <h4 class="mb-3">20 World Heritage sites</h4>
 
           <div class="mb-2">
             <label class="form-label" for="wh-select">Choose a site</label>
             <select class="form-select" id="wh-select" disabled>
               <option value="">Loading…</option>
             </select>
-            <div class="form-text">Seed list will come from the EDOP backend; selecting a site will drop a marker and compute an environmental profile.</div>
+<!--            <div class="form-text">Seed list will come from the EDOP backend; selecting a site will drop a marker and compute an environmental profile.</div>-->
           </div>
 
           <div class="mt-3 d-flex gap-2">
@@ -103,7 +103,7 @@
 
     <!-- RIGHT: map (always visible) -->
     <div class="col-12 col-lg-7">
-      <h4 class="mb-3">Map</h4>
+<!--      <h4 class="mb-3">Map</h4>-->
       <div id="map" style="height: 420px; border: 1px solid #ddd;"></div>
       <style>
         /* Hillshade blend: keeps relief legible when reference tiles (streets/labels) are toggled on.
@@ -112,11 +112,12 @@
           mix-blend-mode: multiply;
         }
       </style>
-      <div class="form-text mt-2">Map plumbing is wired for a marker now; polygon overlay can be added once <code>/api/signature</code> returns GeoJSON geometry.</div>
+<!--      <div class="form-text mt-2">Map plumbing is wired for a marker now; polygon overlay can be added once <code>/api/signature</code> returns GeoJSON geometry.</div>-->
 
       <!-- Similar sites results (shown below map) -->
       <div id="similar-results" class="mt-3" style="display:none;">
-        <h5 class="mb-2">Most Similar Sites</h5>
+        <h5 class="mb-0">Most Similar Sites</h5>
+        <p class="fst-italic small">computed from the multivariate environmental profile using dimensionality reduction and clustering</p>
         <div id="similar-list"></div>
       </div>
     </div>
@@ -246,6 +247,9 @@
     return await resp.json();
   }
 
+  // Color palette for similar sites (distinct, colorblind-friendly)
+  const SIMILAR_COLORS = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00'];
+
   function renderSimilarSites(data, sourceSite) {
     const container = document.getElementById('similar-results');
     const list = document.getElementById('similar-list');
@@ -258,8 +262,9 @@
       return;
     }
 
-    // Build list HTML
+    // Build list HTML with color swatches
     const rows = similar.map((site, idx) => {
+      const color = SIMILAR_COLORS[idx % SIMILAR_COLORS.length];
       const sameCluster = site.cluster_label === sourceSite.cluster_label;
       const clusterNote = sameCluster
         ? `<span class="text-success small">same cluster</span>`
@@ -270,7 +275,10 @@
             <strong>${idx + 1}.</strong> ${escapeHtml(site.name_en)}
             <div class="small">${clusterNote}</div>
           </div>
-          <div class="text-muted small">dist: ${site.distance}</div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted small">dist: ${site.distance}</span>
+            <span style="display:inline-block; width:16px; height:16px; background:${color}; border-radius:3px;"></span>
+          </div>
         </div>
       `;
     }).join('');
@@ -292,16 +300,17 @@
     similar.forEach((site, idx) => {
       const lat = site.lat;
       const lon = site.lon;
+      const color = SIMILAR_COLORS[idx % SIMILAR_COLORS.length];
       bounds.push([lat, lon]);
 
-      // Use a different color/icon for similar sites
+      // Colored marker matching list swatch
       const simMarker = L.circleMarker([lat, lon], {
-        radius: 8,
-        fillColor: '#6c757d',
+        radius: 10,
+        fillColor: color,
         color: '#fff',
         weight: 2,
         opacity: 1,
-        fillOpacity: 0.8
+        fillOpacity: 0.9
       }).addTo(map);
 
       simMarker.bindPopup(`
@@ -800,10 +809,10 @@
         const descBox = document.getElementById('wh-desc');
         if (!whSelected || !whSelected.short_description_en || !descBox) return;
 
-        // Toggle visibility
-        if (descBox.style.display === 'none' || !descBox.style.display) {
+        // Toggle visibility (use 'block' not '' to avoid falsy empty string issue)
+        if (descBox.style.display === 'none') {
           descBox.textContent = whSelected.short_description_en;
-          descBox.style.display = '';
+          descBox.style.display = 'block';
           whBtn.textContent = 'Hide description';
         } else {
           descBox.style.display = 'none';

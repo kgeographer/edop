@@ -13,6 +13,9 @@ __pycache__/
 metadata/*.pdf
 articles/*.pdf
 
+
 # Optional: also ignore large derived spreadsheets if you don't want them tracked
 # metadata/*.xlsx
 # metadata/*.tsv
+
+app/data/world_heritage*.*

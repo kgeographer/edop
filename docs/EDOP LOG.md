@@ -1,5 +1,25 @@
 ### EDOP LOG
 ----
+#### 04 Jan 2026 (w/ChatGPT)
+- began integrating Wikipedia text as a second similarity signal for 20 exemplar World Heritage sites
+- implemented `fetch_wikipedia_wh.py` using MediaWiki API (no HTML scraping); retrieves canonical title, pageid, URL, lead text
+- added diagnostics showing large variance in lead length (≈30–550 words), making lead-only embeddings unreliable
+- inventoried Wikipedia section structure via `action=parse&prop=sections`; stored section metadata as JSON
+- found 16/20 sites include top-level “History*” sections (often “History” or “Historical overview”)
+- implemented logic to retrieve history-like sections via section index and wikitext
+- began constructing provisional documents as lead + history text; paused before embeddings to reason about normalization and truncation
+- completed cleanup and normalization of Wikipedia-derived text; generated `wh_wikipedia_leads.tsv` suitable for text embeddings
+- accepted residual variation in text length as reflective of WH site typology (ensemble vs city vs landscape); pipeline now ready for embedding-based similarity analysis- 
+
+#### 04 Jan 2026 (w/Claude)
+- exposed similarity analysis in web UI: cluster label badge displays on WH site selection (e.g., "Temperate Lowland Heritage")
+- implemented "Most Similar" button with `/api/similar?id_no=<id>&limit=5` endpoint querying `edop_similarity` table
+- color-coded similar sites: 5-color palette (ColorBrewer Set1) for map markers with matching swatches in ranked list
+- map auto-zooms to fit source + all similar sites; same-cluster sites highlighted in green
+- fixed description toggle bug: empty string display value was falsy, now uses `display = 'block'` with `=== 'none'` check
+- modernized CSS: introduced custom properties (`--page-inline-padding: 1.5rem`) and logical properties (`padding-inline`, `padding-block`) for RTL-friendly layout
+- work committed to `moregui` branch
+
 #### 03 Jan 2026
 - using Claude Code created persistence matrix for 20 WH sites: 1561 dimensions (27 numerical normalized, 9 categorical one-hot encoded [1519 total categories], 15 PNV share columns)
 - new schema: `edop_norm_ranges`, `edop_wh_sites`, `edop_matrix` (20×1565)
