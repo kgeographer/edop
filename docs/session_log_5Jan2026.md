@@ -80,8 +80,37 @@ Modified `app/templates/index.html` to support both similarity types:
 
 ---
 
+### 6. Cliopatria → Linked Places Format Transform
+
+Created `scripts/cliopatria_to_lpf.py` to transform Seshat/Cliopatria polities GeoJSON into Linked Places Format for World Historical Gazetteer contribution.
+
+**Source data:** `app/data/clio/cliopatria_polities_only.geojson`
+- 15,690 features representing temporally-scoped polity extents
+- ~6,000 years of historical polities
+- Multiple features per polity (each with FromYear/ToYear extent)
+
+**Transformation:**
+- Groups features by polity name (1,618 unique → 1,547 after conflation)
+- Conflates 71 parentheses-variant names (e.g., "Ottoman Empire" vs "(Ottoman Empire)") — all share identifiers
+- Creates LPF Feature per polity with GeometryCollection of temporally-scoped geometries
+- Each geometry includes `when.timespans` with start/end years in ISO 8601 format
+
+**Identifier strategy:**
+- 653 polities with SeshatID → `@id: https://seshat-db.com/core/polity/{id}`
+- 894 polities with Wikipedia only → `@id: wp:{slug}`
+- Wikipedia links added to `links[]` when SeshatID is primary
+
+**Optimizations:**
+- Reduced coordinate precision from 15 to 5 decimal places (~1 meter resolution)
+- File size: 530 MB → 449 MB
+
+**Output:** `app/data/clio/cliopatria_lpf.json` (449 MB, not committed due to size)
+
+---
+
 ## Files Modified
 - `scripts/generate_text_embeddings.py` (new)
+- `scripts/cliopatria_to_lpf.py` (new)
 - `app/api/routes.py` (added `/api/similar-text` endpoint)
 - `app/templates/index.html` (dual similarity buttons + rendering)
 
