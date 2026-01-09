@@ -93,8 +93,35 @@
           </div>
 
           <div class="mt-3 d-flex gap-2 flex-wrap">
-            <button class="btn btn-outline-primary" id="whc-similar-env" type="button" disabled>Similar (env)</button>
-            <button class="btn btn-outline-info" id="whc-similar-text" type="button" disabled>Similar (semantic)</button>
+            <!-- Environmental similarity dropdown -->
+            <div class="dropdown">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="whc-similar-env-btn" data-bs-toggle="dropdown" aria-expanded="false" disabled>
+                Similar (env)
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="whc-similar-env-btn">
+                <li><a class="dropdown-item" href="#" data-band="composite">Composite</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item disabled text-muted" href="#" data-band="A">A – Physiographic bedrock</a></li>
+                <li><a class="dropdown-item disabled text-muted" href="#" data-band="B">B – Hydro-climatic baselines</a></li>
+                <li><a class="dropdown-item disabled text-muted" href="#" data-band="C">C – Bioclimatic proxies</a></li>
+                <li><a class="dropdown-item disabled text-muted" href="#" data-band="D">D – Anthropocene markers</a></li>
+              </ul>
+            </div>
+
+            <!-- Semantic similarity dropdown -->
+            <div class="dropdown">
+              <button class="btn btn-outline-info dropdown-toggle" type="button" id="whc-similar-text-btn" data-bs-toggle="dropdown" aria-expanded="false" disabled>
+                Similar (semantic)
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="whc-similar-text-btn">
+                <li><a class="dropdown-item" href="#" data-band="composite">Composite</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#" data-band="environment">Environment</a></li>
+                <li><a class="dropdown-item" href="#" data-band="history">History</a></li>
+                <li><a class="dropdown-item" href="#" data-band="culture">Culture</a></li>
+                <li><a class="dropdown-item" href="#" data-band="modern">Modern</a></li>
+              </ul>
+            </div>
           </div>
 
           <div class="mt-3">
@@ -576,8 +603,8 @@
   }
 
   async function whcSelectById(cityId) {
-    const btnSimilarEnv = document.getElementById('whc-similar-env');
-    const btnSimilarText = document.getElementById('whc-similar-text');
+    const btnSimilarEnv = document.getElementById('whc-similar-env-btn');
+    const btnSimilarText = document.getElementById('whc-similar-text-btn');
 
     whcSelected = whcCities.find((c) => String(c.id) === String(cityId)) || null;
 
@@ -595,7 +622,7 @@
     // Show environmental cluster label
     showClusterLabel(whcSelected.env_cluster_label || null);
 
-    // Enable Similar buttons
+    // Enable Similar dropdown buttons
     if (btnSimilarEnv) btnSimilarEnv.disabled = false;
     if (btnSimilarText) btnSimilarText.disabled = false;
 
@@ -652,20 +679,21 @@
     return await resp.json();
   }
 
-  function renderWhcSimilarSites(data, sourceSite, similarityType = 'env') {
+  function renderWhcSimilarSites(data, sourceSite, similarityType = 'env', band = 'composite') {
     const container = document.getElementById('similar-results');
     const list = document.getElementById('similar-list');
     const heading = document.getElementById('similar-heading');
     const description = document.getElementById('similar-description');
     if (!container || !list) return;
 
-    // Set heading and description based on similarity type
+    // Set heading and description based on similarity type and band
     if (heading && description) {
       if (similarityType === 'text') {
-        heading.textContent = 'Similar Cities (Semantic)';
+        const bandLabel = SEMANTIC_BAND_LABELS[band] || band;
+        heading.textContent = `Similar Cities (Semantic: ${bandLabel})`;
         description.textContent = 'computed from Wikipedia text embeddings using cosine similarity';
       } else {
-        heading.textContent = 'Similar Cities (Environmental)';
+        heading.textContent = 'Similar Cities (Environmental: Composite)';
         description.textContent = 'computed from basin environmental signatures using PCA distance';
       }
     }
@@ -758,10 +786,10 @@
     }
   }
 
-  async function whcShowSimilarEnv() {
+  async function whcShowSimilarEnv(band = 'composite') {
     if (!whcSelected) return;
 
-    const btn = document.getElementById('whc-similar-env');
+    const btn = document.getElementById('whc-similar-env-btn');
     if (btn) btn.disabled = true;
 
     clearSimilarResults();
@@ -778,18 +806,28 @@
     }
   }
 
-  async function whcShowSimilarText() {
+  // Band labels for semantic similarity
+  const SEMANTIC_BAND_LABELS = {
+    'composite': 'Composite',
+    'environment': 'Environment',
+    'history': 'History',
+    'culture': 'Culture',
+    'modern': 'Modern'
+  };
+
+  async function whcShowSimilarText(band = 'composite') {
     if (!whcSelected) return;
 
-    const btn = document.getElementById('whc-similar-text');
+    const btn = document.getElementById('whc-similar-text-btn');
     if (btn) btn.disabled = true;
 
     clearSimilarResults();
 
+    const bandLabel = SEMANTIC_BAND_LABELS[band] || band;
     try {
-      whcSetStatus('Finding semantically similar cities…');
-      const data = await fetchWhcSimilarText(whcSelected.id, 'composite', 5);
-      renderWhcSimilarSites(data, whcSelected, 'text');
+      whcSetStatus(`Finding semantically similar cities (${bandLabel})…`);
+      const data = await fetchWhcSimilarText(whcSelected.id, band, 5);
+      renderWhcSimilarSites(data, whcSelected, 'text', band);
       whcSetStatus('');
     } catch (e) {
       whcSetStatus(String(e));
@@ -1274,15 +1312,25 @@
       });
     }
 
-    // WHC Cities: similar buttons
-    const whcBtnSimilarEnv = document.getElementById('whc-similar-env');
-    if (whcBtnSimilarEnv) {
-      whcBtnSimilarEnv.addEventListener('click', whcShowSimilarEnv);
-    }
-    const whcBtnSimilarText = document.getElementById('whc-similar-text');
-    if (whcBtnSimilarText) {
-      whcBtnSimilarText.addEventListener('click', whcShowSimilarText);
-    }
+    // WHC Cities: environmental similarity dropdown
+    document.querySelectorAll('#whc-similar-env-btn + .dropdown-menu .dropdown-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (item.classList.contains('disabled')) return;
+        const band = item.getAttribute('data-band');
+        whcShowSimilarEnv(band);
+      });
+    });
+
+    // WHC Cities: semantic similarity dropdown
+    document.querySelectorAll('#whc-similar-text-btn + .dropdown-menu .dropdown-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (item.classList.contains('disabled')) return;
+        const band = item.getAttribute('data-band');
+        whcShowSimilarText(band);
+      });
+    });
 
     // Leaflet often needs an explicit size recalculation when switching tabs.
     // Pilot behavior: treat each tab as its own workflow; clear shared UI + map state on ANY tab change.
