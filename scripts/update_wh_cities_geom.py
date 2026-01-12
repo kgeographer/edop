@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Update wh_cities table with geometry and basin_id.
+Update gaz.wh_cities table with geometry and basin_id.
 
 This script:
-1. Alters wh_cities table to add geom and basin_id columns
+1. Alters gaz.wh_cities table to add geom and basin_id columns
 2. Parses whc_id_lookup.html to extract WHG_internal_id -> whc_id mapping
 3. Reads whc_258_geom.tsv to get WHG_internal_id -> (lon, lat)
-4. Joins to derive wh_cities.id -> (lon, lat)
-5. Updates wh_cities with point geometry for each city
+4. Joins to derive gaz.wh_cities.id -> (lon, lat)
+5. Updates gaz.wh_cities with point geometry for each city
 6. Populates basin_id from basin08 using ST_Contains
 
 Prerequisites:
-- wh_cities table must exist with id column
+- gaz.wh_cities table must exist with id column
 - basin08 table must exist with geometry
 - Database connection via environment variables (PGHOST, PGPORT, etc.)
 
@@ -51,12 +51,12 @@ def get_db_connection():
 
 def parse_lookup_html(filepath: Path) -> dict[int, int]:
     """
-    Parse whc_id_lookup.html to extract WHG_internal_id -> wh_cities.id mapping.
+    Parse whc_id_lookup.html to extract WHG_internal_id -> gaz.wh_cities.id mapping.
 
     The HTML contains rows like:
     <tr ...><td>8349826</td><td>whc_034</td><td ...>Acre</td>...</tr>
 
-    Returns dict mapping WHG internal ID (int) to wh_cities.id (int).
+    Returns dict mapping WHG internal ID (int) to gaz.wh_cities.id (int).
     """
     mapping = {}
 
@@ -105,17 +105,17 @@ def read_geom_tsv(filepath: Path) -> dict[int, tuple[float, float]]:
 
 
 def alter_table_add_columns(conn):
-    """Add geom and basin_id columns to wh_cities if they don't exist."""
+    """Add geom and basin_id columns to gaz.wh_cities if they don't exist."""
     with conn.cursor() as cur:
         # Check if geom column exists
         cur.execute("""
             SELECT column_name FROM information_schema.columns
-            WHERE table_name = 'wh_cities' AND column_name = 'geom'
+            WHERE table_name = 'gaz.wh_cities' AND column_name = 'geom'
         """)
         if not cur.fetchone():
-            print("Adding 'geom' column to wh_cities...")
+            print("Adding 'geom' column to gaz.wh_cities...")
             cur.execute("""
-                ALTER TABLE wh_cities
+                ALTER TABLE gaz.wh_cities
                 ADD COLUMN geom geometry(Point, 4326)
             """)
         else:
@@ -124,12 +124,12 @@ def alter_table_add_columns(conn):
         # Check if basin_id column exists
         cur.execute("""
             SELECT column_name FROM information_schema.columns
-            WHERE table_name = 'wh_cities' AND column_name = 'basin_id'
+            WHERE table_name = 'gaz.wh_cities' AND column_name = 'basin_id'
         """)
         if not cur.fetchone():
-            print("Adding 'basin_id' column to wh_cities...")
+            print("Adding 'basin_id' column to gaz.wh_cities...")
             cur.execute("""
-                ALTER TABLE wh_cities
+                ALTER TABLE gaz.wh_cities
                 ADD COLUMN basin_id INTEGER
             """)
         else:
@@ -139,7 +139,7 @@ def alter_table_add_columns(conn):
 
 
 def update_geometries(conn, id_to_coords: dict[int, tuple[float, float]]):
-    """Update wh_cities with point geometries."""
+    """Update gaz.wh_cities with point geometries."""
     print(f"\nUpdating geometries for {len(id_to_coords)} cities...")
 
     updated = 0
@@ -148,7 +148,7 @@ def update_geometries(conn, id_to_coords: dict[int, tuple[float, float]]):
     with conn.cursor() as cur:
         for wh_id, (lon, lat) in id_to_coords.items():
             cur.execute("""
-                UPDATE wh_cities
+                UPDATE gaz.wh_cities
                 SET geom = ST_SetSRID(ST_MakePoint(%s, %s), 4326)
                 WHERE id = %s
             """, (lon, lat, wh_id))
@@ -157,7 +157,7 @@ def update_geometries(conn, id_to_coords: dict[int, tuple[float, float]]):
                 updated += 1
             else:
                 not_found += 1
-                print(f"  Warning: No wh_cities row with id={wh_id}")
+                print(f"  Warning: No gaz.wh_cities row with id={wh_id}")
 
         conn.commit()
 
@@ -172,13 +172,13 @@ def populate_basin_ids(conn):
         # Update basin_id for all cities with geometry
         # Use ST_Contains to find the smallest basin containing each point
         cur.execute("""
-            UPDATE wh_cities w
+            UPDATE gaz.wh_cities w
             SET basin_id = subq.basin_id
             FROM (
                 SELECT DISTINCT ON (w2.id)
                     w2.id as city_id,
                     b.id as basin_id
-                FROM wh_cities w2
+                FROM gaz.wh_cities w2
                 JOIN basin08 b ON ST_Contains(b.geom, w2.geom)
                 WHERE w2.geom IS NOT NULL
                 ORDER BY w2.id, ST_Area(b.geom::geography) ASC
@@ -191,7 +191,7 @@ def populate_basin_ids(conn):
 
         # Check how many still have NULL basin_id
         cur.execute("""
-            SELECT COUNT(*) FROM wh_cities
+            SELECT COUNT(*) FROM gaz.wh_cities
             WHERE geom IS NOT NULL AND basin_id IS NULL
         """)
         null_basin = cur.fetchone()[0]
@@ -201,7 +201,7 @@ def populate_basin_ids(conn):
             print(f"  Warning: {null_basin} cities with geometry have no matching basin")
             # Show which ones
             cur.execute("""
-                SELECT id, city, country FROM wh_cities
+                SELECT id, city, country FROM gaz.wh_cities
                 WHERE geom IS NOT NULL AND basin_id IS NULL
                 ORDER BY city
             """)
@@ -216,13 +216,13 @@ def print_summary(conn):
     print("="*60)
 
     with conn.cursor() as cur:
-        cur.execute("SELECT COUNT(*) FROM wh_cities")
+        cur.execute("SELECT COUNT(*) FROM gaz.wh_cities")
         total = cur.fetchone()[0]
 
-        cur.execute("SELECT COUNT(*) FROM wh_cities WHERE geom IS NOT NULL")
+        cur.execute("SELECT COUNT(*) FROM gaz.wh_cities WHERE geom IS NOT NULL")
         with_geom = cur.fetchone()[0]
 
-        cur.execute("SELECT COUNT(*) FROM wh_cities WHERE basin_id IS NOT NULL")
+        cur.execute("SELECT COUNT(*) FROM gaz.wh_cities WHERE basin_id IS NOT NULL")
         with_basin = cur.fetchone()[0]
 
         print(f"Total cities:        {total}")
@@ -235,7 +235,7 @@ def print_summary(conn):
             SELECT id, city, country,
                    ST_X(geom) as lon, ST_Y(geom) as lat,
                    basin_id
-            FROM wh_cities
+            FROM gaz.wh_cities
             WHERE basin_id IS NOT NULL
             ORDER BY id
             LIMIT 5
@@ -246,7 +246,7 @@ def print_summary(conn):
 
 def main():
     print("="*60)
-    print("Update wh_cities with geometry and basin_id")
+    print("Update gaz.wh_cities with geometry and basin_id")
     print("="*60)
 
     # Step 1: Parse lookup HTML
@@ -259,7 +259,7 @@ def main():
     whg_to_coords = read_geom_tsv(GEOM_TSV_PATH)
     print(f"   Found {len(whg_to_coords)} geometries")
 
-    # Step 3: Join to get wh_cities.id -> coords
+    # Step 3: Join to get gaz.wh_cities.id -> coords
     print("\n3. Joining data...")
     id_to_coords = {}
     missing_geom = 0

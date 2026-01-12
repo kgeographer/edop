@@ -1,0 +1,432 @@
+[
+  {
+    "cluster_id": 0,
+    "count": 10716,
+    "suggested_label": "Warm / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.6169999837875366,
+      "precip_yr": 0.028999999165534973,
+      "aridity": 0.009999999776482582,
+      "elev_max": 0.24199999868869781,
+      "slope_avg": 0.9639999866485596,
+      "human_footprint": 0.12200000137090683,
+      "permafrost": 0.014000000432133675
+    },
+    "top_biome": "Deserts & Xeric Shrublands",
+    "whc_cities": [
+      "Aktau (Kazakhstan)",
+      "Arequipa (Peru)",
+      "Damascus (Syria)",
+      "Khiva (Uzbekistan)",
+      "Konya (Turkey)"
+    ],
+    "whc_city_count": 14
+  },
+  {
+    "cluster_id": 1,
+    "count": 5715,
+    "suggested_label": "Arctic/Permafrost / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.2849999964237213,
+      "precip_yr": 0.04699999839067459,
+      "aridity": 0.035999998450279236,
+      "elev_max": 0.13199999928474426,
+      "slope_avg": 0.9649999737739563,
+      "human_footprint": 0.020999999716877937,
+      "permafrost": 0.7739999890327454
+    },
+    "top_biome": "Boreal Forests/Taiga",
+    "whc_cities": [],
+    "whc_city_count": 0
+  },
+  {
+    "cluster_id": 2,
+    "count": 4263,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.8859999775886536,
+      "precip_yr": 0.13699999451637268,
+      "aridity": 0.03200000151991844,
+      "elev_max": 0.13600000739097595,
+      "slope_avg": 0.9629999995231628,
+      "human_footprint": 0.20600000023841858,
+      "permafrost": 0.0
+    },
+    "top_biome": "Tropical & Subtropical Dry Broadleaf For",
+    "whc_cities": [
+      "Anuradhapura (Sri Lanka)",
+      "Camag\u00fcey (Cuba)",
+      "Campeche (Mexico)",
+      "Cartagena, Colombia (Colombia)",
+      "Cuernavaca (Mexico)"
+    ],
+    "whc_city_count": 11
+  },
+  {
+    "cluster_id": 3,
+    "count": 17852,
+    "suggested_label": "Arctic/Permafrost / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.2709999978542328,
+      "precip_yr": 0.04100000113248825,
+      "aridity": 0.04600000008940697,
+      "elev_max": 0.22300000488758087,
+      "slope_avg": 0.9520000219345093,
+      "human_footprint": 0.02199999988079071,
+      "permafrost": 0.7720000147819519
+    },
+    "top_biome": "Tundra",
+    "whc_cities": [
+      "R\u00f8ros Municipality (Norway)",
+      "Tinn Municipality (Norway)",
+      "Vinje Municipality (Norway)"
+    ],
+    "whc_city_count": 3
+  },
+  {
+    "cluster_id": 4,
+    "count": 5799,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.8980000019073486,
+      "precip_yr": 0.11999999731779099,
+      "aridity": 0.02800000086426735,
+      "elev_max": 0.10300000011920929,
+      "slope_avg": 0.9610000252723694,
+      "human_footprint": 0.30000001192092896,
+      "permafrost": 0.0
+    },
+    "top_biome": "Tropical & Subtropical Moist Broadleaf F",
+    "whc_cities": [
+      "Ahmedabad, India (India)",
+      "Jaipur, India (India)",
+      "Pyay (Myanmar)"
+    ],
+    "whc_city_count": 3
+  },
+  {
+    "cluster_id": 5,
+    "count": 6863,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.8100000023841858,
+      "precip_yr": 0.007000000216066837,
+      "aridity": 0.0020000000949949026,
+      "elev_max": 0.12600000202655792,
+      "slope_avg": 0.9610000252723694,
+      "human_footprint": 0.03999999910593033,
+      "permafrost": 0.003000000026077032
+    },
+    "top_biome": "Deserts & Xeric Shrublands",
+    "whc_cities": [],
+    "whc_city_count": 0
+  },
+  {
+    "cluster_id": 6,
+    "count": 9147,
+    "suggested_label": "Hot / Arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.7910000085830688,
+      "precip_yr": 0.1979999989271164,
+      "aridity": 0.0560000017285347,
+      "elev_max": 0.24199999868869781,
+      "slope_avg": 0.9700000286102295,
+      "human_footprint": 0.1979999989271164,
+      "permafrost": 0.0
+    },
+    "top_biome": "Tropical & Subtropical Moist Broadleaf F",
+    "whc_cities": [
+      "Belo Horizonte (Brazil)",
+      "Gianyar Regency (Indonesia)",
+      "Hu\u1ebf (Vietnam)",
+      "Kandy (Sri Lanka)",
+      "Macau (China)"
+    ],
+    "whc_city_count": 14
+  },
+  {
+    "cluster_id": 7,
+    "count": 11841,
+    "suggested_label": "Warm / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.6060000061988831,
+      "precip_yr": 0.08399999886751175,
+      "aridity": 0.03700000047683716,
+      "elev_max": 0.12399999797344208,
+      "slope_avg": 0.9639999866485596,
+      "human_footprint": 0.2879999876022339,
+      "permafrost": 0.0010000000474974513
+    },
+    "top_biome": "Temperate Broadleaf & Mixed Forests",
+    "whc_cities": [
+      "Aleppo (Syria)",
+      "Amsterdam (Netherlands)",
+      "Baeza, Spain (Spain)",
+      "Bamberg (Germany)",
+      "Bansk\u00e1 \u0160tiavnica (Slovakia)"
+    ],
+    "whc_city_count": 64
+  },
+  {
+    "cluster_id": 8,
+    "count": 4768,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.7850000262260437,
+      "precip_yr": 0.04800000041723251,
+      "aridity": 0.012000000104308128,
+      "elev_max": 0.16699999570846558,
+      "slope_avg": 0.9620000123977661,
+      "human_footprint": 0.10400000214576721,
+      "permafrost": 0.0020000000949949026
+    },
+    "top_biome": "Deserts & Xeric Shrublands",
+    "whc_cities": [
+      "Acre, Israel (Israel)",
+      "Guanajuato (Mexico)",
+      "Jerusalem (Israel)",
+      "Morelia (Mexico)",
+      "Quer\u00e9taro (Mexico)"
+    ],
+    "whc_city_count": 8
+  },
+  {
+    "cluster_id": 9,
+    "count": 17247,
+    "suggested_label": "Hot / Arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.8989999890327454,
+      "precip_yr": 0.27300000190734863,
+      "aridity": 0.06499999761581421,
+      "elev_max": 0.10400000214576721,
+      "slope_avg": 0.9629999995231628,
+      "human_footprint": 0.1080000028014183,
+      "permafrost": 0.0
+    },
+    "top_biome": "Tropical & Subtropical Moist Broadleaf F",
+    "whc_cities": [
+      "Bridgetown (Barbados)",
+      "Denpasar (Indonesia)",
+      "Galle (Sri Lanka)",
+      "George Town, Penang (Malaysia)",
+      "Grand-Bassam (Ivory Coast)"
+    ],
+    "whc_city_count": 18
+  },
+  {
+    "cluster_id": 10,
+    "count": 13991,
+    "suggested_label": "Warm / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.5809999704360962,
+      "precip_yr": 0.05900000035762787,
+      "aridity": 0.023000000044703484,
+      "elev_max": 0.14900000393390656,
+      "slope_avg": 0.9620000123977661,
+      "human_footprint": 0.1770000010728836,
+      "permafrost": 0.012000000104308128
+    },
+    "top_biome": "Temperate Grasslands, Savannas & Shrubla",
+    "whc_cities": [
+      "Cusco (Peru)",
+      "Derbent (Russia)",
+      "Erbil (Iraq)",
+      "Turkistan (city) (Kazakhstan)",
+      "Vagharshapat (Armenia)"
+    ],
+    "whc_city_count": 6
+  },
+  {
+    "cluster_id": 11,
+    "count": 9306,
+    "suggested_label": "Warm / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.6700000166893005,
+      "precip_yr": 0.11699999868869781,
+      "aridity": 0.04699999839067459,
+      "elev_max": 0.17000000178813934,
+      "slope_avg": 0.9670000076293945,
+      "human_footprint": 0.2540000081062317,
+      "permafrost": 0.0020000000949949026
+    },
+    "top_biome": "Temperate Broadleaf & Mixed Forests",
+    "whc_cities": [
+      "Alcal\u00e1 de Henares (Spain)",
+      "Algiers (Algeria)",
+      "Andong (South Korea)",
+      "Aranjuez (Spain)",
+      "\u00c1vila (Spain)"
+    ],
+    "whc_city_count": 76
+  },
+  {
+    "cluster_id": 12,
+    "count": 6118,
+    "suggested_label": "Arctic/Permafrost / Dry sub-humid / Highland",
+    "characteristics": {
+      "temp_yr": 0.1459999978542328,
+      "precip_yr": 0.09700000286102295,
+      "aridity": 0.3700000047683716,
+      "elev_max": 0.41600000858306885,
+      "slope_avg": 0.0010000000474974513,
+      "human_footprint": 0.0,
+      "permafrost": 0.6759999990463257
+    },
+    "top_biome": "N/A",
+    "whc_cities": [],
+    "whc_city_count": 0
+  },
+  {
+    "cluster_id": 13,
+    "count": 18736,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.8550000190734863,
+      "precip_yr": 0.13300000131130219,
+      "aridity": 0.029999999329447746,
+      "elev_max": 0.1469999998807907,
+      "slope_avg": 0.9620000123977661,
+      "human_footprint": 0.13199999928474426,
+      "permafrost": 0.0
+    },
+    "top_biome": "Tropical & Subtropical Grasslands, Savan",
+    "whc_cities": [
+      "Bras\u00edlia (Brazil)",
+      "Colonia del Sacramento (Uruguay)",
+      "Diamantina, Minas Gerais (Brazil)",
+      "Fray Bentos (Uruguay)",
+      "Harar Jugol (Ethiopia)"
+    ],
+    "whc_city_count": 6
+  },
+  {
+    "cluster_id": 14,
+    "count": 7481,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.8259999752044678,
+      "precip_yr": 0.02800000086426735,
+      "aridity": 0.006000000052154064,
+      "elev_max": 0.12300000339746475,
+      "slope_avg": 0.9610000252723694,
+      "human_footprint": 0.07900000363588333,
+      "permafrost": 0.0010000000474974513
+    },
+    "top_biome": "Deserts & Xeric Shrublands",
+    "whc_cities": [
+      "Bam, Iran (Iran)",
+      "Cairo (Egypt)",
+      "Sanaa (Yemen)",
+      "Santa Ana de Coro (Venezuela)"
+    ],
+    "whc_city_count": 4
+  },
+  {
+    "cluster_id": 15,
+    "count": 6313,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.8230000138282776,
+      "precip_yr": 0.010999999940395355,
+      "aridity": 0.003000000026077032,
+      "elev_max": 0.1679999977350235,
+      "slope_avg": 0.9629999995231628,
+      "human_footprint": 0.08799999952316284,
+      "permafrost": 0.0020000000949949026
+    },
+    "top_biome": "Deserts & Xeric Shrublands",
+    "whc_cities": [
+      "Ghadames (Libya)",
+      "Gharda\u00efa (Algeria)",
+      "Jeddah (Saudi Arabia)",
+      "Muharraq (Bahrain)",
+      "Trujillo, Peru (Peru)"
+    ],
+    "whc_city_count": 6
+  },
+  {
+    "cluster_id": 16,
+    "count": 8957,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.9309999942779541,
+      "precip_yr": 0.06700000166893005,
+      "aridity": 0.013000000268220901,
+      "elev_max": 0.09600000083446503,
+      "slope_avg": 0.9599999785423279,
+      "human_footprint": 0.12300000339746475,
+      "permafrost": 0.0
+    },
+    "top_biome": "Tropical & Subtropical Grasslands, Savan",
+    "whc_cities": [
+      "Agadez (Niger)",
+      "Cuenca, Ecuador (Ecuador)",
+      "Dakar (Senegal)",
+      "Lamu (Kenya)",
+      "Timbuktu (Mali)"
+    ],
+    "whc_city_count": 5
+  },
+  {
+    "cluster_id": 17,
+    "count": 10224,
+    "suggested_label": "Temperate / Arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.4580000042915344,
+      "precip_yr": 0.09000000357627869,
+      "aridity": 0.0560000017285347,
+      "elev_max": 0.20200000703334808,
+      "slope_avg": 0.9670000076293945,
+      "human_footprint": 0.07900000363588333,
+      "permafrost": 0.10700000077486038
+    },
+    "top_biome": "Boreal Forests/Taiga",
+    "whc_cities": [
+      "Augsburg (Germany)",
+      "Bergen Municipality (Norway)",
+      "Graz (Austria)",
+      "Karlskrona (Sweden)",
+      "Lunenburg, Nova Scotia (Canada)"
+    ],
+    "whc_city_count": 12
+  },
+  {
+    "cluster_id": 18,
+    "count": 4984,
+    "suggested_label": "Hot / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.9240000247955322,
+      "precip_yr": 0.004999999888241291,
+      "aridity": 0.0010000000474974513,
+      "elev_max": 0.09399999678134918,
+      "slope_avg": 0.9599999785423279,
+      "human_footprint": 0.01899999938905239,
+      "permafrost": 0.0
+    },
+    "top_biome": "Deserts & Xeric Shrublands",
+    "whc_cities": [],
+    "whc_city_count": 0
+  },
+  {
+    "cluster_id": 19,
+    "count": 10354,
+    "suggested_label": "Temperate / Hyper-arid / Mountainous",
+    "characteristics": {
+      "temp_yr": 0.41200000047683716,
+      "precip_yr": 0.06300000101327896,
+      "aridity": 0.04699999839067459,
+      "elev_max": 0.0949999988079071,
+      "slope_avg": 0.9620000123977661,
+      "human_footprint": 0.05299999937415123,
+      "permafrost": 0.16300000250339508
+    },
+    "top_biome": "Boreal Forests/Taiga",
+    "whc_cities": [
+      "Notodden Municipality (Norway)",
+      "Rauma, Finland (Finland)",
+      "Veliky Novgorod (Russia)",
+      "Yaroslavl (Russia)"
+    ],
+    "whc_city_count": 4
+  }
+]

@@ -262,5 +262,155 @@ Tested whether PCA (with one-hot encoding) produces meaningfully different clust
 ## Next Steps (Potential)
 
 - [ ] Compare with 9 Jan simplified clustering (agreement analysis)
-- [ ] Build edop_gaz table with autocomplete for UI signature lookup
+- [x] Build edop_gaz table with autocomplete for UI signature lookup
 - [ ] Resume WHG API integration when endpoint limitations resolved
+- [ ] Address similarity granularity problem (see section 9)
+
+---
+
+## 7. Gazetteer Import (gaz.edop_gaz)
+
+### Schema
+```sql
+CREATE TABLE gaz.edop_gaz (
+    id SERIAL PRIMARY KEY,
+    source TEXT,           -- e.g., 'whg', 'pleiades'
+    source_id TEXT,        -- original ID from source
+    title TEXT NOT NULL,
+    ccodes TEXT[],         -- country codes array
+    lon DOUBLE PRECISION,
+    lat DOUBLE PRECISION,
+    geom GEOMETRY(Point, 4326),
+    basin_id INTEGER       -- FK to basin08.id (added later)
+);
+```
+
+### Import Process
+Imported ~97k places from WHG export via temp table with deduplication:
+
+```sql
+INSERT INTO gaz.edop_gaz (source, source_id, title, ccodes, lon, lat, geom)
+SELECT source, source_id, title,
+       CASE WHEN ccodes_csv IS NOT NULL AND ccodes_csv != ''
+            THEN string_to_array(ccodes_csv, ',') ELSE NULL END,
+       lon, lat,
+       ST_SetSRID(ST_MakePoint(lon, lat), 4326)
+FROM gaz.whg_import_temp t
+WHERE t.lon IS NOT NULL
+  AND NOT EXISTS (
+      SELECT 1 FROM gaz.edop_gaz eg
+      WHERE eg.title = t.title
+        AND eg.ccodes && string_to_array(t.ccodes_csv, ',')
+        AND ABS(eg.lon - t.lon) < 0.15
+        AND ABS(eg.lat - t.lat) < 0.15
+  );
+```
+
+**Result:** 97,178 rows in gaz.edop_gaz
+
+### Basin Assignment
+Added `basin_id` column and populated via spatial join:
+
+```sql
+ALTER TABLE gaz.edop_gaz ADD COLUMN basin_id integer;
+UPDATE gaz.edop_gaz g SET basin_id = b.id FROM basin08 b WHERE ST_Covers(b.geom, g.geom);
+CREATE INDEX edop_gaz_basin_id_idx ON gaz.edop_gaz (basin_id);
+```
+
+---
+
+## 8. UI: Gazetteer Pill
+
+### New Features
+Added "EDOP Gazetteer" pill to Main tab (now the default/first pill):
+
+- **Autocomplete input** - searches gaz.edop_gaz by title prefix (ILIKE), triggers after 3 chars
+- **API endpoint** `/api/gaz-suggest` - returns id, title, source, ccodes, lon, lat
+- **Selection flow** - places marker, fetches environmental signature, renders profile
+- **Similar (env) button** - finds places in basins of same cluster
+- **Clear link** - resets input and all displayed state
+
+### API Endpoints Added
+```
+GET /api/gaz-suggest?q=<prefix>&limit=10
+GET /api/gaz-similar?gaz_id=<id>&limit=10
+```
+
+---
+
+## 9. Similarity Granularity Problem
+
+### Issue
+The "Similar (env)" feature for gazetteer places uses basin cluster membership. However:
+
+- 190,000 basins ÷ 20 clusters = ~9,500 basins per cluster
+- With 97k gaz places, each cluster contains thousands of places
+- Showing 10 random places from thousands is not meaningful "similarity"
+
+### Current Behavior
+Returns random places from basins in the same cluster. UI labels this as "places in basins of type: [cluster label]" to set expectations.
+
+### Options to Fix
+
+1. **Same-basin matching** - find places in the identical basin (hyper-local)
+2. **PCA-space distance** - use actual basin PCA coordinates (`output/basin08_pca_coords.npy`) to find nearest basins by Euclidean distance
+3. **Finer clustering** - re-run with k=100-200 instead of k=20
+4. **Hybrid** - same basin first, then nearby basins by PCA distance
+
+### Recommendation
+Option 2 (PCA distance) provides continuous similarity. Requires:
+- New table: `basin08_pca (hybas_id, pca_1, pca_2, ..., pca_n)`
+- Load from numpy file (one-time ETL)
+- Query: `ORDER BY euclidean_distance(source_pca, target_pca) LIMIT N`
+
+### Status
+**RESOLVED** - Implemented Option 2 (PCA distance) using pgvector.
+
+---
+
+## 10. PCA Vector Similarity (pgvector)
+
+### Implementation
+Loaded basin PCA coordinates into PostgreSQL using the pgvector extension for fast similarity search.
+
+**Script:** `scripts/load_basin_pca_vectors.py`
+
+**Table:**
+```sql
+CREATE TABLE basin08_pca (
+    basin_id INTEGER PRIMARY KEY,
+    hybas_id BIGINT NOT NULL,
+    pca vector(50)  -- first 50 of 150 components (~72% variance)
+);
+CREATE INDEX basin08_pca_idx ON basin08_pca
+    USING ivfflat (pca vector_l2_ops) WITH (lists = 100);
+```
+
+**Storage:** ~50 MB for 190,675 rows × 50 dimensions
+
+### Updated API
+`/api/gaz-similar` now uses vector distance:
+
+```sql
+WITH similar_basins AS (
+    SELECT p2.basin_id, p1.pca <-> p2.pca AS distance
+    FROM basin08_pca p1, basin08_pca p2
+    WHERE p1.basin_id = <source_basin>
+    ORDER BY p1.pca <-> p2.pca
+    LIMIT 500
+)
+SELECT g.*, sb.distance
+FROM gaz.edop_gaz g
+JOIN similar_basins sb ON sb.basin_id = g.basin_id
+ORDER BY distance LIMIT 10;
+```
+
+### Results
+Example: Glasgow → similar places by environmental signature:
+- Damn(on)ioi (Scotland): dist 0.19
+- Glasgow Bridge (Scotland): dist 0.37
+- Coleshill (England): dist 0.58
+- Drumanagh (Ireland): dist 0.61
+- Isonzo (Italy): dist 0.65
+
+The vector distance provides continuous, meaningful similarity rather than random selection from coarse clusters.

@@ -283,7 +283,7 @@ CREATE TABLE whc_pca_coords (
     pc46 DOUBLE PRECISION, pc47 DOUBLE PRECISION, pc48 DOUBLE PRECISION, pc49 DOUBLE PRECISION, pc50 DOUBLE PRECISION
 );
 
-COMMENT ON TABLE whc_pca_coords IS 'PCA coordinates for WHC cities (50 components max)';
+COMMENT ON TABLE whc_pca_coords IS 'PCA coordinates for WH cities (50 components max)';
 
 --------------------------------------------------------------------------------
 -- 3. PCA Variance
@@ -311,7 +311,7 @@ CREATE TABLE whc_similarity (
 CREATE INDEX idx_whc_similarity_a ON whc_similarity(city_a);
 CREATE INDEX idx_whc_similarity_b ON whc_similarity(city_b);
 
-COMMENT ON TABLE whc_similarity IS 'Pairwise Euclidean distances in PCA space between WHC cities';
+COMMENT ON TABLE whc_similarity IS 'Pairwise Euclidean distances in PCA space between WH cities';
 
 --------------------------------------------------------------------------------
 -- 5. Cluster Assignments
@@ -325,4 +325,4 @@ CREATE TABLE whc_clusters (
 
 CREATE INDEX idx_whc_clusters_cluster ON whc_clusters(cluster_id);
 
-COMMENT ON TABLE whc_clusters IS 'K-means cluster assignments for WHC cities';
+COMMENT ON TABLE whc_clusters IS 'K-means cluster assignments for WH cities';

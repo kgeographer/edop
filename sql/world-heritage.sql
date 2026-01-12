@@ -1,4 +1,6 @@
 -- world heritage (what goes around comes around)
+select * into bak.wh_cities from wh_cities;
+
 -- CITIES
 select city||', '||country from wh_cities wc
 	order by country, city;
@@ -22,6 +24,8 @@ select w.city, w.country, c.iso_a2
 
 update wh_cities wc set ccode = iso_a2 from ccodes c 
 	where wc.country = c."name";
+
+select 'https://en.wikipedia.org/' || href from wh_cities order by title;
 
 -- SITES
 --select id_no, name_en, w.short_description_en, category, w.justification_en from wh2025 w 

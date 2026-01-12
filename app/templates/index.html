@@ -25,37 +25,96 @@
 
         <!-- MAIN TAB -->
         <div class="tab-pane fade show active" id="panel-main" role="tabpanel" aria-labelledby="tab-main">
-          <h4 class="mb-3">Resolve place</h4>
+          <h5 class="mb-2">Resolve place</h5>
 
-          <form id="main-form" class="mb-3">
-            <div class="mb-2">
-              <label class="form-label" for="main-lon">Longitude</label>
-              <input class="form-control" id="main-lon" name="lon" type="number" step="any" placeholder="e.g. -2.99944" />
-            </div>
-            <div class="mb-2">
-              <label class="form-label" for="main-lat">Latitude</label>
-              <input class="form-control" id="main-lat" name="lat" type="number" step="any" placeholder="e.g. 16.77333" />
+          <!-- Input method pills -->
+          <ul class="nav nav-pills nav-pills-sm nav-fill mb-3" id="main-input-pills" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pill-gaz" data-bs-toggle="pill" data-bs-target="#input-gaz" type="button" role="tab" aria-controls="input-gaz" aria-selected="false">EDOP Gazetteer</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pill-coords" data-bs-toggle="pill" data-bs-target="#input-coords" type="button" role="tab" aria-controls="input-coords" aria-selected="true">Coordinates</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pill-edop" data-bs-toggle="pill" data-bs-target="#input-edop" type="button" role="tab" aria-controls="input-edop" aria-selected="false">WHG API</button>
+            </li>
+          </ul>
+
+          <!-- Input forms (swappable based on pill selection) -->
+          <div class="tab-content" id="main-input-content">
+
+            <!-- WHG Place Search -->
+            <div class="tab-pane fade" id="input-edop" role="tabpanel" aria-labelledby="pill-edop">
+              <div class="mb-3">
+                <div class="mb-2">
+                  <label class="form-label" for="edop-search">Search places</label>
+                  <div class="position-relative">
+                    <input class="form-control" id="edop-search" type="text" placeholder="Type to search..." autocomplete="off" />
+                    <div id="edop-dropdown" class="dropdown-menu w-100" style="display:none; max-height:300px; overflow-y:auto;"></div>
+                  </div>
+                  <div class="form-text text-muted">Type 3+ chars; add ", country" to filter (e.g. "Santa Fe, US")</div>
+                </div>
+              </div>
             </div>
 
-            <div class="my-3 text-muted">— or —</div>
-
-            <div class="mb-2">
-              <label class="form-label" for="main-name">Place name (WHG suggest; first hit only)</label>
-              <input class="form-control" id="main-name" name="name" type="text" placeholder="e.g. Timbuktu" />
-              <div class="form-text">Name resolution uses WHG via the EDOP backend (top-ranked hit only); the WHG token is never sent to the browser.</div>
+            <!-- Coordinates input -->
+            <div class="tab-pane fade" id="input-coords" role="tabpanel" aria-labelledby="pill-coords">
+              <form id="coords-form" class="mb-3">
+                <div class="row g-2 mb-2">
+                  <div class="col">
+                    <label class="form-label" for="main-lon">Longitude</label>
+                    <input class="form-control" id="main-lon" name="lon" type="number" step="any" placeholder="e.g. -2.99944" />
+                  </div>
+                  <div class="col">
+                    <label class="form-label" for="main-lat">Latitude</label>
+                    <input class="form-control" id="main-lat" name="lat" type="number" step="any" placeholder="e.g. 16.77333" />
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary" type="submit">Get Signature</button>
+                  <button class="btn btn-outline-secondary" id="test-btn" type="button">Use Timbuktu</button>
+                </div>
+              </form>
             </div>
 
-            <div class="d-flex gap-2 mt-3">
-              <button class="btn btn-primary" id="main-resolve-btn" type="submit">Resolve</button>
-              <button class="btn btn-outline-secondary" id="test-btn" type="button">Use Timbuktu lon/lat</button>
+            <!-- WHG Lookup input -->
+            <div class="tab-pane fade" id="input-whg" role="tabpanel" aria-labelledby="pill-whg">
+              <form id="whg-form" class="mb-3">
+                <div class="mb-2">
+                  <label class="form-label" for="main-name">Place name</label>
+                  <input class="form-control" id="main-name" name="name" type="text" placeholder="e.g. Timbuktu" />
+                  <div class="form-text">Name resolution via WHG API (top-ranked hit only)</div>
+                </div>
+                <button class="btn btn-primary" type="submit">Resolve</button>
+              </form>
             </div>
-          </form>
+
+            <!-- Gazetteer input -->
+            <div class="tab-pane fade show active" id="input-gaz" role="tabpanel" aria-labelledby="pill-gaz">
+              <div class="mb-3">
+                <div class="mb-2">
+                  <div class="position-relative">
+                    <input class="form-control" id="gaz-search" type="text" placeholder="Type to search..." autocomplete="off" />
+                    <div id="gaz-dropdown" class="dropdown-menu w-100" style="display:none; max-height:300px; overflow-y:auto;"></div>
+                  </div>
+                  <div class="form-text text-muted">~97k places from multiple sources. Type 3+ chars to search. <a href="#" id="gaz-clear-link">Clear</a></div>
+                </div>
+                <div class="mt-3 d-flex gap-2">
+                  <button class="btn btn-outline-primary" id="gaz-similar-env" type="button" disabled>Similar (env)</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Main tab status message -->
+          <div class="alert alert-light" id="main-status" style="display:none;"></div>
         </div>
 
         <!-- BASINS TAB (cluster explorer) -->
         <div class="tab-pane fade" id="panel-basins" role="tabpanel" aria-labelledby="tab-basins">
           <h4 class="mb-1">Basin Environmental Types</h4>
-          <p class="text-muted small">20 clusters of 190k sub-basins based on environmental bands A-D. Select to see WHC cities in basins of that type.</p>
+          <p class="text-muted small">20 clusters of 190k sub-basins based on environmental bands A-D. Select to see WH cities in basins of that type.</p>
 
           <div id="basin-cluster-list" class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;">
             <span class="text-muted p-2">Loading clusters...</span>
@@ -217,7 +276,7 @@
   let whSites = [];
   let whSelected = null;
 
-  // WHC Cities state (258 cities)
+  // WH Cities state (258 cities)
   let whcCities = [];
   let whcSelected = null;
   function setMarkerWithPopup(lon, lat, popupHtml) {
@@ -545,7 +604,7 @@
   }
 
   // -----------------------
-  // WHC Cities (258) functions
+  // WH Cities (258) functions
   // -----------------------
 
   function whcSetStatus(msg) {
@@ -574,7 +633,7 @@
       const resp = await fetch('/api/whc-cities');
       if (!resp.ok) {
         const txt = await resp.text();
-        throw new Error(`WHC cities request failed (${resp.status}): ${txt}`);
+        throw new Error(`WH cities request failed (${resp.status}): ${txt}`);
       }
       const data = await resp.json();
       whcCities = (data && data.cities) ? data.cities : [];
@@ -671,7 +730,7 @@
     const resp = await fetch(url);
     if (!resp.ok) {
       const txt = await resp.text();
-      throw new Error(`WHC similar request failed (${resp.status}): ${txt}`);
+      throw new Error(`WH similar request failed (${resp.status}): ${txt}`);
     }
     return await resp.json();
   }
@@ -681,7 +740,7 @@
     const resp = await fetch(url);
     if (!resp.ok) {
       const txt = await resp.text();
-      throw new Error(`WHC similar-text request failed (${resp.status}): ${txt}`);
+      throw new Error(`WH similar-text request failed (${resp.status}): ${txt}`);
     }
     return await resp.json();
   }
@@ -1014,10 +1073,10 @@
       const list = document.getElementById('similar-list');
 
       if (heading) heading.textContent = `${label}`;
-      if (description) description.textContent = `${cities.length} WHC cities in basins of this environmental type`;
+      if (description) description.textContent = `${cities.length} WH cities in basins of this environmental type`;
 
       if (cities.length === 0) {
-        list.innerHTML = '<div class="text-muted">No WHC cities in basins of this type.</div>';
+        list.innerHTML = '<div class="text-muted">No WH cities in basins of this type.</div>';
       } else {
         list.innerHTML = cities.map((c, idx) => {
           const color = SIMILAR_COLORS[idx % SIMILAR_COLORS.length];
@@ -1389,6 +1448,19 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Main tab status helper
+    function mainSetStatus(msg) {
+      const el = document.getElementById('main-status');
+      if (!el) return;
+      if (msg) {
+        el.textContent = msg;
+        el.style.display = '';
+      } else {
+        el.textContent = '';
+        el.style.display = 'none';
+      }
+    }
+
     // Wire Timbuktu test button (existing behavior)
     const testBtn = document.getElementById('test-btn');
     testBtn.addEventListener('click', async () => {
@@ -1397,10 +1469,10 @@
       const lat = 16.77333333;
       document.getElementById('main-lon').value = lon;
       document.getElementById('main-lat').value = lat;
-      document.getElementById('main-name').value = '';
       renderResolvedPlace(null);
       renderSignature(null);
       clearBasinLayer();
+      mainSetStatus('');
       try {
         await resolveByLonLat(lon, lat);
       } catch (e) {
@@ -1408,31 +1480,68 @@
       }
     });
 
-    // Main form submit
-    const form = document.getElementById('main-form');
-    form.addEventListener('submit', async (evt) => {
+    // Coordinates form submit
+    const coordsForm = document.getElementById('coords-form');
+    coordsForm.addEventListener('submit', async (evt) => {
       evt.preventDefault();
       renderResolvedPlace(null);
       renderSignature(null);
       clearBasinLayer();
+      mainSetStatus('');
 
       const lon = document.getElementById('main-lon').value.trim();
       const lat = document.getElementById('main-lat').value.trim();
-      const name = document.getElementById('main-name').value.trim();
+
+      if (lon === '' || lat === '') {
+        mainSetStatus('Please enter both longitude and latitude.');
+        return;
+      }
 
       try {
-        if (lon !== '' && lat !== '') {
-          await resolveByLonLat(lon, lat);
-          return;
-        }
-        if (name !== '') {
-          await resolveByName(name);
-          return;
-        }
-        renderSignature({ detail: 'Enter lon/lat or a place name.' });
+        await resolveByLonLat(lon, lat);
       } catch (e) {
         renderSignature({ error: String(e) });
       }
+    });
+
+    // WHG Lookup form submit
+    const whgForm = document.getElementById('whg-form');
+    whgForm.addEventListener('submit', async (evt) => {
+      evt.preventDefault();
+      renderResolvedPlace(null);
+      renderSignature(null);
+      clearBasinLayer();
+      mainSetStatus('');
+
+      const name = document.getElementById('main-name').value.trim();
+
+      if (name === '') {
+        mainSetStatus('Please enter a place name.');
+        return;
+      }
+
+      try {
+        mainSetStatus('Resolving via WHG...');
+        await resolveByName(name);
+        mainSetStatus('');
+      } catch (e) {
+        mainSetStatus('');
+        renderSignature({ error: String(e) });
+      }
+    });
+
+    // Clear state when switching input method pills within Main tab
+    document.querySelectorAll('#main-input-pills button[data-bs-toggle="pill"]').forEach((pill) => {
+      pill.addEventListener('shown.bs.tab', () => {
+        renderResolvedPlace(null);
+        renderSignature(null);
+        clearBasinLayer();
+        clearMarker();
+        clearSimilarResults();
+        mainSetStatus('');
+        clearGazState();
+        if (map) map.setView([0, 0], 2);
+      });
     });
 
     // Initialize map if Leaflet is present
@@ -1481,13 +1590,13 @@
       btnSimilarText.addEventListener('click', whShowSimilarText);
     }
 
-    // WHC Cities: load cities now
+    // WH Cities: load cities now
     whcLoadCities();
 
     // Basin clusters: load clusters now
     loadBasinClusters();
 
-    // WHC Cities: selection handler
+    // WH Cities: selection handler
     const whcSel = document.getElementById('whc-select');
     if (whcSel) {
       whcSel.addEventListener('change', async () => {
@@ -1497,7 +1606,7 @@
       });
     }
 
-    // WHC Cities: environmental similarity dropdown
+    // WH Cities: environmental similarity dropdown
     document.querySelectorAll('#whc-similar-env-btn + .dropdown-menu .dropdown-item').forEach(item => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1507,7 +1616,7 @@
       });
     });
 
-    // WHC Cities: semantic similarity dropdown
+    // WH Cities: semantic similarity dropdown
     document.querySelectorAll('#whc-similar-text-btn + .dropdown-menu .dropdown-item').forEach(item => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1528,6 +1637,7 @@
         renderSignature(null);
         showClusterLabel(null);
         clearSimilarResults();
+        clearGazState();
 
         // Always clear map overlays and reset view
         clearBasinLayer();
@@ -1566,8 +1676,514 @@
         if (targetSel === '#panel-basins') {
           basinSetStatus('');
         }
+
+        // Main-specific UI reset when entering Main tab
+        if (targetSel === '#panel-main') {
+          mainSetStatus('');
+        }
       });
     });
+
+    // -----------------------
+    // WHG Autocomplete (EDOP Places pill)
+    // -----------------------
+
+    const edopSearch = document.getElementById('edop-search');
+    const edopDropdown = document.getElementById('edop-dropdown');
+    let edopDebounceTimer = null;
+    let countriesLookup = null;
+
+    // Load countries lookup for comma-filtering
+    async function loadCountriesLookup() {
+      try {
+        const resp = await fetch('/static/data/countries.json');
+        if (resp.ok) {
+          countriesLookup = await resp.json();
+        }
+      } catch (e) {
+        console.warn('Could not load countries lookup:', e);
+      }
+    }
+    loadCountriesLookup();
+
+    function parseCountryFilter(input) {
+      // Check for "place, country" pattern
+      const commaIdx = input.lastIndexOf(',');
+      if (commaIdx === -1) {
+        return { query: input.trim(), countryCode: null };
+      }
+      const placePart = input.substring(0, commaIdx).trim();
+      const countryPart = input.substring(commaIdx + 1).trim().toLowerCase();
+
+      if (!placePart || !countryPart) {
+        return { query: input.trim(), countryCode: null };
+      }
+
+      // Look up country code
+      const code = countriesLookup ? countriesLookup[countryPart] : null;
+      return { query: placePart, countryCode: code || null };
+    }
+
+    function extractCountryCode(description) {
+      // Extract from "Country: XX" or "Country: XX, YY" format
+      const match = (description || '').match(/Country:\s*([A-Z]{2}(?:,\s*[A-Z]{2})*)/);
+      return match ? match[1].split(',').map(c => c.trim()) : [];
+    }
+
+    function filterAndSortResults(results, countryCode) {
+      if (!countryCode) return results;
+
+      // Separate matches from non-matches, preserve order within each group
+      const matches = [];
+      const others = [];
+
+      for (const r of results) {
+        const codes = extractCountryCode(r.description);
+        if (codes.includes(countryCode)) {
+          matches.push(r);
+        } else {
+          others.push(r);
+        }
+      }
+
+      // Return matches first, then others
+      return [...matches, ...others];
+    }
+
+    function hideEdopDropdown() {
+      if (edopDropdown) {
+        edopDropdown.style.display = 'none';
+        edopDropdown.innerHTML = '';
+      }
+    }
+
+    function showEdopDropdown(results, countryFilter) {
+      if (!edopDropdown || !results.length) {
+        hideEdopDropdown();
+        return;
+      }
+
+      const html = results.map((r, idx) => {
+        const name = escapeHtml(r.name);
+        const codes = extractCountryCode(r.description);
+        const ccode = codes.join(', ');
+        const isMatch = countryFilter && codes.includes(countryFilter);
+        const altNames = (r.alt_names || []).slice(0, 3).map(n => escapeHtml(n)).join(', ');
+        const altDisplay = altNames ? `<span class="text-muted small">(${altNames})</span>` : '';
+        const matchClass = isMatch ? 'bg-light' : '';
+        const codeStyle = isMatch ? 'text-success fw-bold' : 'text-muted';
+        return `
+          <a href="#" class="dropdown-item edop-result-item ${matchClass}" data-id="${escapeHtml(r.id)}" data-idx="${idx}">
+            <strong>${name}</strong>${ccode ? ` <span class="${codeStyle}">[${ccode}]</span>` : ''} ${altDisplay}
+          </a>
+        `;
+      }).join('');
+
+      edopDropdown.innerHTML = html;
+      edopDropdown.style.display = 'block';
+
+      // Add click handlers
+      edopDropdown.querySelectorAll('.edop-result-item').forEach(item => {
+        item.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const placeId = item.getAttribute('data-id');
+          hideEdopDropdown();
+          edopSearch.value = item.querySelector('strong').textContent;
+          await selectWhgPlace(placeId);
+        });
+      });
+    }
+
+    async function searchWhg(input) {
+      if (!input || input.length < 3) {
+        hideEdopDropdown();
+        return;
+      }
+
+      const { query, countryCode } = parseCountryFilter(input);
+
+      if (!query || query.length < 3) {
+        hideEdopDropdown();
+        return;
+      }
+
+      try {
+        // Fetch extra results to improve country filtering, show top 10
+        const url = `/api/whg-suggest?q=${encodeURIComponent(query)}&limit=25`;
+        const resp = await fetch(url);
+        if (!resp.ok) {
+          console.error('WHG suggest failed:', resp.status);
+          hideEdopDropdown();
+          return;
+        }
+        const data = await resp.json();
+        let results = data.results || [];
+
+        // Filter/sort by country if specified
+        if (countryCode) {
+          results = filterAndSortResults(results, countryCode);
+        }
+
+        // Show top 10 results
+        showEdopDropdown(results.slice(0, 10), countryCode);
+      } catch (e) {
+        console.error('WHG suggest error:', e);
+        hideEdopDropdown();
+      }
+    }
+
+    async function selectWhgPlace(placeId) {
+      mainSetStatus('Fetching place details...');
+      renderResolvedPlace(null);
+      renderSignature(null);
+      clearBasinLayer();
+      clearMarker();
+      showClusterLabel(null);
+
+      try {
+        const url = `/api/whg-place?id=${encodeURIComponent(placeId)}`;
+        const resp = await fetch(url);
+        if (!resp.ok) {
+          const txt = await resp.text();
+          throw new Error(`WHG place failed (${resp.status}): ${txt}`);
+        }
+        const place = await resp.json();
+
+        if (!place.location || !place.location.coordinates) {
+          mainSetStatus('Place has no coordinates');
+          renderResolvedPlace(place);
+          return;
+        }
+
+        const lon = place.location.coordinates[0];
+        const lat = place.location.coordinates[1];
+
+        renderResolvedPlace(place);
+        setMarkerFromLonLat(lon, lat);
+
+        mainSetStatus('Computing environmental profile...');
+        const sig = await fetchSignature(lon, lat);
+        renderSignature(sig);
+        setBasinFromSignature(sig);
+        mainSetStatus('');
+      } catch (e) {
+        mainSetStatus(String(e));
+        renderSignature({ error: String(e) });
+      }
+    }
+
+    if (edopSearch) {
+      edopSearch.addEventListener('input', () => {
+        clearTimeout(edopDebounceTimer);
+        const q = edopSearch.value.trim();
+        edopDebounceTimer = setTimeout(() => searchWhg(q), 300);
+      });
+
+      // Hide dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!edopSearch.contains(e.target) && !edopDropdown.contains(e.target)) {
+          hideEdopDropdown();
+        }
+      });
+
+      // Keyboard navigation
+      edopSearch.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          hideEdopDropdown();
+        }
+      });
+    }
+
+    // -----------------------
+    // Gazetteer Autocomplete
+    // -----------------------
+
+    const gazSearch = document.getElementById('gaz-search');
+    const gazDropdown = document.getElementById('gaz-dropdown');
+    const gazSimilarBtn = document.getElementById('gaz-similar-env');
+    let gazDebounceTimer = null;
+    let gazSelected = null;  // Currently selected gazetteer place
+
+    function clearGazState() {
+      gazSelected = null;
+      if (gazSearch) gazSearch.value = '';
+      hideGazDropdown();
+      if (gazSimilarBtn) gazSimilarBtn.disabled = true;
+    }
+
+    function hideGazDropdown() {
+      if (gazDropdown) {
+        gazDropdown.style.display = 'none';
+        gazDropdown.innerHTML = '';
+      }
+    }
+
+    function showGazDropdown(results) {
+      if (!gazDropdown || !results.length) {
+        hideGazDropdown();
+        return;
+      }
+
+      const html = results.map((r, idx) => {
+        const title = escapeHtml(r.title);
+        const ccodes = (r.ccodes || []).join(', ');
+        const source = escapeHtml(r.source || '');
+        return `
+          <a href="#" class="dropdown-item gaz-result-item" data-idx="${idx}">
+            <strong>${title}</strong>${ccodes ? ` <span class="text-muted">[${ccodes}]</span>` : ''}
+            <span class="text-muted small float-end">${source}</span>
+          </a>
+        `;
+      }).join('');
+
+      gazDropdown.innerHTML = html;
+      gazDropdown.style.display = 'block';
+
+      // Store results for click handler
+      gazDropdown._results = results;
+
+      // Add click handlers
+      gazDropdown.querySelectorAll('.gaz-result-item').forEach(item => {
+        item.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const idx = parseInt(item.getAttribute('data-idx'), 10);
+          const place = gazDropdown._results[idx];
+          hideGazDropdown();
+          gazSearch.value = place.title;
+          await selectGazPlace(place);
+        });
+      });
+    }
+
+    async function searchGaz(input) {
+      if (!input || input.length < 3) {
+        hideGazDropdown();
+        return;
+      }
+
+      try {
+        const url = `/api/gaz-suggest?q=${encodeURIComponent(input)}&limit=15`;
+        const resp = await fetch(url);
+        if (!resp.ok) {
+          console.error('Gaz suggest failed:', resp.status);
+          hideGazDropdown();
+          return;
+        }
+        const data = await resp.json();
+        showGazDropdown(data.results || []);
+      } catch (e) {
+        console.error('Gaz suggest error:', e);
+        hideGazDropdown();
+      }
+    }
+
+    async function selectGazPlace(place) {
+      gazSelected = place;
+      mainSetStatus('Computing environmental profile...');
+      renderResolvedPlace(null);
+      renderSignature(null);
+      clearBasinLayer();
+      clearMarker();
+      clearSimilarResults();
+      showClusterLabel(null);
+
+      // Enable Similar button
+      if (gazSimilarBtn) gazSimilarBtn.disabled = false;
+
+      if (!place.lon || !place.lat) {
+        mainSetStatus('Place has no coordinates');
+        return;
+      }
+
+      const lon = place.lon;
+      const lat = place.lat;
+
+      // Show resolved place info
+      renderResolvedPlace({
+        label: place.title,
+        source: 'gaz',
+        location: { type: 'Point', coordinates: [lon, lat] },
+        meta: {
+          id: place.id,
+          source: place.source,
+          ccodes: place.ccodes
+        }
+      });
+
+      setMarkerFromLonLat(lon, lat);
+
+      try {
+        const sig = await fetchSignature(lon, lat);
+        renderSignature(sig);
+        setBasinFromSignature(sig);
+        mainSetStatus('');
+      } catch (e) {
+        mainSetStatus(String(e));
+        renderSignature({ error: String(e) });
+      }
+    }
+
+    async function gazShowSimilarEnv() {
+      if (!gazSelected || !gazSelected.id) return;
+
+      if (gazSimilarBtn) gazSimilarBtn.disabled = true;
+      clearSimilarResults();
+      mainSetStatus('Finding environmentally similar places...');
+
+      try {
+        const url = `/api/gaz-similar?gaz_id=${encodeURIComponent(gazSelected.id)}&limit=10`;
+        const resp = await fetch(url);
+        if (!resp.ok) {
+          const txt = await resp.text();
+          throw new Error(`Similar places request failed (${resp.status}): ${txt}`);
+        }
+        const data = await resp.json();
+
+        if (data.error) {
+          mainSetStatus(data.error);
+          return;
+        }
+
+        renderGazSimilarSites(data, gazSelected);
+        mainSetStatus('');
+      } catch (e) {
+        mainSetStatus(String(e));
+      } finally {
+        if (gazSimilarBtn) gazSimilarBtn.disabled = false;
+      }
+    }
+
+    function renderGazSimilarSites(data, sourceSite) {
+      const container = document.getElementById('similar-results');
+      const list = document.getElementById('similar-list');
+      const heading = document.getElementById('similar-heading');
+      const description = document.getElementById('similar-description');
+      if (!container || !list) return;
+
+      if (heading) heading.textContent = 'Similar Places (Environmental)';
+      if (description) description.textContent = 'ranked by environmental signature distance (PCA)';
+
+      const similar = data.similar || [];
+      if (!similar.length) {
+        list.innerHTML = '<div class="text-muted">No similar places found.</div>';
+        container.style.display = '';
+        return;
+      }
+
+      // Build list HTML with color swatches and distance
+      const rows = similar.map((site, idx) => {
+        const color = SIMILAR_COLORS[idx % SIMILAR_COLORS.length];
+        const ccodes = (site.ccodes || []).join(', ');
+        const clusterLabel = CLUSTER_LABELS[site.cluster_id] || '';
+        return `
+          <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+            <div>
+              <strong>${idx + 1}.</strong> ${escapeHtml(site.title)}
+              ${ccodes ? `<span class="text-muted small">[${ccodes}]</span>` : ''}
+              <div class="small text-muted">${escapeHtml(site.source || '')}${clusterLabel ? ` · ${clusterLabel}` : ''}</div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="text-muted small">dist: ${site.distance}</span>
+              <span style="display:inline-block; width:16px; height:16px; background:${color}; border-radius:3px;"></span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      list.innerHTML = rows;
+      container.style.display = '';
+
+      // Add markers for similar sites
+      clearSimilarMarkers();
+      ensureMap();
+
+      const bounds = [];
+
+      // Include source site in bounds
+      if (sourceSite.lon && sourceSite.lat) {
+        bounds.push([sourceSite.lat, sourceSite.lon]);
+      }
+
+      similar.forEach((site, idx) => {
+        const lat = site.lat;
+        const lon = site.lon;
+        if (!lat || !lon) return;
+        const color = SIMILAR_COLORS[idx % SIMILAR_COLORS.length];
+        bounds.push([lat, lon]);
+
+        const simMarker = L.circleMarker([lat, lon], {
+          radius: 10,
+          fillColor: color,
+          color: '#fff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.9
+        }).addTo(map);
+
+        const ccodes = (site.ccodes || []).join(', ');
+        const clusterLabel = CLUSTER_LABELS[site.cluster_id] || '';
+        simMarker.bindPopup(`
+          <div style="max-width: 200px;">
+            <strong>${idx + 1}. ${escapeHtml(site.title)}</strong><br/>
+            ${ccodes ? `<span class="text-muted">[${ccodes}]</span><br/>` : ''}
+            <span class="small">Distance: ${site.distance}</span><br/>
+            ${clusterLabel ? `<span class="small text-muted">${clusterLabel}</span>` : ''}
+          </div>
+        `);
+
+        similarMarkers.push(simMarker);
+      });
+
+      // Zoom to fit all markers
+      if (bounds.length > 1 && map) {
+        map.fitBounds(bounds, { padding: [50, 50] });
+      }
+    }
+
+    if (gazSearch) {
+      gazSearch.addEventListener('input', () => {
+        clearTimeout(gazDebounceTimer);
+        const q = gazSearch.value.trim();
+        gazDebounceTimer = setTimeout(() => searchGaz(q), 300);
+      });
+
+      // Hide dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!gazSearch.contains(e.target) && !gazDropdown.contains(e.target)) {
+          hideGazDropdown();
+        }
+      });
+
+      // Keyboard navigation
+      gazSearch.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          hideGazDropdown();
+        }
+      });
+    }
+
+    // Wire up Similar (env) button for gazetteer
+    if (gazSimilarBtn) {
+      gazSimilarBtn.addEventListener('click', gazShowSimilarEnv);
+    }
+
+    // Wire up clear link for gazetteer
+    const gazClearLink = document.getElementById('gaz-clear-link');
+    if (gazClearLink) {
+      gazClearLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        clearGazState();
+        renderResolvedPlace(null);
+        renderSignature(null);
+        clearBasinLayer();
+        clearMarker();
+        clearSimilarResults();
+        showClusterLabel(null);
+        mainSetStatus('');
+        if (map) map.setView([0, 0], 2);
+        gazSearch.focus();
+      });
+    }
   });
 </script>
 {% endblock %}

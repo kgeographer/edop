@@ -26,3 +26,13 @@ pre {
   font-style: italic;
   font-size: small;
 }
+
+.nav-pills-sm .nav-link {
+  padding: 0.25rem 0.5rem;   /* default is ~0.5rem 1rem */
+  font-size: 0.875rem;      /* same size Bootstrap uses for .btn-sm */
+  line-height: 1.2;
+}
+.edop-subtitle {
+  font-size: 1.1rem;
+  white-space: nowrap;
+}

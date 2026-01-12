@@ -46,7 +46,7 @@ def load_matrix_data(conn):
     """Load matrix data and city names from database."""
     # Get city info
     cities_df = pd.read_sql(
-        "SELECT id, city, country, region FROM wh_cities WHERE basin_id IS NOT NULL ORDER BY id",
+        "SELECT id, city, country, region FROM gaz.wh_cities WHERE basin_id IS NOT NULL ORDER BY id",
         conn
     )
 
@@ -261,8 +261,8 @@ def print_similarity_examples(conn):
                    ROUND(s.distance::numeric, 2) as dist,
                    ROUND(s.similarity::numeric, 3) as sim
             FROM whc_similarity s
-            JOIN wh_cities c1 ON c1.id = s.city_a
-            JOIN wh_cities c2 ON c2.id = s.city_b
+            JOIN gaz.wh_cities c1 ON c1.id = s.city_a
+            JOIN gaz.wh_cities c2 ON c2.id = s.city_b
             ORDER BY s.distance ASC
             LIMIT 10
         """)
@@ -275,8 +275,8 @@ def print_similarity_examples(conn):
         cur.execute("""
             SELECT c2.city, c2.country, ROUND(s.distance::numeric, 2) as dist
             FROM whc_similarity s
-            JOIN wh_cities c1 ON c1.id = s.city_a
-            JOIN wh_cities c2 ON c2.id = s.city_b
+            JOIN gaz.wh_cities c1 ON c1.id = s.city_a
+            JOIN gaz.wh_cities c2 ON c2.id = s.city_b
             WHERE c1.city = 'Timbuktu'
             ORDER BY s.distance ASC
             LIMIT 5

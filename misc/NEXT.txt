@@ -1,0 +1,110 @@
+NEXT 11 Jan, 7am
+================
+edop_gaz
+autocomplete against edop_gaz
+cluster and persist basin08 components
+add font-awesome library, external link where target="_blank"
+display wh cities points by default, color by region; similar() selections filter and color markers
+issue to WHG: /reconcile return a wkt for "P" places (or non-A?)
+queries:
+	- cities above {nnnn} meters, within {nn} meters of the sea, distant from river
+
+
+NEXT 09 Jan, 11am
+=================
+main tab:
+	- lon and lat inputs side by side
+	- autocomplete place lookup on new edop_gaz table
+cluster and persist basin08 components
+exclude wh cities that have no basin/env signature
+add font-awesome library, external link where target="_blank"
+display wh cities points by default, color by region; similar() selections filter and color markers
+alternative place datasets
+	- dkatlas
+	- geonames ~900 largest
+/issue to WHG: src_id missing from downloads
+new tab
+	- display ecoregions; click one to list cities within it (from what?)
+build edop gazetteer dataset w/categories [wh_cities, wh_sites, dk atlas, geonames900]
+	- autocomplete distinct toponym string
+queries:
+	proximity to sea
+	proximity to rivers
+what is "iterative self-organizing data analysis technique (ISODATA)"
+/fix data bug for Cuenca - trace
+/set map center to {lat: 14.26438308756265, lng: 3.340880807522098}
+/subhead to "258 World Heritage Cities": members of Organization of [World Heritage Cities (OWHC)](https://www.ovpm.org/)
+/set column widths to 5,6 from 4,7
+
+
+
+
+==========
+the next enhancement may be a big ask, please evaluate its easy/hard status...
+Both 'signature' types, env and semantic, are divided in bands for various faceting requirements for future queries (endpoint parameters)
+
+environmental
+=============
+```
+A - Physiographic bedrock – long-term geological and topographic context
+B - Hydro-climatic baselines – drainage, runoff, aridity, climatic constraints
+C - Bioclimatic proxies – climate-derived indicators relevant to vegetation and productivity
+D - Anthropocene markers – modern land use, population, and human modification
+```
+
+text/semantic
+=============
+environment, history, cultural, and modern
+
+In the WH Cities tab content there are buttons for "Similar (env)" and "Similar (semantic)." It would be interesting if instead of buttons return similar places across all 4 bands, there were dropdowns with 5 choices - the 4 bands plus "Composite." The data architecture can support this, and future analytical queries utilizing these divisions, but for this pilot release, just displaying that faceting capability that way would be valuable. Do you agree, and if so, what is the easy/hard eval? If oyu need more context from me, just ask.
+
+
+there is a table 'whc_band_summaries' with the following DDL:
+```
+CREATE TABLE whc_band_summaries (
+	city_id int4 NOT NULL,
+	band text NOT NULL,
+	status text NOT NULL,
+	summary text NULL,
+	source_chars int4 NULL,
+	summary_chars int4 NULL,
+	input_tokens int4 NULL,
+	output_tokens int4 NULL,
+	processed_at timestamp NULL,
+	CONSTRAINT whc_band_summaries_band_check CHECK ((band = ANY (ARRAY['history'::text, 'environment'::text, 'culture'::text, 'modern'::text]))),
+	CONSTRAINT whc_band_summaries_pkey PRIMARY KEY (city_id, band)
+);
+```
+In the 'similar-results' list when clicking similar (semantic) button, the names of cities appear; it would be nice if the name was wrapped in an <a> that loaded a modal window with the text of the whc_band_summaries.summaries field for that site. summaries there are in bands:  environment, history, cultural, and modern - so the modal display should arrange the summaries in that order, with those band names as subtitles (maybe <h4>s a most). Can you arrange this for me?
+
+
+<span class="badge bg-secondary fs-6" id="cluster-label-text">Env: 4 | Text: 7</span>
+
+
+good morning, 9 Jan here in Santa Fe, NM
+
+yesterday we built out a new tab in the EDOP UI to generate a basin signature (Environmental profile in the UI) for any of 258 WH cites in a dropdown (div id 'panel-whc' in app/templates/index.html). there are two buttons to return the 5 most similar cities by either 'env' (PCA component cluster/distance) or 'semantic' criteria (embedding distance).
+
+A div under the dropdown and button should return a set of 4 accordions with signature values from "bands" of persistence (groupings based on temporal persistence over history: Physiographic bedrock, Hydro-climatic baselines, Bioclimatic proxies, and Anthropocene markers). Those do not display, instead a {error": "Error: Signature request failed (500): Internal Server Error"
+}" appears in that div. The browser dev console gives no other clue. The same error occurs on the earlier tab with a dropdown of 20 WH sites. So the 'on select' action for both dropdowns is calling a function that has been disabled or disappeared somehow. 
+
+The terminal for the dev server shows this:
+psycopg.OperationalError: connection is bad: connection to server on socket "/tmp/.s.PGSQL.5432" failed: No such file or directory
+        Is the server running locally and accepting connections on that socket?
+
+The database is on port 5435; the db connections should rely on this now in .env
+DB_NAME='edop'
+DB_USER='postgres'
+DB_HOST='localhost'
+DB_PORT=5435
+
+somehow that was lost when .env was zapped by some github-related cleanup (obv we don't want to push .env, but it needs to remain here locally; a different .env will be maintained in the deploy location eventually)
+
+
+
+(index):1075 
+ GET http://127.0.0.1:8000/api/signature?lon=42.12777778&lat=9.311111111 500 (Internal Server Error)
+fetchSignature	@	(index):1075
+whcSelectById	@	(index):636
+(anonymous)	@	(index):1235
+

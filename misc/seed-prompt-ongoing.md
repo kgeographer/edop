@@ -1,36 +1,46 @@
- # EDOP Session Seed
+# EDOP Session Seed
 
- ## Project Goal
- EDOP (Environmental Dimensions of Place) generates environmental signatures for historical locations using
- HydroATLAS basin data. Building a proof-of-concept for funding partners (ISHI/Pitt, KNAW/CLARIAH) demonstrating:
- - Environmental profiling at scale
- - Meaningful similarity detection (environmental + textual)
- - Clean API design for gazetteer integration
+## Project Goal
+EDOP (Environmental Dimensions of Place) generates environmental signatures for historical locations using
+HydroATLAS basin data. Building a proof-of-concept for funding partners (ISHI/Pitt, KNAW/CLARIAH) demonstrating:
+- Environmental profiling at scale
+- Meaningful similarity detection (environmental + textual)
+- Clean API design for gazetteer integration
 
- ## Current State
- - **20 pilot World Heritage Sites** analyzed with:
-   - 1,561-dimensional environmental signatures (PCA → 19 dims, k=5 clusters)
-   - Wikipedia text corpus: 4 semantic bands (history, environment, culture, modern)
-   - LLM-summarized band text → OpenAI embeddings → clustering
-   **258 World Heritage cities** analyzed similarly
-   **UI displays selected results** using e.g. app/api/routes.py and app/db/signature.py
-   **tabs and pills**
-      - main
-          place search
-          coordinates
-        basin: list 20 clusters of 190k sub-basins; display on map & list wh cities contained
-        wh cities: dropdown selection returns sig, options for similar cities
-        wh sites: dropdown selection returns sig, options for similar sites
-   **secrets** db and llm service secrets in .env
- - **Key findings**: 
-  - Environmental and text similarity are complementary (45% cluster agreement, weak correlation except geography band r=-0.19)
+## Current State
+- **20 pilot World Heritage Sites** analyzed with:
+  - 1,565-dimensional environmental signatures (PCA → 150 dims, k=20 clusters)
+  - Wikipedia text corpus: 4 semantic bands (history, environment, culture, modern)
+  - LLM-summarized band text → OpenAI embeddings → clustering
+- **258 World Heritage cities** analyzed similarly
+- **97k gazetteer places** (`gaz.edop_gaz`) imported from WHG export with:
+  - Basin assignment via spatial join
+  - PCA-based environmental similarity via pgvector (`basin08_pca` table, 50 dims)
 
- ## NEXT steps
- - so far, feeding signature.py coords directly from the UI a few ways works fine (dropdowns of wh sites and cities); challenge is to allow users to enter a place name and have it resolved, constraining search by selecting or drawing an area feature on the UI map. resolving a name from external gazetteers is problematic but a work in progress with World Historical Gazetteer API and consult with WHG developer
+**UI tabs and pills:**
+- Main tab:
+  - **EDOP Gazetteer** (default): autocomplete search of 97k places, Similar (env) button
+  - Coordinates: manual lon/lat entry
+  - WHG API: external place resolution
+- Basins: list 20 clusters of 190k sub-basins; display on map & list WH cities contained
+- WH Cities: dropdown selection returns sig, options for similar cities (env + semantic)
+- WH Sites: dropdown selection returns sig, options for similar sites
 
- ## Key Files
- - `docs/EDOP_LOG.md` — running dev log
- - `docs/session_log_*.md` — detailed work per day
- 
-  ## Tech Stack
- FastAPI, PostgreSQL/PostGIS, Python (scikit-learn, openai, anthropic, wikipediaapi)
+**Key tables:**
+- `basin08` — 190k sub-basins with environmental fields and cluster_id
+- `basin08_pca` — pgvector table with 50-dim PCA vectors for similarity search
+- `gaz.edop_gaz` — 97k places with basin_id FK for environmental lookups
+- `gaz.wh_cities` — 258 World Heritage cities
+
+## Key Findings
+- Environmental and text similarity are complementary (45% cluster agreement)
+- 20 clusters too coarse for gazetteer similarity → solved with pgvector PCA distance
+- pgvector enables continuous similarity ranking instead of discrete cluster buckets
+
+## Key Files
+- `docs/edop_database_schema.md` — comprehensive schema reference
+- `docs/session_log_*.md` — detailed work per day
+- `scripts/load_basin_pca_vectors.py` — loads PCA coords into pgvector
+
+## Tech Stack
+FastAPI, PostgreSQL/PostGIS, pgvector, Python (scikit-learn, openai, anthropic, wikipediaapi)

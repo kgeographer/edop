@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 import json
 import urllib.parse
 import urllib.request
@@ -21,7 +21,10 @@ router = APIRouter(prefix="/api", tags=["api"])
 
 def _http_get_json(url: str, timeout_sec: int = 20) -> Dict[str, Any]:
     ctx = ssl.create_default_context(cafile=certifi.where())
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})
+    req = urllib.request.Request(url, headers={
+        "Accept": "application/json",
+        "User-Agent": "EDOP/1.0"
+    })
     with urllib.request.urlopen(req, timeout=timeout_sec, context=ctx) as resp:
         raw = resp.read().decode("utf-8")
     return json.loads(raw)
@@ -46,6 +49,26 @@ def _whg_suggest_first(prefix: str) -> Optional[Dict[str, Any]]:
     data = _http_get_json(url)
     results = data.get("result") or []
     return results[0] if results else None
+
+
+def _whg_suggest(prefix: str, limit: int = 5) -> List[Dict[str, Any]]:
+    """Call WHG suggest endpoint and return up to `limit` results."""
+    if not settings.WHG_API_TOKEN:
+        raise HTTPException(status_code=500, detail="WHG_API_TOKEN not configured on server")
+
+    params = {
+        "prefix": prefix,
+        "limit": limit,
+        "cursor": 0,
+        "exact": "true",
+        "token": settings.WHG_API_TOKEN,
+    }
+
+    url = "https://whgazetteer.org/suggest/entity?" + urllib.parse.urlencode(params)
+    data = _http_get_json(url)
+    results = data.get("result") or []
+    # Filter to places only (IDs prefixed with "place:")
+    return [r for r in results if r.get("id", "").startswith("place:")]
 
 
 def _whg_entity(place_id: str) -> Dict[str, Any]:
@@ -249,6 +272,91 @@ def resolve(name: str):
         },
     }
 
+
+@router.get("/whg-suggest")
+def whg_suggest(q: str, limit: int = 5):
+    """Return up to `limit` WHG suggest candidates for autocomplete.
+
+    Each result includes: id, name, score, alt_names, description (country).
+    """
+    q = (q or "").strip()
+    if not q:
+        return {"results": []}
+
+    if limit < 1:
+        limit = 1
+    elif limit > 20:
+        limit = 20
+
+    try:
+        raw = _whg_suggest(q, limit=limit)
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"WHG suggest failed: {e}")
+
+    # Reshape for frontend: flatten to essentials
+    results = []
+    for r in raw:
+        results.append({
+            "id": r.get("id"),
+            "name": r.get("name"),
+            "score": r.get("score"),
+            "description": r.get("description"),  # e.g. "Country: ML"
+            "alt_names": r.get("alt_names") or [],
+        })
+
+    return {"results": results}
+
+
+@router.get("/whg-place")
+def whg_place(id: str):
+    """Fetch WHG entity by ID and return coordinates + metadata.
+
+    Use this after user selects from whg-suggest dropdown.
+    """
+    id = (id or "").strip()
+    if not id:
+        raise HTTPException(status_code=400, detail="Missing required query parameter: id")
+
+    try:
+        entity = _whg_entity(id)
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"WHG entity failed: {e}")
+
+    lonlat = _extract_lonlat(entity)
+    if not lonlat:
+        return {
+            "id": id,
+            "label": entity.get("title"),
+            "source": "whg",
+            "meta": {
+                "status": "no_geometry",
+                "ccodes": entity.get("ccodes"),
+                "fclasses": entity.get("fclasses"),
+            },
+        }
+
+    lon, lat = lonlat
+    return {
+        "id": id,
+        "label": entity.get("title"),
+        "source": "whg",
+        "location": {
+            "type": "Point",
+            "coordinates": [lon, lat],
+        },
+        "meta": {
+            "status": "ok",
+            "ccodes": entity.get("ccodes"),
+            "fclasses": entity.get("fclasses"),
+            "dataset": entity.get("dataset"),
+        },
+    }
+
+
 @router.get("/wh-sites")
 def wh_sites():
     """Return the small World Heritage seed set used by the pilot UI."""
@@ -372,7 +480,7 @@ def similar_text(id_no: int, limit: int = 5):
 
 
 # -----------------------
-# WHC Cities (258) endpoints
+# WH Cities (258) endpoints
 # -----------------------
 
 @router.get("/whc-cities")
@@ -400,7 +508,7 @@ def whc_cities():
                     ST_Y(c.geom) as lat,
                     ec.cluster_id as env_cluster,
                     ec.cluster_label as env_cluster_label
-                FROM wh_cities c
+                FROM gaz.wh_cities c
                 LEFT JOIN whc_clusters ec ON ec.city_id = c.id
                 WHERE c.geom IS NOT NULL
                 ORDER BY c.region, c.country, c.city
@@ -432,7 +540,7 @@ def whc_cities():
 
 @router.get("/whc-similar")
 def whc_similar(city_id: int, limit: int = 5):
-    """Return most similar WHC cities by environmental signature."""
+    """Return most similar WH cities by environmental signature."""
     import psycopg
     import os
 
@@ -468,7 +576,7 @@ def whc_similar(city_id: int, limit: int = 5):
                     ec.cluster_id as env_cluster,
                     ec.cluster_label as env_cluster_label
                 FROM similarities s
-                JOIN wh_cities c ON c.id = s.other_id
+                JOIN gaz.wh_cities c ON c.id = s.other_id
                 LEFT JOIN whc_clusters ec ON ec.city_id = c.id
                 ORDER BY s.distance ASC
                 LIMIT %s
@@ -499,7 +607,7 @@ def whc_similar(city_id: int, limit: int = 5):
 
 @router.get("/whc-similar-text")
 def whc_similar_text(city_id: int, band: str = "composite", limit: int = 5):
-    """Return most similar WHC cities by text/semantic similarity."""
+    """Return most similar WH cities by text/semantic similarity."""
     import psycopg
     import os
 
@@ -527,7 +635,7 @@ def whc_similar_text(city_id: int, band: str = "composite", limit: int = 5):
                     ROUND(s.similarity::numeric, 3) as similarity,
                     tc.cluster_id as text_cluster
                 FROM whc_band_similarity s
-                JOIN wh_cities c ON c.id = s.city_b
+                JOIN gaz.wh_cities c ON c.id = s.city_b
                 LEFT JOIN whc_band_clusters tc ON tc.city_id = c.id AND tc.band = %s
                 WHERE s.city_a = %s AND s.band = %s
                 ORDER BY s.rank ASC
@@ -558,7 +666,7 @@ def whc_similar_text(city_id: int, band: str = "composite", limit: int = 5):
 
 @router.get("/whc-summaries")
 def whc_summaries(city_id: int):
-    """Return band summaries for a WHC city."""
+    """Return band summaries for a WH city."""
     import psycopg
     import os
 
@@ -572,7 +680,7 @@ def whc_summaries(city_id: int):
         )
         with conn.cursor() as cur:
             # Get city name
-            cur.execute("SELECT city, country FROM wh_cities WHERE id = %s", (city_id,))
+            cur.execute("SELECT city, country FROM gaz.wh_cities WHERE id = %s", (city_id,))
             city_row = cur.fetchone()
             if not city_row:
                 raise HTTPException(status_code=404, detail="City not found")
@@ -638,7 +746,7 @@ def basin_clusters():
                     COUNT(DISTINCT b.id) as basin_count,
                     COUNT(DISTINCT c.id) as city_count
                 FROM basin08 b
-                LEFT JOIN wh_cities c ON c.basin_id = b.id
+                LEFT JOIN gaz.wh_cities c ON c.basin_id = b.id
                 WHERE b.cluster_id IS NOT NULL
                 GROUP BY b.cluster_id
                 ORDER BY b.cluster_id
@@ -684,7 +792,7 @@ def basin_cluster_cities(cluster_id: int):
                     c.region,
                     ST_X(c.geom) as lon,
                     ST_Y(c.geom) as lat
-                FROM wh_cities c
+                FROM gaz.wh_cities c
                 JOIN basin08 b ON c.basin_id = b.id
                 WHERE b.cluster_id = %s
                 ORDER BY c.country, c.city
@@ -706,6 +814,163 @@ def basin_cluster_cities(cluster_id: int):
                 "city_count": len(cities),
                 "cities": cities
             }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+# -----------------------
+# Gazetteer endpoints
+# -----------------------
+
+@router.get("/gaz-similar")
+def gaz_similar(gaz_id: int, limit: int = 10):
+    """Find environmentally similar gazetteer places using PCA vector distance."""
+    import psycopg
+    import os
+
+    if limit < 1:
+        limit = 1
+    elif limit > 25:
+        limit = 25
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            # Get the source place's basin
+            cur.execute("""
+                SELECT g.id, g.title, g.basin_id
+                FROM gaz.edop_gaz g
+                WHERE g.id = %s
+            """, (gaz_id,))
+            source = cur.fetchone()
+            if not source:
+                return {"error": "Place not found", "similar": []}
+
+            source_id, source_title, source_basin_id = source
+
+            if source_basin_id is None:
+                return {"error": "Place has no basin assignment", "similar": []}
+
+            # Check if source basin has PCA vector
+            cur.execute("SELECT 1 FROM basin08_pca WHERE basin_id = %s", (source_basin_id,))
+            if not cur.fetchone():
+                return {"error": "Basin has no PCA vector", "similar": []}
+
+            # Find places in the most similar basins by PCA vector distance
+            # We find more similar basins than needed, then pick places from them
+            cur.execute("""
+                WITH similar_basins AS (
+                    SELECT
+                        p2.basin_id,
+                        p1.pca <-> p2.pca AS distance
+                    FROM basin08_pca p1, basin08_pca p2
+                    WHERE p1.basin_id = %s
+                      AND p2.basin_id != %s
+                    ORDER BY p1.pca <-> p2.pca
+                    LIMIT 500
+                ),
+                ranked_places AS (
+                    SELECT
+                        g.id, g.title, g.source, g.ccodes, g.lon, g.lat,
+                        sb.distance,
+                        b.cluster_id,
+                        ROW_NUMBER() OVER (PARTITION BY g.basin_id ORDER BY random()) as rn
+                    FROM gaz.edop_gaz g
+                    JOIN similar_basins sb ON sb.basin_id = g.basin_id
+                    JOIN basin08 b ON b.id = g.basin_id
+                    WHERE g.id != %s
+                      AND g.lon IS NOT NULL
+                )
+                SELECT id, title, source, ccodes, lon, lat,
+                       ROUND(distance::numeric, 4) as distance, cluster_id
+                FROM ranked_places
+                WHERE rn = 1
+                ORDER BY distance
+                LIMIT %s
+            """, (source_basin_id, source_basin_id, gaz_id, limit))
+
+            results = []
+            for row in cur.fetchall():
+                results.append({
+                    "id": row[0],
+                    "title": row[1],
+                    "source": row[2],
+                    "ccodes": row[3],
+                    "lon": float(row[4]) if row[4] else None,
+                    "lat": float(row[5]) if row[5] else None,
+                    "distance": float(row[6]),
+                    "cluster_id": row[7]
+                })
+
+            return {
+                "source_id": gaz_id,
+                "source_title": source_title,
+                "similar": results
+            }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+@router.get("/gaz-suggest")
+def gaz_suggest(q: str, limit: int = 10):
+    """Search the edop_gaz gazetteer for autocomplete suggestions."""
+    import psycopg
+    import os
+
+    q = (q or "").strip()
+    if not q or len(q) < 3:
+        return {"results": []}
+
+    if limit < 1:
+        limit = 1
+    elif limit > 25:
+        limit = 25
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            # Case-insensitive prefix search on title
+            cur.execute("""
+                SELECT id, source, source_id, title, ccodes, lon, lat
+                FROM gaz.edop_gaz
+                WHERE title ILIKE %s
+                ORDER BY title
+                LIMIT %s
+            """, (q + '%', limit))
+
+            results = []
+            for row in cur.fetchall():
+                results.append({
+                    "id": row[0],
+                    "source": row[1],
+                    "source_id": row[2],
+                    "title": row[3],
+                    "ccodes": row[4],  # already an array
+                    "lon": float(row[5]) if row[5] else None,
+                    "lat": float(row[6]) if row[6] else None,
+                })
+
+            return {"results": results}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
