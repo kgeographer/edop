@@ -32,6 +32,10 @@ pre {
   font-size: 0.875rem;      /* same size Bootstrap uses for .btn-sm */
   line-height: 1.2;
 }
+
+.nav-item .nav-link {
+  border: gainsboro 1px solid;
+}
 .edop-subtitle {
   font-size: 1.1rem;
   white-space: nowrap;
