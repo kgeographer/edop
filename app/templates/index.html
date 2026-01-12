@@ -25,7 +25,10 @@
 
         <!-- MAIN TAB -->
         <div class="tab-pane fade show active" id="panel-main" role="tabpanel" aria-labelledby="tab-main">
-          <h5 class="mb-2">Resolve place</h5>
+          <h5 class="mb-2 d-flex justify-content-between align-items-center">
+            Resolve place
+            <a href="#" id="whg-reset-filter" class="small text-muted" style="display:none;">reset filter</a>
+          </h5>
 
           <!-- Input method pills -->
           <ul class="nav nav-pills nav-pills-sm nav-fill mb-3" id="main-input-pills" role="tablist">
@@ -69,16 +72,12 @@
                 <div id="whg-advanced" class="mt-2" style="display:none;">
                   <div class="row g-2 align-items-center">
                     <div class="col">
-                      <label class="form-label mb-1 small" for="whg-country">Country (dummy)</label>
+                      <label class="form-label mb-1 small" for="whg-country">Filter by country</label>
                       <select class="form-select form-select-sm" id="whg-country">
                         <option value="">(any country)</option>
-                        <option value="US">United States</option>
-                        <option value="MX">Mexico</option>
-                        <option value="AR">Argentina</option>
                       </select>
                     </div>
                   </div>
-                  <div class="form-text text-muted">This is a placeholder; wiring to a full country list comes next.</div>
                 </div>
 
                 <div class="form-text text-muted"></div>
@@ -1709,11 +1708,112 @@
     });
 
     // -----------------------
-    // WHG Autocomplete
+    // WHG Autocomplete (Reconcile API)
     // -----------------------
-    // WHG Advanced toggle
+
+    const whgSearch = document.getElementById('whg-search');
+    const whgDropdown = document.getElementById('whg-dropdown');
     const whgAdvancedToggle = document.getElementById('whg-advanced-toggle');
     const whgAdvanced = document.getElementById('whg-advanced');
+    const whgCountrySelect = document.getElementById('whg-country');
+    let whgDebounceTimer = null;
+    let whgResults = [];  // Store results for selection
+    let whgCandidateMarkers = [];  // Markers for all candidates
+
+    // Colors for candidate markers (match existing SIMILAR_COLORS pattern)
+    const WHG_CANDIDATE_COLORS = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999', '#66c2a5'];
+
+    // ISO 3166-1 alpha-2 country codes (common ones first, then alphabetical)
+    const COUNTRY_LIST = [
+      ['GB', 'United Kingdom'], ['US', 'United States'], ['DE', 'Germany'], ['FR', 'France'],
+      ['IT', 'Italy'], ['ES', 'Spain'], ['NL', 'Netherlands'], ['BE', 'Belgium'],
+      ['AT', 'Austria'], ['CH', 'Switzerland'], ['PL', 'Poland'], ['CZ', 'Czechia'],
+      ['GR', 'Greece'], ['TR', 'Turkey'], ['RU', 'Russia'], ['CN', 'China'],
+      ['JP', 'Japan'], ['IN', 'India'], ['AU', 'Australia'], ['CA', 'Canada'],
+      ['MX', 'Mexico'], ['BR', 'Brazil'], ['AR', 'Argentina'], ['EG', 'Egypt'],
+      ['ZA', 'South Africa'], ['NG', 'Nigeria'], ['KE', 'Kenya'], ['MA', 'Morocco'],
+      ['IR', 'Iran'], ['IQ', 'Iraq'], ['SA', 'Saudi Arabia'], ['IL', 'Israel'],
+      ['--', '──────────'],
+      ['AD', 'Andorra'], ['AE', 'United Arab Emirates'], ['AF', 'Afghanistan'],
+      ['AG', 'Antigua and Barbuda'], ['AL', 'Albania'], ['AM', 'Armenia'], ['AO', 'Angola'],
+      ['AZ', 'Azerbaijan'], ['BA', 'Bosnia and Herzegovina'], ['BB', 'Barbados'],
+      ['BD', 'Bangladesh'], ['BF', 'Burkina Faso'], ['BG', 'Bulgaria'], ['BH', 'Bahrain'],
+      ['BI', 'Burundi'], ['BJ', 'Benin'], ['BN', 'Brunei'], ['BO', 'Bolivia'],
+      ['BS', 'Bahamas'], ['BT', 'Bhutan'], ['BW', 'Botswana'], ['BY', 'Belarus'],
+      ['BZ', 'Belize'], ['CD', 'DR Congo'], ['CF', 'Central African Republic'],
+      ['CG', 'Congo'], ['CI', 'Ivory Coast'], ['CL', 'Chile'], ['CM', 'Cameroon'],
+      ['CO', 'Colombia'], ['CR', 'Costa Rica'], ['CU', 'Cuba'], ['CV', 'Cape Verde'],
+      ['CY', 'Cyprus'], ['DJ', 'Djibouti'], ['DK', 'Denmark'], ['DM', 'Dominica'],
+      ['DO', 'Dominican Republic'], ['DZ', 'Algeria'], ['EC', 'Ecuador'], ['EE', 'Estonia'],
+      ['ER', 'Eritrea'], ['ET', 'Ethiopia'], ['FI', 'Finland'], ['FJ', 'Fiji'],
+      ['GA', 'Gabon'], ['GE', 'Georgia'], ['GH', 'Ghana'], ['GM', 'Gambia'],
+      ['GN', 'Guinea'], ['GQ', 'Equatorial Guinea'], ['GT', 'Guatemala'], ['GW', 'Guinea-Bissau'],
+      ['GY', 'Guyana'], ['HN', 'Honduras'], ['HR', 'Croatia'], ['HT', 'Haiti'],
+      ['HU', 'Hungary'], ['ID', 'Indonesia'], ['IE', 'Ireland'], ['IS', 'Iceland'],
+      ['JM', 'Jamaica'], ['JO', 'Jordan'], ['KG', 'Kyrgyzstan'], ['KH', 'Cambodia'],
+      ['KM', 'Comoros'], ['KP', 'North Korea'], ['KR', 'South Korea'], ['KW', 'Kuwait'],
+      ['KZ', 'Kazakhstan'], ['LA', 'Laos'], ['LB', 'Lebanon'], ['LC', 'Saint Lucia'],
+      ['LI', 'Liechtenstein'], ['LK', 'Sri Lanka'], ['LR', 'Liberia'], ['LS', 'Lesotho'],
+      ['LT', 'Lithuania'], ['LU', 'Luxembourg'], ['LV', 'Latvia'], ['LY', 'Libya'],
+      ['MC', 'Monaco'], ['MD', 'Moldova'], ['ME', 'Montenegro'], ['MG', 'Madagascar'],
+      ['MK', 'North Macedonia'], ['ML', 'Mali'], ['MM', 'Myanmar'], ['MN', 'Mongolia'],
+      ['MR', 'Mauritania'], ['MT', 'Malta'], ['MU', 'Mauritius'], ['MV', 'Maldives'],
+      ['MW', 'Malawi'], ['MY', 'Malaysia'], ['MZ', 'Mozambique'], ['NA', 'Namibia'],
+      ['NE', 'Niger'], ['NI', 'Nicaragua'], ['NO', 'Norway'], ['NP', 'Nepal'],
+      ['NZ', 'New Zealand'], ['OM', 'Oman'], ['PA', 'Panama'], ['PE', 'Peru'],
+      ['PG', 'Papua New Guinea'], ['PH', 'Philippines'], ['PK', 'Pakistan'],
+      ['PT', 'Portugal'], ['PY', 'Paraguay'], ['QA', 'Qatar'], ['RO', 'Romania'],
+      ['RS', 'Serbia'], ['RW', 'Rwanda'], ['SC', 'Seychelles'], ['SD', 'Sudan'],
+      ['SE', 'Sweden'], ['SG', 'Singapore'], ['SI', 'Slovenia'], ['SK', 'Slovakia'],
+      ['SL', 'Sierra Leone'], ['SM', 'San Marino'], ['SN', 'Senegal'], ['SO', 'Somalia'],
+      ['SR', 'Suriname'], ['SS', 'South Sudan'], ['SV', 'El Salvador'], ['SY', 'Syria'],
+      ['SZ', 'Eswatini'], ['TD', 'Chad'], ['TG', 'Togo'], ['TH', 'Thailand'],
+      ['TJ', 'Tajikistan'], ['TL', 'Timor-Leste'], ['TM', 'Turkmenistan'], ['TN', 'Tunisia'],
+      ['TO', 'Tonga'], ['TT', 'Trinidad and Tobago'], ['TW', 'Taiwan'], ['TZ', 'Tanzania'],
+      ['UA', 'Ukraine'], ['UG', 'Uganda'], ['UY', 'Uruguay'], ['UZ', 'Uzbekistan'],
+      ['VA', 'Vatican City'], ['VE', 'Venezuela'], ['VN', 'Vietnam'], ['WS', 'Samoa'],
+      ['XK', 'Kosovo'], ['YE', 'Yemen'], ['ZM', 'Zambia'], ['ZW', 'Zimbabwe']
+    ];
+
+    // Populate country dropdown
+    if (whgCountrySelect) {
+      COUNTRY_LIST.forEach(([code, name]) => {
+        const opt = document.createElement('option');
+        if (code === '--') {
+          opt.disabled = true;
+          opt.textContent = name;
+        } else {
+          opt.value = code;
+          opt.textContent = `${name} (${code})`;
+        }
+        whgCountrySelect.appendChild(opt);
+      });
+    }
+
+    // Reset filter link
+    const whgResetFilter = document.getElementById('whg-reset-filter');
+
+    function updateResetFilterVisibility() {
+      if (whgResetFilter && whgCountrySelect) {
+        whgResetFilter.style.display = whgCountrySelect.value ? 'inline' : 'none';
+      }
+    }
+
+    if (whgCountrySelect) {
+      whgCountrySelect.addEventListener('change', updateResetFilterVisibility);
+    }
+
+    if (whgResetFilter) {
+      whgResetFilter.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (whgCountrySelect) {
+          whgCountrySelect.value = '';
+          updateResetFilterVisibility();
+        }
+      });
+    }
+
+    // Toggle advanced panel
     if (whgAdvancedToggle && whgAdvanced) {
       whgAdvancedToggle.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1723,179 +1823,254 @@
       });
     }
 
-    const edopSearch = document.getElementById('whg-search');
-    const edopDropdown = document.getElementById('whg-dropdown');
-    let edopDebounceTimer = null;
-    let countriesLookup = null;
-
-    // Load countries lookup for comma-filtering
-    async function loadCountriesLookup() {
-      try {
-        const resp = await fetch('/static/data/countries.json');
-        if (resp.ok) {
-          countriesLookup = await resp.json();
-        }
-      } catch (e) {
-        console.warn('Could not load countries lookup:', e);
-      }
-    }
-    loadCountriesLookup();
-
-    function parseCountryFilter(input) {
-      // Check for "place, country" pattern
-      const commaIdx = input.lastIndexOf(',');
-      if (commaIdx === -1) {
-        return { query: input.trim(), countryCode: null };
-      }
-      const placePart = input.substring(0, commaIdx).trim();
-      const countryPart = input.substring(commaIdx + 1).trim().toLowerCase();
-
-      if (!placePart || !countryPart) {
-        return { query: input.trim(), countryCode: null };
-      }
-
-      // Look up country code
-      const code = countriesLookup ? countriesLookup[countryPart] : null;
-      return { query: placePart, countryCode: code || null };
+    function clearWhgCandidateMarkers() {
+      whgCandidateMarkers.forEach(m => {
+        if (map) map.removeLayer(m);
+      });
+      whgCandidateMarkers = [];
     }
 
-    function extractCountryCode(description) {
-      // Extract from "Country: XX" or "Country: XX, YY" format
-      const match = (description || '').match(/Country:\s*([A-Z]{2}(?:,\s*[A-Z]{2})*)/);
-      return match ? match[1].split(',').map(c => c.trim()) : [];
-    }
+    function showWhgCandidateMarkers(results) {
+      clearWhgCandidateMarkers();
+      ensureMap();
+      if (!map) return;
 
-    function filterAndSortResults(results, countryCode) {
-      if (!countryCode) return results;
+      const bounds = [];
 
-      // Separate matches from non-matches, preserve order within each group
-      const matches = [];
-      const others = [];
+      results.forEach((r, idx) => {
+        if (!r.lon || !r.lat) return;
 
-      for (const r of results) {
-        const codes = extractCountryCode(r.description);
-        if (codes.includes(countryCode)) {
-          matches.push(r);
+        const color = WHG_CANDIDATE_COLORS[idx % WHG_CANDIDATE_COLORS.length];
+        bounds.push([r.lat, r.lon]);
+
+        // Create numbered circle marker
+        const candidateMarker = L.circleMarker([r.lat, r.lon], {
+          radius: 12,
+          fillColor: color,
+          color: '#fff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.8
+        }).addTo(map);
+
+        // Add number label
+        const numberIcon = L.divIcon({
+          className: 'whg-candidate-number',
+          html: `<div style="
+            width: 24px; height: 24px;
+            background: ${color};
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+          ">${idx + 1}</div>`,
+          iconSize: [24, 24],
+          iconAnchor: [12, 12]
+        });
+
+        const numberMarker = L.marker([r.lat, r.lon], { icon: numberIcon }).addTo(map);
+
+        // Build popup content
+        const ccodes = (r.countries || []).map(c => c.code).join(', ');
+        const matchText = r.match ? '<span class="text-success">exact match</span>' : '';
+        const altNames = (r.alt_names || []).slice(0, 3).join(', ');
+
+        candidateMarker.bindPopup(`
+          <div style="min-width: 150px;">
+            <strong>${idx + 1}. ${escapeHtml(r.name)}</strong>
+            ${ccodes ? ` <span class="text-muted">[${ccodes}]</span>` : ''}<br/>
+            ${matchText}
+            ${altNames ? `<div class="small text-muted">aka: ${escapeHtml(altNames)}</div>` : ''}
+            <div class="small">Score: ${r.score}</div>
+          </div>
+        `);
+
+        // Store both markers for cleanup
+        whgCandidateMarkers.push(candidateMarker);
+        whgCandidateMarkers.push(numberMarker);
+      });
+
+      // Fit map to show all candidates
+      if (bounds.length > 0) {
+        if (bounds.length === 1) {
+          map.setView(bounds[0], 8);
         } else {
-          others.push(r);
+          map.fitBounds(bounds, { padding: [50, 50], maxZoom: 10 });
         }
       }
-
-      // Return matches first, then others
-      return [...matches, ...others];
     }
 
-    function hideEdopDropdown() {
-      if (edopDropdown) {
-        edopDropdown.style.display = 'none';
-        edopDropdown.innerHTML = '';
+    function hideWhgDropdown(clearMarkers = false) {
+      if (whgDropdown) {
+        whgDropdown.style.display = 'none';
+        whgDropdown.innerHTML = '';
+      }
+      if (clearMarkers) {
+        clearWhgCandidateMarkers();
       }
     }
 
-    function showEdopDropdown(results, countryFilter) {
-      if (!edopDropdown || !results.length) {
-        hideEdopDropdown();
+    function showWhgDropdown(results) {
+      if (!whgDropdown || !results.length) {
+        hideWhgDropdown();
+        clearWhgCandidateMarkers();
         return;
       }
 
+      // Store results for later selection
+      whgResults = results;
+
+      // Show markers for all candidates on the map
+      showWhgCandidateMarkers(results);
+
       const html = results.map((r, idx) => {
         const name = escapeHtml(r.name);
-        const codes = extractCountryCode(r.description);
-        const ccode = codes.join(', ');
-        const isMatch = countryFilter && codes.includes(countryFilter);
+        const color = WHG_CANDIDATE_COLORS[idx % WHG_CANDIDATE_COLORS.length];
+        // Get country codes from the countries array
+        const ccodes = (r.countries || []).map(c => c.code).join(', ');
+        // Check if this is an exact match
+        const matchBadge = r.match
+          ? '<span class="badge bg-success ms-1">exact</span>'
+          : '';
+        // Show alt_names if this is not an exact match (name matched via alt_name)
         const altNames = (r.alt_names || []).slice(0, 3).map(n => escapeHtml(n)).join(', ');
-        const altDisplay = altNames ? `<span class="text-muted small">(${altNames})</span>` : '';
-        const matchClass = isMatch ? 'bg-light' : '';
-        const codeStyle = isMatch ? 'text-success fw-bold' : 'text-muted';
+        const altDisplay = (!r.match && altNames)
+          ? `<div class="small text-muted">aka: ${altNames}</div>`
+          : '';
+        // Show type if available
+        const typeLabel = (r.types && r.types[0]) ? r.types[0].label : '';
+        // Numbered color marker to match map
+        const colorMarker = `<span style="
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          background: ${color};
+          color: white;
+          font-weight: bold;
+          font-size: 11px;
+          border-radius: 50%;
+          margin-right: 6px;
+        ">${idx + 1}</span>`;
+
         return `
-          <a href="#" class="dropdown-item edop-result-item ${matchClass}" data-id="${escapeHtml(r.id)}" data-idx="${idx}">
-            <strong>${name}</strong>${ccode ? ` <span class="${codeStyle}">[${ccode}]</span>` : ''} ${altDisplay}
+          <a href="#" class="dropdown-item whg-result-item py-2" data-idx="${idx}">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="d-flex align-items-start">
+                ${colorMarker}
+                <div>
+                  <strong>${name}</strong>${matchBadge}
+                  ${ccodes ? ` <span class="text-muted">[${ccodes}]</span>` : ''}
+                  ${altDisplay}
+                </div>
+              </div>
+              <span class="text-muted small">${escapeHtml(typeLabel)}</span>
+            </div>
           </a>
         `;
       }).join('');
 
-      edopDropdown.innerHTML = html;
-      edopDropdown.style.display = 'block';
+      whgDropdown.innerHTML = html;
+      whgDropdown.style.display = 'block';
 
       // Add click handlers
-      edopDropdown.querySelectorAll('.edop-result-item').forEach(item => {
+      whgDropdown.querySelectorAll('.whg-result-item').forEach(item => {
         item.addEventListener('click', async (e) => {
           e.preventDefault();
-          const placeId = item.getAttribute('data-id');
-          hideEdopDropdown();
-          edopSearch.value = item.querySelector('strong').textContent;
-          await selectWhgPlace(placeId);
+          const idx = parseInt(item.getAttribute('data-idx'), 10);
+          const place = whgResults[idx];
+          hideWhgDropdown();
+          whgSearch.value = place.name;
+          await selectWhgReconcilePlace(place);
         });
       });
     }
 
-    async function searchWhg(input) {
+    async function searchWhgReconcile(input) {
       if (!input || input.length < 3) {
-        hideEdopDropdown();
+        hideWhgDropdown();
         return;
       }
 
-      const { query, countryCode } = parseCountryFilter(input);
-
-      if (!query || query.length < 3) {
-        hideEdopDropdown();
-        return;
+      // Get country filter from advanced panel if set
+      let countries = null;
+      if (whgCountrySelect && whgCountrySelect.value) {
+        countries = whgCountrySelect.value;
       }
 
       try {
-        // Fetch extra results to improve country filtering, show top 10
-        const url = `/api/whg-suggest?q=${encodeURIComponent(query)}&limit=25`;
+        let url = `/api/whg-reconcile?q=${encodeURIComponent(input)}&size=10`;
+        if (countries) {
+          url += `&countries=${encodeURIComponent(countries)}`;
+        }
+
         const resp = await fetch(url);
         if (!resp.ok) {
-          console.error('WHG suggest failed:', resp.status);
-          hideEdopDropdown();
+          console.error('WHG reconcile failed:', resp.status);
+          hideWhgDropdown();
           return;
         }
         const data = await resp.json();
-        let results = data.results || [];
+        const results = data.results || [];
 
-        // Filter/sort by country if specified
-        if (countryCode) {
-          results = filterAndSortResults(results, countryCode);
-        }
-
-        // Show top 10 results
-        showEdopDropdown(results.slice(0, 10), countryCode);
+        showWhgDropdown(results);
       } catch (e) {
-        console.error('WHG suggest error:', e);
-        hideEdopDropdown();
+        console.error('WHG reconcile error:', e);
+        hideWhgDropdown();
       }
     }
 
-    async function selectWhgPlace(placeId) {
-      mainSetStatus('Fetching place details...');
+    async function selectWhgReconcilePlace(place) {
+      mainSetStatus('');
       renderResolvedPlace(null);
       renderSignature(null);
       clearBasinLayer();
       clearMarker();
+      clearWhgCandidateMarkers();
+      clearSimilarResults();
       showClusterLabel(null);
 
+      if (!place.lon || !place.lat) {
+        mainSetStatus('Place has no coordinates');
+        renderResolvedPlace({
+          id: place.id,
+          label: place.name,
+          source: 'whg',
+          meta: { status: 'no_geometry' }
+        });
+        return;
+      }
+
+      const lon = place.lon;
+      const lat = place.lat;
+
+      // Build resolved place object
+      const resolved = {
+        id: place.id,
+        label: place.name,
+        source: 'whg',
+        location: { type: 'Point', coordinates: [lon, lat] },
+        meta: {
+          status: 'ok',
+          score: place.score,
+          match: place.match,
+          alt_names: place.alt_names,
+          countries: place.countries,
+          types: place.types,
+          names_summary: place.names_summary
+        }
+      };
+
+      renderResolvedPlace(resolved);
+      setMarkerFromLonLat(lon, lat);
+
       try {
-        const url = `/api/whg-place?id=${encodeURIComponent(placeId)}`;
-        const resp = await fetch(url);
-        if (!resp.ok) {
-          const txt = await resp.text();
-          throw new Error(`WHG place failed (${resp.status}): ${txt}`);
-        }
-        const place = await resp.json();
-
-        if (!place.location || !place.location.coordinates) {
-          mainSetStatus('Place has no coordinates');
-          renderResolvedPlace(place);
-          return;
-        }
-
-        const lon = place.location.coordinates[0];
-        const lat = place.location.coordinates[1];
-
-        renderResolvedPlace(place);
-        setMarkerFromLonLat(lon, lat);
-
         mainSetStatus('Computing environmental profile...');
         const sig = await fetchSignature(lon, lat);
         renderSignature(sig);
@@ -1907,26 +2082,36 @@
       }
     }
 
-    if (edopSearch) {
-      edopSearch.addEventListener('input', () => {
-        clearTimeout(edopDebounceTimer);
-        const q = edopSearch.value.trim();
-        edopDebounceTimer = setTimeout(() => searchWhg(q), 300);
+    if (whgSearch) {
+      whgSearch.addEventListener('input', () => {
+        clearTimeout(whgDebounceTimer);
+        const q = whgSearch.value.trim();
+        whgDebounceTimer = setTimeout(() => searchWhgReconcile(q), 300);
       });
 
       // Hide dropdown when clicking outside
       document.addEventListener('click', (e) => {
-        if (!edopSearch.contains(e.target) && !edopDropdown.contains(e.target)) {
-          hideEdopDropdown();
+        if (!whgSearch.contains(e.target) && !whgDropdown.contains(e.target)) {
+          hideWhgDropdown(true);  // clear markers too
         }
       });
 
       // Keyboard navigation
-      edopSearch.addEventListener('keydown', (e) => {
+      whgSearch.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-          hideEdopDropdown();
+          hideWhgDropdown(true);  // clear markers too
         }
       });
+
+      // Re-search when country filter changes
+      if (whgCountrySelect) {
+        whgCountrySelect.addEventListener('change', () => {
+          const q = whgSearch.value.trim();
+          if (q.length >= 3) {
+            searchWhgReconcile(q);
+          }
+        });
+      }
     }
 
     // -----------------------

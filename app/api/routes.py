@@ -30,6 +30,23 @@ def _http_get_json(url: str, timeout_sec: int = 20) -> Dict[str, Any]:
     return json.loads(raw)
 
 
+def _http_post_json(url: str, payload: Dict[str, Any], headers: Dict[str, str] = None, timeout_sec: int = 20) -> Dict[str, Any]:
+    """POST JSON to URL and return parsed response."""
+    ctx = ssl.create_default_context(cafile=certifi.where())
+    data = json.dumps(payload).encode("utf-8")
+    req_headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "User-Agent": "EDOP/1.0"
+    }
+    if headers:
+        req_headers.update(headers)
+    req = urllib.request.Request(url, data=data, headers=req_headers, method="POST")
+    with urllib.request.urlopen(req, timeout=timeout_sec, context=ctx) as resp:
+        raw = resp.read().decode("utf-8")
+    return json.loads(raw)
+
+
 def _whg_suggest_first(prefix: str) -> Optional[Dict[str, Any]]:
     """Call WHG suggest endpoint and return the top-ranked result, if any."""
     if not settings.WHG_API_TOKEN:
@@ -107,6 +124,157 @@ def _extract_lonlat(entity: Dict[str, Any]) -> Optional[Tuple[float, float]]:
         return float(centroid[0]), float(centroid[1])
 
     return None
+
+
+def _whg_reconcile_query(query: str, countries: List[str] = None, bounds: Dict = None, size: int = 10) -> Dict[str, Any]:
+    """
+    Call WHG /reconcile endpoint to search for places.
+    Returns candidates with id, name, score, match, alt_names, description.
+    """
+    if not settings.WHG_API_TOKEN:
+        raise HTTPException(status_code=500, detail="WHG_API_TOKEN not configured on server")
+
+    # Build query payload
+    q_params = {
+        "query": query,
+        "mode": "exact",
+        "fclasses": ["P"],  # Places (settlements)
+        "type": "https://whgazetteer.org/static/whg_schema.jsonld#Place",
+        "size": size
+    }
+
+    if countries:
+        q_params["countries"] = countries
+
+    if bounds:
+        q_params["bounds"] = bounds
+
+    payload = {
+        "queries": {
+            "q1": q_params
+        }
+    }
+
+    headers = {
+        "Authorization": f"Bearer {settings.WHG_API_TOKEN}"
+    }
+
+    url = "https://whgazetteer.org/reconcile"
+    data = _http_post_json(url, payload, headers=headers)
+
+    # Extract results from q1
+    q1_result = data.get("q1", {})
+    return q1_result.get("result", [])
+
+
+def _whg_reconcile_extend(place_ids: List[str]) -> Dict[str, Dict]:
+    """
+    Call WHG /reconcile extend to get geometry and details for place IDs.
+    Returns dict keyed by place_id with geometry_wkt, countries, types, names.
+    """
+    if not settings.WHG_API_TOKEN:
+        raise HTTPException(status_code=500, detail="WHG_API_TOKEN not configured on server")
+
+    if not place_ids:
+        return {}
+
+    payload = {
+        "extend": {
+            "ids": place_ids,
+            "type": "https://whgazetteer.org/static/whg_schema.jsonld#Place",
+            "properties": [
+                {"id": "whg:geometry_wkt"},
+                {"id": "whg:countries_objects"},
+                {"id": "whg:types_objects"},
+                {"id": "whg:names_summary"}
+            ]
+        }
+    }
+
+    headers = {
+        "Authorization": f"Bearer {settings.WHG_API_TOKEN}"
+    }
+
+    url = "https://whgazetteer.org/reconcile"
+    data = _http_post_json(url, payload, headers=headers)
+
+    return data.get("rows", {})
+
+
+def _parse_wkt_point_coords(wkt: str) -> Optional[Tuple[float, float]]:
+    """Parse WKT POINT to (lon, lat) tuple."""
+    if not wkt:
+        return None
+    m = re.match(r"^\s*POINT\s*\(\s*([-0-9.]+)\s+([-0-9.]+)\s*\)\s*$", wkt, re.IGNORECASE)
+    if m:
+        return float(m.group(1)), float(m.group(2))
+    return None
+
+
+def _merge_reconcile_results(candidates: List[Dict], extended: Dict[str, Dict]) -> List[Dict]:
+    """
+    Merge reconcile query results with extend data.
+    Returns list of places with all fields combined.
+    """
+    results = []
+
+    for c in candidates:
+        place_id = c.get("id")
+        ext = extended.get(place_id, {})
+
+        # Parse geometry
+        geom_wkt = None
+        lon, lat = None, None
+        geom_list = ext.get("whg:geometry_wkt", [])
+        if geom_list and isinstance(geom_list, list) and len(geom_list) > 0:
+            geom_wkt = geom_list[0].get("str")
+            coords = _parse_wkt_point_coords(geom_wkt)
+            if coords:
+                lon, lat = coords
+
+        # Parse countries
+        countries = []
+        countries_list = ext.get("whg:countries_objects", [])
+        if countries_list and isinstance(countries_list, list) and len(countries_list) > 0:
+            try:
+                countries_json = countries_list[0].get("str", "[]")
+                countries = json.loads(countries_json)
+            except:
+                pass
+
+        # Parse types
+        types = []
+        types_list = ext.get("whg:types_objects", [])
+        if types_list and isinstance(types_list, list) and len(types_list) > 0:
+            try:
+                types_json = types_list[0].get("str", "[]")
+                types = json.loads(types_json)
+            except:
+                pass
+
+        # Parse names
+        names = []
+        names_list = ext.get("whg:names_summary", [])
+        if names_list and isinstance(names_list, list):
+            names = [n.get("str") for n in names_list if n.get("str")]
+
+        # Build merged result
+        result = {
+            "id": place_id,
+            "name": c.get("name"),
+            "score": c.get("score"),
+            "match": c.get("match", False),
+            "alt_names": c.get("alt_names", []),
+            "description": c.get("description"),
+            "lon": lon,
+            "lat": lat,
+            "countries": countries,
+            "types": types,
+            "names_summary": names
+        }
+        results.append(result)
+
+    return results
 
 
 # -----------------------
@@ -355,6 +523,57 @@ def whg_place(id: str):
             "dataset": entity.get("dataset"),
         },
     }
+
+
+@router.get("/whg-reconcile")
+def whg_reconcile(q: str, countries: str = None, size: int = 10):
+    """
+    Search WHG using reconcile API with optional country filter.
+
+    Returns up to `size` candidates with geometry, countries, types, and names.
+
+    Args:
+        q: Search query (place name)
+        countries: Comma-separated country codes (e.g., "US" or "US,CA")
+        size: Max number of results (default 10, max 20)
+    """
+    q = (q or "").strip()
+    if not q:
+        return {"results": []}
+
+    if len(q) < 3:
+        return {"results": []}
+
+    if size < 1:
+        size = 1
+    elif size > 20:
+        size = 20
+
+    # Parse countries parameter
+    country_list = None
+    if countries:
+        country_list = [c.strip().upper() for c in countries.split(",") if c.strip()]
+
+    try:
+        # Step 1: Query for candidates
+        candidates = _whg_reconcile_query(q, countries=country_list, size=size)
+
+        if not candidates:
+            return {"results": []}
+
+        # Step 2: Get geometry for all candidates
+        place_ids = [c.get("id") for c in candidates if c.get("id")]
+        extended = _whg_reconcile_extend(place_ids)
+
+        # Step 3: Merge results
+        results = _merge_reconcile_results(candidates, extended)
+
+        return {"results": results}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"WHG reconcile failed: {e}")
 
 
 @router.get("/wh-sites")
