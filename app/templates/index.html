@@ -1804,6 +1804,9 @@
           selectedCountries = selectedCountries.filter(c => c.code !== code);
           renderCountryTags();
           updateResetFilterVisibility();
+          // Re-search with updated filter
+          const q = whgSearch ? whgSearch.value.trim() : '';
+          if (q.length >= 3) searchWhgReconcile(q);
         });
       });
     }
@@ -1815,6 +1818,9 @@
       updateResetFilterVisibility();
       if (whgCountryInput) whgCountryInput.value = '';
       hideCountryDropdown();
+      // Re-search with new filter
+      const q = whgSearch ? whgSearch.value.trim() : '';
+      if (q.length >= 3) searchWhgReconcile(q);
     }
 
     function hideCountryDropdown() {
@@ -1891,6 +1897,9 @@
         selectedCountries = [];
         renderCountryTags();
         updateResetFilterVisibility();
+        // Re-search without filter
+        const q = whgSearch ? whgSearch.value.trim() : '';
+        if (q.length >= 3) searchWhgReconcile(q);
       });
     }
 
@@ -2183,15 +2192,6 @@
         }
       });
 
-      // Re-search when country filter changes
-      if (whgCountrySelect) {
-        whgCountrySelect.addEventListener('change', () => {
-          const q = whgSearch.value.trim();
-          if (q.length >= 3) {
-            searchWhgReconcile(q);
-          }
-        });
-      }
     }
 
     // -----------------------
