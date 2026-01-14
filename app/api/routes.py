@@ -704,7 +704,7 @@ def similar_text(id_no: int, limit: int = 5):
 
 @router.get("/whc-cities")
 def whc_cities():
-    """Return all 258 World Heritage Cities with coordinates and cluster info."""
+    """Return World Heritage Cities with coordinates and cluster info (excludes 4 without basin data)."""
     import psycopg
     import os
 
@@ -730,6 +730,7 @@ def whc_cities():
                 FROM gaz.wh_cities c
                 LEFT JOIN whc_clusters ec ON ec.city_id = c.id
                 WHERE c.geom IS NOT NULL
+                  AND c.basin_id IS NOT NULL
                 ORDER BY c.region, c.country, c.city
             """)
 
@@ -816,6 +817,140 @@ def whc_similar(city_id: int, limit: int = 5):
                 })
 
             return {"source_city_id": city_id, "similar": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+@router.get("/whc-similar-env-by-coord")
+def whc_similar_env_by_coord(lon: float, lat: float, limit: int = 5):
+    """Return most similar WH cities by environmental signature for any coordinate.
+
+    Uses basin-level PCA vectors (pgvector) to find WH cities in environmentally
+    similar basins to the input point.
+    """
+    import psycopg
+    import os
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            # First, find which basin contains this point
+            cur.execute("""
+                SELECT id FROM basin08
+                WHERE ST_Covers(geom, ST_SetSRID(ST_MakePoint(%s, %s), 4326))
+                LIMIT 1
+            """, (lon, lat))
+            row = cur.fetchone()
+            if not row:
+                return {"error": "No basin found for coordinates", "similar": []}
+
+            source_basin_id = row[0]
+
+            # Check if source basin has PCA vector
+            cur.execute("SELECT 1 FROM basin08_pca WHERE basin_id = %s", (source_basin_id,))
+            if not cur.fetchone():
+                return {"error": "Basin has no PCA vector", "similar": []}
+
+            # Get distance distribution stats (source basin to all WH city basins)
+            cur.execute("""
+                WITH whc_basin_distances AS (
+                    SELECT p1.pca <-> p2.pca AS distance
+                    FROM basin08_pca p1, basin08_pca p2
+                    JOIN gaz.wh_cities c ON c.basin_id = p2.basin_id
+                    WHERE p1.basin_id = %s
+                      AND p2.basin_id != %s
+                      AND c.basin_id IS NOT NULL
+                )
+                SELECT
+                    MIN(distance),
+                    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY distance),
+                    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY distance),
+                    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY distance),
+                    MAX(distance),
+                    COUNT(*)
+                FROM whc_basin_distances
+            """, (source_basin_id, source_basin_id))
+            stats_row = cur.fetchone()
+            dist_stats = {
+                "min": round(float(stats_row[0]), 4) if stats_row[0] else None,
+                "p25": round(float(stats_row[1]), 4) if stats_row[1] else None,
+                "median": round(float(stats_row[2]), 4) if stats_row[2] else None,
+                "p75": round(float(stats_row[3]), 4) if stats_row[3] else None,
+                "max": round(float(stats_row[4]), 4) if stats_row[4] else None,
+                "count": int(stats_row[5]) if stats_row[5] else 0
+            }
+
+            # Find WH cities in the most similar basins by PCA vector distance
+            # Also compute percentile rank for each result
+            cur.execute("""
+                WITH whc_basin_distances AS (
+                    SELECT
+                        c.id as city_id,
+                        p1.pca <-> p2.pca AS distance
+                    FROM basin08_pca p1, basin08_pca p2
+                    JOIN gaz.wh_cities c ON c.basin_id = p2.basin_id
+                    WHERE p1.basin_id = %s
+                      AND p2.basin_id != %s
+                      AND c.basin_id IS NOT NULL
+                ),
+                ranked AS (
+                    SELECT
+                        city_id,
+                        distance,
+                        PERCENT_RANK() OVER (ORDER BY distance) as pct_rank
+                    FROM whc_basin_distances
+                )
+                SELECT
+                    c.id,
+                    c.city,
+                    c.country,
+                    c.region,
+                    ST_X(c.geom) as lon,
+                    ST_Y(c.geom) as lat,
+                    ROUND(r.distance::numeric, 4) as distance,
+                    ROUND((r.pct_rank * 100)::numeric, 1) as percentile,
+                    ec.cluster_id as env_cluster,
+                    ec.cluster_label as env_cluster_label
+                FROM ranked r
+                JOIN gaz.wh_cities c ON c.id = r.city_id
+                LEFT JOIN whc_clusters ec ON ec.city_id = c.id
+                ORDER BY r.distance ASC
+                LIMIT %s
+            """, (source_basin_id, source_basin_id, limit))
+
+            results = []
+            for row in cur.fetchall():
+                results.append({
+                    "id": row[0],
+                    "city": row[1],
+                    "country": row[2],
+                    "region": row[3],
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [float(row[4]), float(row[5])]
+                    } if row[4] and row[5] else None,
+                    "distance": float(row[6]) if row[6] is not None else None,
+                    "percentile": float(row[7]) if row[7] is not None else None,
+                    "env_cluster": row[8],
+                    "env_cluster_label": row[9]
+                })
+
+            return {
+                "source_basin_id": source_basin_id,
+                "count": len(results),
+                "dist_stats": dist_stats,
+                "similar": results
+            }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -1190,6 +1325,269 @@ def gaz_suggest(q: str, limit: int = 10):
                 })
 
             return {"results": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+# -----------------------
+# Ecoregion Hierarchy endpoints
+# -----------------------
+
+@router.get("/eco/realms")
+def eco_realms():
+    """List all realms (top level of hierarchy)."""
+    import psycopg
+    import os
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT r.realm, r.biogeorelm, COUNT(s.subrealmid) as subrealm_count
+                FROM gaz."Realm2023" r
+                LEFT JOIN gaz."Subrealm2023" s ON s.biogeorelm = r.biogeorelm
+                GROUP BY r.realm, r.biogeorelm
+                ORDER BY r.realm
+            """)
+            results = []
+            for row in cur.fetchall():
+                results.append({
+                    "id": row[1],  # biogeorelm as id for drilling down
+                    "name": row[0],  # realm name for display
+                    "subrealm_count": row[2]
+                })
+            return {"count": len(results), "realms": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+@router.get("/eco/subrealms")
+def eco_subrealms(realm: str):
+    """List subrealms within a realm."""
+    import psycopg
+    import os
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT s.subrealmid, s.subrealm_n, COUNT(b.bioregions) as bioregion_count
+                FROM gaz."Subrealm2023" s
+                LEFT JOIN gaz."Bioregions2023" b ON b.subrealm_id = s.subrealmid
+                WHERE s.biogeorelm = %s
+                GROUP BY s.subrealmid, s.subrealm_n
+                ORDER BY s.subrealm_n
+            """, (realm,))
+            results = []
+            for row in cur.fetchall():
+                results.append({
+                    "id": row[0],
+                    "name": row[1],
+                    "bioregion_count": row[2]
+                })
+            return {"realm": realm, "count": len(results), "subrealms": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+@router.get("/eco/bioregions")
+def eco_bioregions(subrealm_id: int):
+    """List bioregions within a subrealm."""
+    import psycopg
+    import os
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            # Get subrealm name for context
+            cur.execute('SELECT subrealm_n FROM gaz."Subrealm2023" WHERE subrealmid = %s', (subrealm_id,))
+            sr = cur.fetchone()
+            subrealm_name = sr[0] if sr else None
+
+            cur.execute("""
+                SELECT b.bioregions, COUNT(e.eco_id) as ecoregion_count
+                FROM gaz."Bioregions2023" b
+                LEFT JOIN gaz."Ecoregions2017" e ON e.bioregion = b.bioregions
+                WHERE b.subrealm_id = %s
+                GROUP BY b.bioregions
+                ORDER BY b.bioregions
+            """, (subrealm_id,))
+            results = []
+            for row in cur.fetchall():
+                results.append({
+                    "id": row[0],
+                    "name": row[0],
+                    "ecoregion_count": row[1]
+                })
+            return {"subrealm_id": subrealm_id, "subrealm_name": subrealm_name, "count": len(results), "bioregions": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+@router.get("/eco/ecoregions")
+def eco_ecoregions(bioregion: str):
+    """List ecoregions within a bioregion."""
+    import psycopg
+    import os
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT e.eco_id, e.eco_name, e.biome_name, e.realm
+                FROM gaz."Ecoregions2017" e
+                WHERE e.bioregion = %s
+                ORDER BY e.eco_name
+            """, (bioregion,))
+            results = []
+            for row in cur.fetchall():
+                results.append({
+                    "id": row[0],
+                    "name": row[1],
+                    "biome": row[2],
+                    "realm": row[3]
+                })
+            return {"bioregion": bioregion, "count": len(results), "ecoregions": results}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+@router.get("/eco/realms/geom")
+def eco_realms_geom():
+    """Get GeoJSON FeatureCollection of all realm geometries."""
+    import psycopg
+    import os
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT realm, biogeorelm, ST_AsGeoJSON(geom)::json
+                FROM gaz."Realm2023"
+                ORDER BY realm
+            """)
+            rows = cur.fetchall()
+
+        features = []
+        for row in rows:
+            features.append({
+                "type": "Feature",
+                "properties": {"name": row[0], "id": row[1]},
+                "geometry": row[2]
+            })
+
+        return {
+            "type": "FeatureCollection",
+            "features": features
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
+
+
+@router.get("/eco/geom")
+def eco_geom(level: str, id: str):
+    """Get GeoJSON geometry for a hierarchy level item."""
+    import psycopg
+    import os
+
+    valid_levels = ['realm', 'subrealm', 'bioregion', 'ecoregion']
+    if level not in valid_levels:
+        raise HTTPException(status_code=400, detail=f"Invalid level. Must be one of: {valid_levels}")
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            if level == 'realm':
+                cur.execute("""
+                    SELECT realm, ST_AsGeoJSON(geom)::json
+                    FROM gaz."Realm2023" WHERE biogeorelm = %s
+                """, (id,))
+            elif level == 'subrealm':
+                cur.execute("""
+                    SELECT subrealm_n, ST_AsGeoJSON(geom)::json
+                    FROM gaz."Subrealm2023" WHERE subrealmid = %s
+                """, (int(id),))
+            elif level == 'bioregion':
+                cur.execute("""
+                    SELECT bioregions, ST_AsGeoJSON(geom)::json
+                    FROM gaz."Bioregions2023" WHERE bioregions = %s
+                """, (id,))
+            elif level == 'ecoregion':
+                cur.execute("""
+                    SELECT eco_name, ST_AsGeoJSON(geom)::json
+                    FROM gaz."Ecoregions2017" WHERE eco_id = %s
+                """, (int(id),))
+
+            row = cur.fetchone()
+            if not row:
+                return {"error": "Not found"}
+
+            return {
+                "level": level,
+                "id": id,
+                "name": row[0],
+                "geometry": row[1]
+            }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

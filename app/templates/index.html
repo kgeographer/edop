@@ -5,13 +5,16 @@
   <div class="row g-3">
 
     <!-- LEFT: tabs + forms + outputs -->
-    <div class="col-12 col-lg-5">
+    <div class="col-12 col-lg-6">
       <ul class="nav nav-tabs" id="edopTabs" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="tab-main" data-bs-toggle="tab" data-bs-target="#panel-main" type="button" role="tab" aria-controls="panel-main" aria-selected="true">Main</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tab-basins" data-bs-toggle="tab" data-bs-target="#panel-basins" type="button" role="tab" aria-controls="panel-basins" aria-selected="false">Basins</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-eco" data-bs-toggle="tab" data-bs-target="#panel-eco" type="button" role="tab" aria-controls="panel-eco" aria-selected="false">Ecoregions</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tab-whc" data-bs-toggle="tab" data-bs-target="#panel-whc" type="button" role="tab" aria-controls="panel-whc" aria-selected="false">WH Cities</button>
@@ -80,7 +83,9 @@
                   </div>
                 </div>
 
-                <div class="form-text text-muted"></div>
+                <div class="mt-3">
+                  <button class="btn btn-outline-primary" id="whg-similar-cities-btn" type="button" disabled>Similar WH Cities</button>
+                </div>
 
               </div>
             </div>
@@ -219,11 +224,46 @@
           </div>
         </div>
 
+        <div class="tab-pane fade" id="panel-eco" role="tabpanel" aria-labelledby="tab-eco">
+          <h4 class="mb-1">Ecoregions Hierarchy</h4>
+          <p class="subhead5">Data from <a href="https://www.oneearth.org/bioregions/" target="_blank">OneEarth Bioregions</a> (847 ecoregions in 185 bioregions, 53 subrealms, 14 realms)</p>
+
+          <!-- Breadcrumb navigation -->
+          <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0" id="eco-breadcrumb">
+              <li class="breadcrumb-item active">Realms</li>
+            </ol>
+          </nav>
+
+          <!-- Drill-down list -->
+          <div id="eco-list" class="list-group mb-3" style="max-height: 350px; overflow-y: auto;">
+            <div class="text-muted">Loading realms...</div>
+          </div>
+
+          <!-- Selected item info -->
+          <div id="eco-selected-info" class="card" style="display:none;">
+            <div class="card-body">
+              <h6 class="card-title" id="eco-selected-name"></h6>
+              <p class="card-text small text-muted" id="eco-selected-meta"></p>
+              <a href="#" id="eco-oneearth-link" class="btn btn-sm btn-outline-secondary" target="_blank" style="display:none;">
+                View on OneEarth
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <div class="alert alert-light" id="eco-status" style="display:none;"></div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Outputs (shared across tabs) -->
       <div class="mt-3">
-        <h5 class="mb-2">Environmental profile</h5>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h5 id="profile-heading" class="mb-0" style="display:none;">Environmental profile</h5>
+          <a href="#" id="whg-place-link" class="small" style="display:none;" data-bs-toggle="popover" data-bs-trigger="click" data-bs-html="true" data-bs-title="WHG place record">WHG place record</a>
+        </div>
         <!-- Cluster label (shown for WH sites) -->
         <div id="cluster-label" class="mb-2" style="display:none;">
           <span class="badge bg-secondary fs-6" id="cluster-label-text"></span>
@@ -244,7 +284,7 @@
     </div>
 
     <!-- RIGHT: map (always visible) -->
-    <div class="col-12 col-lg-7">
+    <div class="col-12 col-lg-6">
 <!--      <h4 class="mb-3">Map</h4>-->
       <div id="map" style="height: 420px; border: 1px solid #ddd;"></div>
       <style>
@@ -591,6 +631,7 @@
 
     // This path is not WHG resolution; clear Resolved place
     renderResolvedPlace(null);
+    showWhgPlaceLink(null);
 
     const loc = whSelected.location;
     if (!loc || loc.type !== 'Point' || !loc.coordinates || loc.coordinates.length < 2) {
@@ -717,6 +758,7 @@
 
     // Clear Resolved place (this is not WHG resolution)
     renderResolvedPlace(null);
+    showWhgPlaceLink(null);
 
     const loc = whcSelected.location;
     if (!loc || loc.type !== 'Point' || !loc.coordinates || loc.coordinates.length < 2) {
@@ -1151,7 +1193,7 @@
       return;
     }
 
-    map = L.map('map').setView([9.13784, 13.92340], 2);
+    map = L.map('map').setView([9.13784, 13.92340], 1);
 
     // Overlay (toggle): standard OSM streets/labels
     // NOTE: kept as an overlay because the hillshade tiles are JPEG (no alpha) and must sit underneath.
@@ -1266,6 +1308,26 @@
     pre.textContent = obj ? JSON.stringify(obj, null, 2) : '';
   }
 
+  function showWhgPlaceLink(data) {
+    const link = document.getElementById('whg-place-link');
+    if (!link) return;
+    if (data) {
+      const json = JSON.stringify(data, null, 2);
+      const content = `
+        <div class="d-flex justify-content-end mb-1">
+          <button type="button" class="btn-close btn-close-sm" aria-label="Close" onclick="window.whgPlacePopover.hide()"></button>
+        </div>
+        <pre class="mb-0 small" style="max-height:300px;overflow:auto;font-size:0.75rem;">${escapeHtml(json)}</pre>`;
+      if (window.whgPlacePopover) {
+        window.whgPlacePopover.setContent({ '.popover-body': content });
+      }
+      link.style.display = '';
+    } else {
+      if (window.whgPlacePopover) window.whgPlacePopover.hide();
+      link.style.display = 'none';
+    }
+  }
+
   function escapeHtml(s) {
     if (s === null || s === undefined) return '';
     return String(s)
@@ -1309,6 +1371,7 @@
     const pre = document.getElementById('output');
     const summaryEl = document.getElementById('profile-summary');
     const accEl = document.getElementById('profile-accordions');
+    const headingEl = document.getElementById('profile-heading');
 
     // Clear
     if (summaryEl) summaryEl.innerHTML = '';
@@ -1319,10 +1382,14 @@
         pre.style.display = 'none';
         pre.textContent = '';
       }
+      if (headingEl) headingEl.style.display = 'none';
       return;
     }
 
     const hasGrouped = sig.profile_summary && sig.profile_groups;
+
+    // Show heading when we have data
+    if (headingEl) headingEl.style.display = hasGrouped ? '' : 'none';
 
     if (!hasGrouped) {
       // Fallback to raw JSON
@@ -1381,7 +1448,6 @@
             const v = escapeHtml(formatValue(it.value));
             return `<div class="d-flex justify-content-between gap-2 py-1 border-bottom"><div class="text-muted">${l}</div><div class="text-end">${v}</div></div>`;
           }).join('');
-
           const headingId = `heading-${code}`;
           const collapseId = `collapse-${code}`;
 
@@ -1423,6 +1489,7 @@
   async function resolveByLonLat(lon, lat) {
     // Clear cluster label (only shown for WH sites)
     showClusterLabel(null);
+    showWhgPlaceLink(null);
 
     const resolved = {
       label: 'lon/lat input',
@@ -1440,6 +1507,7 @@
   async function resolveByName(name) {
     // Clear cluster label (only shown for WH sites)
     showClusterLabel(null);
+    showWhgPlaceLink(null);
 
     // Call EDOP backend resolver (server-side WHG token usage)
     const url = `/api/resolve?name=${encodeURIComponent(name)}`;
@@ -1482,6 +1550,29 @@
         el.textContent = '';
         el.style.display = 'none';
       }
+    }
+
+    // WHG place link popover initialization
+    const whgPlaceLinkEl = document.getElementById('whg-place-link');
+    if (whgPlaceLinkEl) {
+      window.whgPlacePopover = new bootstrap.Popover(whgPlaceLinkEl, {
+        content: '',
+        placement: 'left',
+        customClass: 'whg-place-popover'
+      });
+      whgPlaceLinkEl.addEventListener('click', (e) => e.preventDefault());
+    }
+
+    // Site title click -> return to Main tab
+    const siteTitle = document.getElementById('site-title');
+    if (siteTitle) {
+      siteTitle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const mainTab = document.querySelector('[data-bs-target="#panel-main"]');
+        if (mainTab) {
+          bootstrap.Tab.getOrCreateInstance(mainTab).show();
+        }
+      });
     }
 
     // Wire Timbuktu test button (existing behavior)
@@ -1651,6 +1742,7 @@
 
     // Leaflet often needs an explicit size recalculation when switching tabs.
     // Pilot behavior: treat each tab as its own workflow; clear shared UI + map state on ANY tab change.
+    let ecoTabInitialized = false;
     document.querySelectorAll('button[data-bs-toggle="tab"]').forEach((btn) => {
       btn.addEventListener('shown.bs.tab', (evt) => {
         if (map) map.invalidateSize();
@@ -1673,12 +1765,6 @@
         const targetSel = (evt && evt.target && evt.target.getAttribute)
           ? evt.target.getAttribute('data-bs-target')
           : null;
-
-        // Show "Resolved place" section only on Main tab
-        const resolvedSection = document.getElementById('resolved-place-section');
-        if (resolvedSection) {
-          resolvedSection.style.display = targetSel === '#panel-main' ? '' : 'none';
-        }
 
         // WH-specific UI reset when entering WH tab
         if (targetSel === '#panel-wh') {
@@ -1704,6 +1790,15 @@
         if (targetSel === '#panel-main') {
           mainSetStatus('');
         }
+
+        // Eco-specific: load realms on first view
+        if (targetSel === '#panel-eco') {
+          ecoSetStatus('');
+          if (!ecoTabInitialized) {
+            ecoTabInitialized = true;
+            loadEcoLevel(ecoBreadcrumbState[0]);
+          }
+        }
       });
     });
 
@@ -1722,6 +1817,8 @@
     let whgResults = [];  // Store results for selection
     let whgCandidateMarkers = [];  // Markers for all candidates
     let selectedCountries = [];  // Array of {code, name} objects
+    let whgSelectedCoords = null;  // {lon, lat} of selected WHG place
+    const whgSimilarCitiesBtn = document.getElementById('whg-similar-cities-btn');
 
     // Colors for candidate markers (match existing SIMILAR_COLORS pattern)
     const WHG_CANDIDATE_COLORS = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999', '#66c2a5'];
@@ -2124,6 +2221,8 @@
       clearWhgCandidateMarkers();
       clearSimilarResults();
       showClusterLabel(null);
+      whgSelectedCoords = null;
+      if (whgSimilarCitiesBtn) whgSimilarCitiesBtn.disabled = true;
 
       if (!place.lon || !place.lat) {
         mainSetStatus('Place has no coordinates');
@@ -2138,6 +2237,8 @@
 
       const lon = place.lon;
       const lat = place.lat;
+      whgSelectedCoords = { lon, lat };
+      if (whgSimilarCitiesBtn) whgSimilarCitiesBtn.disabled = false;
 
       // Build resolved place object
       const resolved = {
@@ -2157,11 +2258,13 @@
       };
 
       renderResolvedPlace(resolved);
+      showWhgPlaceLink(resolved);
       setMarkerFromLonLat(lon, lat);
 
       try {
         mainSetStatus('Computing environmental profile...');
         const sig = await fetchSignature(lon, lat);
+        console.log('sig', sig)
         renderSignature(sig);
         setBasinFromSignature(sig);
         mainSetStatus('');
@@ -2192,6 +2295,105 @@
         }
       });
 
+    }
+
+    // WHG Similar WH Cities handler
+    async function whgShowSimilarCities() {
+      if (!whgSelectedCoords) return;
+
+      if (whgSimilarCitiesBtn) whgSimilarCitiesBtn.disabled = true;
+      clearSimilarResults();
+      mainSetStatus('Finding similar WH Cities...');
+
+      try {
+        const url = `/api/whc-similar-env-by-coord?lon=${encodeURIComponent(whgSelectedCoords.lon)}&lat=${encodeURIComponent(whgSelectedCoords.lat)}&limit=5`;
+        const resp = await fetch(url);
+        if (!resp.ok) {
+          const txt = await resp.text();
+          throw new Error(`Similar cities request failed (${resp.status}): ${txt}`);
+        }
+        const data = await resp.json();
+
+        if (data.error) {
+          mainSetStatus(data.error);
+          return;
+        }
+
+        renderWhgSimilarCities(data);
+        mainSetStatus('');
+      } catch (e) {
+        mainSetStatus(String(e));
+      } finally {
+        if (whgSimilarCitiesBtn) whgSimilarCitiesBtn.disabled = false;
+      }
+    }
+
+    function renderWhgSimilarCities(data) {
+      const container = document.getElementById('similar-results');
+      const list = document.getElementById('similar-list');
+      const heading = document.getElementById('similar-heading');
+      const description = document.getElementById('similar-description');
+      if (!container || !list) return;
+
+      if (heading) heading.textContent = 'Similar WH Cities (Environmental)';
+
+      // Show distribution context
+      const stats = data.dist_stats;
+      if (description && stats) {
+        description.innerHTML = `Distance range among ${stats.count} WH cities: ${stats.min} – ${stats.max} (median: ${stats.median})`;
+      }
+
+      const similar = data.similar || [];
+      if (!similar.length) {
+        list.innerHTML = '<div class="text-muted">No similar cities found.</div>';
+        container.style.display = '';
+        return;
+      }
+
+      // Build list HTML with color swatches and percentile
+      const rows = similar.map((city, idx) => {
+        const color = SIMILAR_COLORS[idx % SIMILAR_COLORS.length];
+        const clusterLabel = city.env_cluster_label || '';
+        const pctLabel = city.percentile !== null ? `top ${city.percentile.toFixed(0)}%` : '';
+        return `
+          <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+            <div>
+              <strong>${idx + 1}.</strong> ${escapeHtml(city.city)}
+              <span class="text-muted small">[${escapeHtml(city.country)}]</span>
+              ${clusterLabel ? `<div class="small text-muted">${clusterLabel}</div>` : ''}
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="text-muted small">${city.distance} ${pctLabel ? `(${pctLabel})` : ''}</span>
+              <span style="display:inline-block; width:16px; height:16px; background:${color}; border-radius:3px;"></span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      list.innerHTML = rows;
+      container.style.display = '';
+
+      // Show markers on map
+      clearSimilarMarkers();
+      similar.forEach((city, idx) => {
+        if (city.location && city.location.coordinates) {
+          const [lon, lat] = city.location.coordinates;
+          const color = SIMILAR_COLORS[idx % SIMILAR_COLORS.length];
+          const marker = L.circleMarker([lat, lon], {
+            radius: 8,
+            fillColor: color,
+            color: '#333',
+            weight: 1,
+            fillOpacity: 0.8
+          }).addTo(map);
+          marker.bindPopup(`<strong>${city.city}</strong><br>${city.country}<br>dist: ${city.distance}${city.percentile !== null ? ` (top ${city.percentile.toFixed(0)}%)` : ''}`);
+          similarMarkers.push(marker);
+        }
+      });
+    }
+
+    if (whgSimilarCitiesBtn) {
+      whgSimilarCitiesBtn.addEventListener('click', whgShowSimilarCities);
     }
 
     // -----------------------
@@ -2281,6 +2483,7 @@
       gazSelected = place;
       mainSetStatus('Computing environmental profile...');
       renderResolvedPlace(null);
+      showWhgPlaceLink(null);
       renderSignature(null);
       clearBasinLayer();
       clearMarker();
@@ -2484,6 +2687,217 @@
         gazSearch.focus();
       });
     }
+
+    // -----------------------
+    // Ecoregions Hierarchy
+    // -----------------------
+
+    const ecoBreadcrumb = document.getElementById('eco-breadcrumb');
+    const ecoList = document.getElementById('eco-list');
+    const ecoSelectedInfo = document.getElementById('eco-selected-info');
+    const ecoSelectedName = document.getElementById('eco-selected-name');
+    const ecoSelectedMeta = document.getElementById('eco-selected-meta');
+    const ecoOneEarthLink = document.getElementById('eco-oneearth-link');
+    const ecoStatus = document.getElementById('eco-status');
+
+    let ecoLayer = null;  // Current polygon layer on map
+
+    function ecoSetStatus(msg) {
+      if (!ecoStatus) return;
+      if (msg) {
+        ecoStatus.textContent = msg;
+        ecoStatus.style.display = '';
+      } else {
+        ecoStatus.textContent = '';
+        ecoStatus.style.display = 'none';
+      }
+    }
+
+    function clearEcoLayer() {
+      if (ecoLayer && map) {
+        map.removeLayer(ecoLayer);
+        ecoLayer = null;
+      }
+    }
+
+    // Breadcrumb state
+    let ecoBreadcrumbState = [{ level: 'realms', label: 'Realms', id: null }];
+
+    function renderEcoBreadcrumb() {
+      if (!ecoBreadcrumb) return;
+      ecoBreadcrumb.innerHTML = ecoBreadcrumbState.map((item, idx) => {
+        const isLast = idx === ecoBreadcrumbState.length - 1;
+        if (isLast) {
+          return `<li class="breadcrumb-item active">${escapeHtml(item.label)}</li>`;
+        }
+        return `<li class="breadcrumb-item"><a href="#" data-eco-nav="${idx}">${escapeHtml(item.label)}</a></li>`;
+      }).join('');
+
+      // Add click handlers for breadcrumb links
+      ecoBreadcrumb.querySelectorAll('[data-eco-nav]').forEach(link => {
+        link.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const idx = parseInt(link.getAttribute('data-eco-nav'), 10);
+          ecoBreadcrumbState = ecoBreadcrumbState.slice(0, idx + 1);
+          renderEcoBreadcrumb();
+          await loadEcoLevel(ecoBreadcrumbState[idx]);
+        });
+      });
+    }
+
+    async function loadEcoLevel(state) {
+      if (!ecoList) return;
+      ecoList.innerHTML = '<div class="text-muted">Loading...</div>';
+      // Don't clear ecoLayer here - let showEcoGeom handle it
+      // Only hide selected info when going back to realms
+      if (state.level === 'realms') {
+        clearEcoLayer();
+        if (ecoSelectedInfo) ecoSelectedInfo.style.display = 'none';
+      }
+
+      try {
+        let url, data, items, level;
+
+        if (state.level === 'realms') {
+          url = '/api/eco/realms';
+          const resp = await fetch(url);
+          data = await resp.json();
+          items = data.realms || [];
+          level = 'realm';
+          ecoList.innerHTML = items.map(r => `
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-eco-level="realm" data-eco-id="${escapeHtml(r.id)}">
+              ${escapeHtml(r.name)}
+              <span class="badge bg-secondary rounded-pill">${r.subrealm_count} subrealms</span>
+            </a>
+          `).join('');
+          // Load all realm geometries
+          const geomResp = await fetch('/api/eco/realms/geom');
+          const geomData = await geomResp.json();
+          if (geomData.features && geomData.features.length > 0) {
+            clearEcoLayer();
+            ecoLayer = L.geoJSON(geomData, {
+              style: { color: '#228B22', weight: 1, fillOpacity: 0.2 }
+            }).addTo(map);
+            map.setView([9.13784, 13.92340], 1);
+          }
+        } else if (state.level === 'subrealms') {
+          url = `/api/eco/subrealms?realm=${encodeURIComponent(state.id)}`;
+          const resp = await fetch(url);
+          data = await resp.json();
+          items = data.subrealms || [];
+          level = 'subrealm';
+          ecoList.innerHTML = items.map(s => `
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-eco-level="subrealm" data-eco-id="${s.id}">
+              ${escapeHtml(s.name)}
+              <span class="badge bg-secondary rounded-pill">${s.bioregion_count} bioregions</span>
+            </a>
+          `).join('');
+        } else if (state.level === 'bioregions') {
+          url = `/api/eco/bioregions?subrealm_id=${encodeURIComponent(state.id)}`;
+          const resp = await fetch(url);
+          data = await resp.json();
+          items = data.bioregions || [];
+          level = 'bioregion';
+          ecoList.innerHTML = items.map(b => `
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-eco-level="bioregion" data-eco-id="${escapeHtml(b.id)}">
+              ${escapeHtml(b.name)}
+              <span class="badge bg-secondary rounded-pill">${b.ecoregion_count} ecoregions</span>
+            </a>
+          `).join('');
+        } else if (state.level === 'ecoregions') {
+          url = `/api/eco/ecoregions?bioregion=${encodeURIComponent(state.id)}`;
+          const resp = await fetch(url);
+          data = await resp.json();
+          items = data.ecoregions || [];
+          level = 'ecoregion';
+          ecoList.innerHTML = items.map(e => `
+            <a href="#" class="list-group-item list-group-item-action" data-eco-level="ecoregion" data-eco-id="${e.id}">
+              ${escapeHtml(e.name)}
+              <br><span class="small text-muted">${escapeHtml(e.biome || '')}</span>
+            </a>
+          `).join('');
+        }
+
+        if (!items.length) {
+          ecoList.innerHTML = '<div class="text-muted">No items found.</div>';
+        }
+
+        // Add click handlers
+        ecoList.querySelectorAll('[data-eco-level]').forEach(item => {
+          item.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const itemLevel = item.getAttribute('data-eco-level');
+            const itemId = item.getAttribute('data-eco-id');
+            const itemName = item.textContent.trim().split('\n')[0];
+
+            // Load and show geometry
+            await showEcoGeom(itemLevel, itemId, itemName);
+
+            // If not at ecoregion level, drill down
+            if (itemLevel === 'realm') {
+              ecoBreadcrumbState.push({ level: 'subrealms', label: itemName, id: itemId });
+              renderEcoBreadcrumb();
+              await loadEcoLevel({ level: 'subrealms', id: itemId });
+            } else if (itemLevel === 'subrealm') {
+              ecoBreadcrumbState.push({ level: 'bioregions', label: itemName, id: itemId });
+              renderEcoBreadcrumb();
+              await loadEcoLevel({ level: 'bioregions', id: itemId });
+            } else if (itemLevel === 'bioregion') {
+              ecoBreadcrumbState.push({ level: 'ecoregions', label: itemName, id: itemId });
+              renderEcoBreadcrumb();
+              await loadEcoLevel({ level: 'ecoregions', id: itemId });
+            }
+            // Ecoregion is leaf - just show on map
+          });
+        });
+
+      } catch (e) {
+        ecoSetStatus(String(e));
+        ecoList.innerHTML = '<div class="text-danger">Error loading data.</div>';
+      }
+    }
+
+    async function showEcoGeom(level, id, name) {
+      clearEcoLayer();
+      try {
+        const url = `/api/eco/geom?level=${encodeURIComponent(level)}&id=${encodeURIComponent(id)}`;
+        const resp = await fetch(url);
+        const data = await resp.json();
+
+        if (data.geometry) {
+          ecoLayer = L.geoJSON(data.geometry, {
+            style: {
+              color: '#2e7d32',
+              weight: 2,
+              fillColor: '#81c784',
+              fillOpacity: 0.3
+            }
+          }).addTo(map);
+          map.fitBounds(ecoLayer.getBounds().pad(0.1));
+        }
+
+        // Show selected info
+        if (ecoSelectedInfo) {
+          ecoSelectedName.textContent = data.name || name;
+          ecoSelectedMeta.textContent = `${level.charAt(0).toUpperCase() + level.slice(1)}`;
+          ecoSelectedInfo.style.display = '';
+
+          // OneEarth link (bioregions and ecoregions have pages)
+          if (level === 'bioregion' || level === 'ecoregion') {
+            // OneEarth URLs follow pattern: https://www.oneearth.org/bioregions/XXXX/
+            // For now, link to main bioregions page
+            ecoOneEarthLink.href = 'https://www.oneearth.org/bioregions/';
+            ecoOneEarthLink.style.display = '';
+          } else {
+            ecoOneEarthLink.style.display = 'none';
+          }
+        }
+
+      } catch (e) {
+        console.error('Error loading geometry:', e);
+      }
+    }
+
   });
 </script>
 {% endblock %}

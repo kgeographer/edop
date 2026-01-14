@@ -2,7 +2,49 @@
 -- STEP 3: Run this in edop database after exporting WHG data
 -- Imports WHG S-class places from CSV into gaz.edop_gaz
 -- =============================================================================
+INSERT INTO gaz.edop_gaz (source, source_id, title, ccodes, lon, lat, geom)
+  SELECT source, source_id, title,
+         CASE WHEN ccodes_csv IS NOT NULL AND ccodes_csv != ''
+              THEN string_to_array(ccodes_csv, ',') ELSE NULL END,
+         lon, lat,
+         ST_SetSRID(ST_MakePoint(lon, lat), 4326)
+  FROM gaz.whg_import_temp t
+  WHERE t.lon IS NOT NULL
+    AND NOT EXISTS (
+        SELECT 1 FROM gaz.edop_gaz eg
+        WHERE eg.title = t.title
+          AND eg.ccodes && string_to_array(t.ccodes_csv, ',')
+          AND ABS(eg.lon - t.lon) < 0.15
+          AND ABS(eg.lat - t.lat) < 0.15
+    ); -- 56159
 
+select count(*) from gaz.edop_gaz eg;
+ CREATE INDEX IF NOT EXISTS edop_gaz_title_idx ON gaz.edop_gaz (title);
+
+SELECT pid, state, query, wait_event_type, wait_event
+  FROM pg_stat_activity
+  WHERE datname = current_database()
+    AND pid != pg_backend_pid();
+
+SELECT pg_terminate_backend(68002);
+
+CREATE INDEX IF NOT EXISTS edop_gaz_title_idx ON gaz.edop_gaz (title);
+
+
+SELECT indexname, indexdef
+  FROM pg_indexes
+  WHERE tablename = 'edop_gaz' AND indexdef LIKE '%gist%';
+-- idx_edop_gaz_geom
+
+ SELECT 'whg_import_temp' as tbl, count(*) FROM gaz.whg_import_temp
+  UNION ALL
+  SELECT 'edop_gaz', count(*) FROM gaz.edop_gaz;
+--whg_import_temp	59062
+--edop_gaz	41019
+
+ CREATE INDEX IF NOT EXISTS edop_gaz_geom_geog_idx
+  ON gaz.edop_gaz USING GIST ((geom::geography));
+ 
  SELECT COUNT(*) FROM gaz.whg_import_temp; -- 59062
  SELECT COUNT(*) FROM gaz.edop_gaz; -- 41019
 

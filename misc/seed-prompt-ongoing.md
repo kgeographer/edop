@@ -46,7 +46,7 @@ HydroATLAS basin data. Building a proof-of-concept for funding partners (ISHI/Pi
 
 ## Deployment
 - **Production**: edop.kgeographer.org (Digital Ocean droplet)
-- **Stack**: nginx → gunicorn:8001 → FastAPI/uvicorn
+- **Stack**: apache2 → gunicorn:8001 → FastAPI/uvicorn
 - **Database**: PostgreSQL 5432 with PostGIS, pgvector, pg_trgm
 - **Service**: systemd (`/etc/systemd/system/edop.service`)
 - **Environment**: `/etc/edop/edop.env` or inline in service file

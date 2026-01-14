@@ -1,3 +1,32 @@
+NEXT 14 Jan, 9am
+================
+BUGS
+----
+- strategy for 1st 10 results for "Denver" in US don't include Colorado capitol
+/- filter WH cities dropdown (under #tab-whc) where basin_id in wh_cities is null
+
+
+GUI
+---
+/- title "Environmental profile" should appear only after resolving a place
+/- "resolved" place div unnecessary, but payload upon WHG place resolution should be available as tooltip from a link
+/- header <h3> should restore main tab (home)
+
+
+FEATURES
+--------
+/- Ideally: "Similar (env)" button for WHG API, comapres to WH cities at this time.
+- wire new Ecoregions tab (#tab-eco, gaz."Ecoregions2017"; generate signatures)
+- how many ecoregion pages in Wikipedia?
+- wire new Ecoregions tab (#tab-eco, eco847 with signatures)
+- home page explainer for EDOP (div below tab-content? #similar-results below map; change for each tab)
+- LLM summary of a signature?
+- add ssl to edop.kgeographer
+- distribution of WH sites in basin clusters? ecoregions?
+- "About" link to a modal long explainer
+
+
+
 NEXT 11 Jan, 7am
 ================
 edop_gaz
