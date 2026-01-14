@@ -37,6 +37,7 @@ pre {
   border: gainsboro 1px solid;
 }
 .edop-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   white-space: nowrap;
+  padding: 2px;
 }

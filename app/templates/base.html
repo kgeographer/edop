@@ -18,12 +18,37 @@
 <header class="ms-3">
   <h3 class="d-flex align-items-center justify-content-between">
     <a href="#" id="site-title" class="text-decoration-none text-reset" style="cursor:pointer;">Environmental Dimensions of Place (EDOP)</a>
-    <span class="px-2 bg-warning edop-subtitle">
-      Prototype, Jan. 2026.
+    <span class="d-flex align-items-center gap-2 fs-5">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#about-modal">About</a>
       <a href="http://edop.kgeographer.org/docs" target="_blank">API docs</a>
+      <span class="badge bg-primary fw-normal">v0.1 prototype, Jan. 2026</span>
     </span>
   </h3>
 </header>
+
+<!-- About Modal -->
+<div class="modal fade" id="about-modal" tabindex="-1" aria-labelledby="about-modal-label" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 75%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="about-modal-label">About EDOP</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5>Technical</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <h5 class="mt-4">Project Mission</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <main>
   {% block content %}{% endblock %}

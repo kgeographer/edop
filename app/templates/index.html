@@ -83,9 +83,10 @@
                   </div>
                 </div>
 
-                <div class="mt-3">
-                  <button class="btn btn-outline-primary" id="whg-similar-cities-btn" type="button" disabled>Similar WH Cities</button>
+                <div class="mt-3" id="whg-similar-cities-wrap" style="display:none;">
+                  <button class="btn btn-outline-primary" id="whg-similar-cities-btn" type="button">Similar WH Cities</button>
                 </div>
+
 
               </div>
             </div>
@@ -101,6 +102,10 @@
                 </div>
                 <div class="mt-3 d-flex gap-2">
                   <button class="btn btn-outline-primary" id="gaz-similar-env" type="button" disabled>Similar (env)</button>
+                </div>
+
+                <div id="explainer-edop" class="mt-3 text-muted" style="font-size: 0.9rem; display:none;">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
                 </div>
               </div>
             </div>
@@ -122,6 +127,10 @@
                   <button class="btn btn-outline-secondary" id="test-btn" type="button">Use Timbuktu</button>
                 </div>
               </form>
+
+              <div id="explainer-coords" class="mt-3 text-muted" style="font-size: 0.9rem; display:none;">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+              </div>
             </div>
             <!-- deprecated; inactive -->
             <div class="tab-pane fade" id="input-foo" role="tabpanel" aria-labelledby="pill-foo">
@@ -134,6 +143,12 @@
                 <button class="btn btn-primary" type="submit">Resolve</button>
               </form>
             </div>
+          </div>
+
+          <!-- Explainer (hidden when results appear) -->
+          <div id="main-explainer" class="mt-3 text-muted" style="font-size: 0.9rem;">
+            <p><b>EDOP (Environmental Dimensions of Place)</b> is an experimental exploration of how physical environments can be described, compared, and related across the world. At its core, the system assigns an environmental signature to any geographic location, based on the characteristics of the hydrological sub-basin in which it lies. These sub-basins—drawn from the <a href="https://www.hydrosheds.org/products/hydrobasins" target="_blank">HydroBasins and HydroAtlas datasets</a> at level 8—partition the Earth's land surface into roughly 190,000 regions, providing a consistent, global unit for environmental comparison.</p>
+            <a>Using this framework, EDOP lets you look up places by name or coordinates and examine how their environmental profiles relate to one another. In some cases, those comparisons are purely environmental; in others, they are paired with text-based similarity measures derived from descriptive sources such as Wikipedia, currently demonstrated for selected <a href="https://www.ovpm.org/" target="_blank">World Heritage cities</a> and <a href="https://whc.unesco.org/en/list/" target="_blank">sites</a>. The system has begun incoporating <a href="" https://www.oneearth.org/ecoregion-list/target="_blank">OneEarth ecoregions</a> as navigable environmental hierarchies. This early release is best understood as a foundation: a way to expose environmental data as reusable, comparable signatures, and a first step toward more integrated views of place, environment, and cultural description.</p>
           </div>
 
           <!-- Main tab status message -->
@@ -1259,6 +1274,28 @@
     basinLayer = null;
   }
 
+  function showActiveExplainer() {
+    // Hide all explainers first
+    ['main-explainer', 'explainer-edop', 'explainer-coords'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    // Show explainer for active pill
+    const activePill = document.querySelector('#main-input-pills .nav-link.active');
+    if (!activePill) return;
+    const target = activePill.getAttribute('data-bs-target');
+    if (target === '#input-whg') {
+      const el = document.getElementById('main-explainer');
+      if (el) el.style.display = '';
+    } else if (target === '#input-edop') {
+      const el = document.getElementById('explainer-edop');
+      if (el) el.style.display = '';
+    } else if (target === '#input-coords') {
+      const el = document.getElementById('explainer-coords');
+      if (el) el.style.display = '';
+    }
+  }
+
   function tryParseGeojson(value) {
     // Signature may return geojson as an object or as a JSON-encoded string.
     if (!value) return null;
@@ -1372,6 +1409,7 @@
     const summaryEl = document.getElementById('profile-summary');
     const accEl = document.getElementById('profile-accordions');
     const headingEl = document.getElementById('profile-heading');
+    const explainerIds = ['main-explainer', 'explainer-edop', 'explainer-coords'];
 
     // Clear
     if (summaryEl) summaryEl.innerHTML = '';
@@ -1383,13 +1421,19 @@
         pre.textContent = '';
       }
       if (headingEl) headingEl.style.display = 'none';
+      // Show explainer for active pill
+      showActiveExplainer();
       return;
     }
 
     const hasGrouped = sig.profile_summary && sig.profile_groups;
 
-    // Show heading when we have data
+    // Show heading when we have data, hide explainers
     if (headingEl) headingEl.style.display = hasGrouped ? '' : 'none';
+    explainerIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
 
     if (!hasGrouped) {
       // Fallback to raw JSON
@@ -2222,7 +2266,8 @@
       clearSimilarResults();
       showClusterLabel(null);
       whgSelectedCoords = null;
-      if (whgSimilarCitiesBtn) whgSimilarCitiesBtn.disabled = true;
+      const wrap = document.getElementById('whg-similar-cities-wrap');
+      if (wrap) wrap.style.display = 'none';
 
       if (!place.lon || !place.lat) {
         mainSetStatus('Place has no coordinates');
@@ -2238,7 +2283,8 @@
       const lon = place.lon;
       const lat = place.lat;
       whgSelectedCoords = { lon, lat };
-      if (whgSimilarCitiesBtn) whgSimilarCitiesBtn.disabled = false;
+      const whgSimilarWrap = document.getElementById('whg-similar-cities-wrap');
+      if (whgSimilarWrap) whgSimilarWrap.style.display = '';
 
       // Build resolved place object
       const resolved = {
