@@ -1,0 +1,79 @@
+{
+  "type": "FeatureCollection",
+  "@context": "https://linkedpasts.org/assets/linkedplaces-context-v1.3.jsonld",
+  "features": [
+    {
+      "@id": "https://seshat-db.com/core/polity/iq_abbasid_cal_1",
+      "type": "Feature",
+      "properties": {
+        "title": "Abbasid Caliphate",
+        "fclasses": ["A"]
+      },
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": [
+          {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [
+                  60.7618,
+                  42.95147
+                ],
+                [
+                  61.00809,
+                  42.69125
+                ],
+                ...
+              ]
+            ],
+            "when": {
+              "timespans": [
+                {
+                  "start": {
+                    "in": "0750"
+                  },
+                  "end": {
+                    "in": "0750"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+      },
+      "when": {
+        "timespans": [
+          {
+            "start": {
+              "in": "0750"
+            },
+            "end": {
+              "in": "1259"
+            }
+          }
+        ]
+      },
+      "names": [
+        {
+          "toponym": "Abbasid Caliphate"
+        },
+        {
+          "toponym": "(Abbasid Caliphate)"
+        }
+      ],
+      "types": [
+        {
+          "label": "polity"
+        }
+      ],
+      "links": [
+        {
+          "type": "primaryTopicOf",
+          "identifier": "wp:Abbasid_Caliphate"
+        }
+      ]
+    },
+    ...
+  ]
+}

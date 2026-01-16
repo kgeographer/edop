@@ -1,0 +1,89 @@
+eco_id	eco_name	matched_title	matched_slug	match_type	score
+135	Admiralty Islands lowland rain forests	Admiralty Islands Lowland Rainforests	admiralty-islands-lowland-rainforests	exact_norm	100.0
+218	Andaman Islands rain forests	Andaman Islands Rainforests	andaman-islands-rainforests	exact_norm	100.0
+443	Bahia interior forests	Bahía Interior Forests	bahia-interior-forests	exact_norm	100.0
+137	Biak-Numfoor rain forests	Biak-Numfoor Rainforests	biak-numfoor-rainforests	exact_norm	100.0
+219	Borneo lowland rain forests	Borneo Lowland Rainforests	borneo-lowland-rainforests	exact_norm	100.0
+220	Borneo montane rain forests	Borneo Montane Rainforests	borneo-montane-rainforests	exact_norm	100.0
+138	Buru rain forests	Buru Rainforests	buru-rainforests	exact_norm	100.0
+223	Cardamom Mountains rain forests	Cardamom Mountains Rainforests	cardamom-mountains-rainforests	exact_norm	100.0
+139	Central Range Papuan montane rain forests	Central Range Papuan Montane Rainforests	central-range-papuan-montane-rainforests	exact_norm	100.0
+456	Cordillera La Costa montane forests	Cordillera de la Costa Montane Forests	cordillera-de-la-costa-montane-forests	fuzzy_token_set	100.0
+332	East Central Texas forests			unmatched	86.95652173913044
+333	Eastern Canadian Forest-Boreal transition	Eastern Canadian Temperate-Boreal Forest Transition	eastern-canadian-temperate-boreal-forest-transition	fuzzy_token_set	100.0
+373	Eastern Canadian forests	Eastern Canadian Boreal Forests	eastern-canadian-boreal-forests	fuzzy_token_set	100.0
+229	Eastern Java-Bali montane rain forests	Eastern Java–Bali Montane Rainforests	eastern-java-bali-montane-rainforests	exact_norm	100.0
+230	Eastern Java-Bali rain forests	Eastern Java-Bali Rainforests	eastern-java-bali-rainforests	exact_norm	100.0
+199	Eyre and York mallee	Eyre and Yorke Mallee	eyre-and-yorke-mallee	fuzzy_token_set	97.5609756097561
+231	Greater Negros-Panay rain forests	Greater Negros-Panay Rainforests	greater-negros-panay-rainforests	exact_norm	100.0
+232	Hainan Island monsoon rain forests	Hainan Island Monsoon Rainforests	hainan-island-monsoon-rainforests	exact_norm	100.0
+140	Halmahera rain forests	Halmahera Rainforests	halmahera-rainforests	exact_norm	100.0
+141	Huon Peninsula montane rain forests	Huon Peninsula Montane Rainforests	huon-peninsula-montane-rainforests	exact_norm	100.0
+416	Interior Yukon-Alaska alpine tundra	Interior Alaska-Yukon Alpine Tundra	interior-alaska-yukon-alpine-tundra	fuzzy_token_set	100.0
+237	Kayah-Karen montane rain forests	Kayah-Karen Montane Rainforests	kayah-karen-montane-rainforests	exact_norm	100.0
+143	Louisiade Archipelago rain forests	Louisiade Archipelago Rainforests	louisiade-archipelago-rainforests	exact_norm	100.0
+239	Luang Prabang montane rain forests	Luang Prabang Montane Rainforests	luang-prabang-montane-rainforests	exact_norm	100.0
+240	Luzon montane rain forests	Luzon Montane Rainforests	luzon-montane-rainforests	exact_norm	100.0
+241	Luzon rain forests	Luzon Rainforests	luzon-rainforests	exact_norm	100.0
+479	Marañón dry forests	Marañon Dry Forests	maranon-dry-forests	exact_norm	100.0
+245	Mentawai Islands rain forests	Mentawai Islands Rainforests	mentawai-islands-rainforests	exact_norm	100.0
+246	Mindanao montane rain forests	Mindanao Montane Rainforests	mindanao-montane-rainforests	exact_norm	100.0
+247	Mindanao-Eastern Visayas rain forests	Mindanao-Eastern Visayas Rainforests	mindanao-eastern-visayas-rainforests	exact_norm	100.0
+248	Mindoro rain forests	Mindoro Rainforests	mindoro-rainforests	exact_norm	100.0
+249	Mizoram-Manipur-Kachin rain forests	Mizoram-Manipur-Kachin Rainforests	mizoram-manipur-kachin-rainforests	exact_norm	100.0
+250	Myanmar coastal rain forests	Myanmar Coastal Rainforests	myanmar-coastal-rainforests	exact_norm	100.0
+144	New Britain-New Ireland lowland rain forests	New Britain-New Ireland Lowland Rainforests	new-britain-new-ireland-lowland-rainforests	exact_norm	100.0
+145	New Britain-New Ireland montane rain forests	New Britain-New Ireland Montane Rainforests	new-britain-new-ireland-montane-rainforests	exact_norm	100.0
+146	New Caledonia rain forests	New Caledonia Rainforests	new-caledonia-rainforests	exact_norm	100.0
+252	Nicobar Islands rain forests	Nicobar Islands Rainforests	nicobar-islands-rainforests	exact_norm	100.0
+833	North Saharan Xeric Steppe and Woodland	North Saharan Xeric Steppe and Woodlands	north-saharan-xeric-steppe-and-woodlands	fuzzy_partial	100.0
+254	North Western Ghats montane rain forests	North Western Ghats Montane Rainforests	north-western-ghats-montane-rainforests	exact_norm	100.0
+702	Northeast Himalayan subalpine conifer forests	Northeastern Himalayan Subalpine Conifer Forests	northeastern-himalayan-subalpine-conifer-forests	fuzzy_token_set	96.7741935483871
+799	Northeast Spain and Southern France Mediterranean forests	Northeastern Spain and Southern France Mediterranean Forests	northeastern-spain-and-southern-france-mediterranean-forests	fuzzy_token_set	97.43589743589743
+255	Northern Annamites rain forests	Northern Annamites Rainforests	northern-annamites-rainforests	exact_norm	100.0
+149	Northern New Guinea montane rain forests	Northern New Guinea Montane Rainforests	northern-new-guinea-montane-rainforests	exact_norm	100.0
+260	Northern Vietnam lowland rain forests	Northern Vietnam Lowland Rainforests	northern-vietnam-lowland-rainforests	exact_norm	100.0
+704	Nujiang Langcang Gorge alpine conifer and mixed forests	Nujiang Lancang Gorge Subalpine Conifer and Mixed Forests	nujiang-lancang-gorge-subalpine-conifer-and-mixed-forests	fuzzy_partial	94.54545454545455
+262	Palawan rain forests	Palawan Rainforests	palawan-rainforests	exact_norm	100.0
+490	Pantepui forests & shrublands	Pantepui Forests and Shrublands	pantepui-forests-and-shrublands	exact_norm	100.0
+606	Paraguaná xeric scrub	Paraguana Xeric Scrub	paraguana-xeric-scrub	exact_norm	100.0
+263	Peninsular Malaysian montane rain forests	Peninsular Malaysian Montane Rainforests	peninsular-malaysian-montane-rainforests	exact_norm	100.0
+265	Peninsular Malaysian rain forests	Peninsular Malaysian Rainforests	peninsular-malaysian-rainforests	exact_norm	100.0
+363	Piney Woods	Piney Woods Forests	piney-woods-forests	fuzzy_token_set	100.0
+365	Queen Charlotte Islands conifer forests	Haida Gwaii Conifer Forests	haida-gwaii-conifer-forests	exact_norm	100.0
+150	Queensland tropical rain forests	Queensland Tropical Rainforests	queensland-tropical-rainforests	exact_norm	100.0
+628	Rapa Nui and Sala y Gómez subtropical forests	Rapa Nui and Sala Y Gómez Subtropical Broadleaf Forests	rapa-nui-and-sala-y-gomez-subtropical-broadleaf-forests	fuzzy_token_set	100.0
+0	Rock and Ice			unmatched	66.66666666666667
+745	Saharan halophytics	Saharan Halophytic	saharan-halophytic	fuzzy_partial	100.0
+425	Santa Lucia Montane Chaparral & Woodlands	Santa Lucia Montane Chaparral and Woodlands	santa-lucia-montane-chaparral-and-woodlands	exact_norm	100.0
+151	Seram rain forests	Seram Rainforests	seram-rainforests	exact_norm	100.0
+54	Serengeti volcanic grasslands			unmatched	75.0
+152	Solomon Islands rain forests	Solomon Islands Rainforests	solomon-islands-rainforests	exact_norm	100.0
+269	South Taiwan monsoon rain forests	South Taiwan Monsoon Rainforests	south-taiwan-monsoon-rainforests	exact_norm	100.0
+271	South Western Ghats montane rain forests	South Western Ghats Montane Rainforests	south-western-ghats-montane-rainforests	exact_norm	100.0
+803	Southeast Iberian shrubs and woodlands	Southeastern Iberian Shrubs and Woodlands	southeastern-iberian-shrubs-and-woodlands	fuzzy_token_set	96.20253164556962
+299	Southeast Indochina dry evergreen forests	Southeastern Indochina Dry Evergreen Forests	southeastern-indochina-dry-evergreen-forests	fuzzy_token_set	96.47058823529412
+153	Southeast Papuan rain forests	Southeastern Papuan Rainforests	southeastern-papuan-rainforests	fuzzy_token_set	94.91525423728814
+400	Southeast US mixed woodlands and savannas			unmatched	84.0
+272	Southern Annamites montane rain forests	Southern Annamites Montane Rainforests	southern-annamites-montane-rainforests	exact_norm	100.0
+155	Southern New Guinea lowland rain forests	Southern New Guinea Lowland Rainforests	southern-new-guinea-lowland-rainforests	exact_norm	100.0
+274	Sri Lanka lowland rain forests	Sri Lanka Lowland Rainforests	sri-lanka-lowland-rainforests	exact_norm	100.0
+275	Sri Lanka montane rain forests	Sri Lanka Montane Rainforests	sri-lanka-montane-rainforests	exact_norm	100.0
+156	Sulawesi lowland rain forests	Sulawesi Lowland Rainforests	sulawesi-lowland-rainforests	exact_norm	100.0
+157	Sulawesi montane rain forests	Sulawesi Montane Rainforests	sulawesi-montane-rainforests	exact_norm	100.0
+276	Sulu Archipelago rain forests	Sulu Archipelago Rainforests	sulu-archipelago-rainforests	exact_norm	100.0
+278	Sumatran lowland rain forests	Sumatran Lowland Rainforests	sumatran-lowland-rainforests	exact_norm	100.0
+279	Sumatran montane rain forests	Sumatran Montane Rainforests	sumatran-montane-rainforests	exact_norm	100.0
+179	Tasmanian temperate rain forests	Tasmanian Temperate Rainforests	tasmanian-temperate-rainforests	exact_norm	100.0
+284	Tenasserim-South Thailand semi-evergreen rain forests	Tenasserim-South Thailand Semi-Evergreen Rainforests	tenasserim-south-thailand-semi-evergreen-rainforests	exact_norm	100.0
+215	Tirari-Sturt stony desert	Tirari-Stuart Stony Desert	tirari-stuart-stony-desert	fuzzy_token_set	98.03921568627452
+548	Trinidad and Tobago dry forest	Trinidad and Tobago Dry Forests	trinidad-and-tobago-dry-forests	fuzzy_partial	100.0
+158	Trobriand Islands rain forests	Trobriand Islands Rainforests	trobriand-islands-rainforests	exact_norm	100.0
+159	Vanuatu rain forests	Vanuatu Rainforests	vanuatu-rainforests	exact_norm	100.0
+160	Vogelkop montane rain forests	Vogelkop Montane Rainforests	vogelkop-montane-rainforests	exact_norm	100.0
+161	Vogelkop-Aru lowland rain forests	Vogelkop-Aru Lowland Rainforests	vogelkop-aru-lowland-rainforests	exact_norm	100.0
+288	Western Java montane rain forests	Western Java Montane Rainforests	western-java-montane-rainforests	exact_norm	100.0
+289	Western Java rain forests	Western Java Rainforests	western-java-rainforests	exact_norm	100.0
+162	Yapen rain forests	Yapen Rainforests	yapen-rainforests	exact_norm	100.0
+551	Yucatán dry forests	Yucatan Dry Forests	yucatan-dry-forests	exact_norm	100.0
+519	Yucatán moist forests	Yucatan Moist Forests	yucatan-moist-forests	exact_norm	100.0

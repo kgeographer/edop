@@ -255,17 +255,6 @@
             <div class="text-muted">Loading realms...</div>
           </div>
 
-          <!-- Selected item info -->
-          <div id="eco-selected-info" class="card" style="display:none;">
-            <div class="card-body">
-              <h6 class="card-title" id="eco-selected-name"></h6>
-              <p class="card-text small text-muted" id="eco-selected-meta"></p>
-              <a href="#" id="eco-oneearth-link" class="btn btn-sm btn-outline-secondary" target="_blank" style="display:none;">
-                View on OneEarth
-              </a>
-            </div>
-          </div>
-
           <div class="mt-3">
             <div class="alert alert-light" id="eco-status" style="display:none;"></div>
           </div>
@@ -316,6 +305,17 @@
         <h5 class="mb-0" id="similar-heading">Most Similar Sites</h5>
         <p class="fst-italic small" id="similar-description"></p>
         <div id="similar-list"></div>
+      </div>
+
+      <!-- Ecoregion selected info (shown below map when viewing ecoregion) -->
+      <div id="eco-selected-info" class="card mt-3" style="display:none;">
+        <div class="card-body">
+          <h6 class="card-title" id="eco-selected-name"></h6>
+          <p class="card-text small text-muted" id="eco-selected-meta"></p>
+          <a href="#" id="eco-oneearth-link" class="btn btn-sm btn-outline-secondary" target="_blank" style="display:none;">
+            View on OneEarth
+          </a>
+        </div>
       </div>
     </div>
 
@@ -1797,6 +1797,9 @@
         showClusterLabel(null);
         clearSimilarResults();
         clearGazState();
+        // Hide eco selected info
+        const ecoInfo = document.getElementById('eco-selected-info');
+        if (ecoInfo) ecoInfo.style.display = 'none';
 
         // Always clear map overlays and reset view
         clearBasinLayer();
@@ -2928,11 +2931,9 @@
           ecoSelectedMeta.textContent = `${level.charAt(0).toUpperCase() + level.slice(1)}`;
           ecoSelectedInfo.style.display = '';
 
-          // OneEarth link (bioregions and ecoregions have pages)
-          if (level === 'bioregion' || level === 'ecoregion') {
-            // OneEarth URLs follow pattern: https://www.oneearth.org/bioregions/XXXX/
-            // For now, link to main bioregions page
-            ecoOneEarthLink.href = 'https://www.oneearth.org/bioregions/';
+          // OneEarth link for ecoregions with slug
+          if (level === 'ecoregion' && data.oneearth_slug) {
+            ecoOneEarthLink.href = `https://www.oneearth.org/ecoregions/${data.oneearth_slug}/`;
             ecoOneEarthLink.style.display = '';
           } else {
             ecoOneEarthLink.style.display = 'none';

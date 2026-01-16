@@ -1,5 +1,16 @@
 ### EDOP LOG
 ----
+#### 15 Jan 2026
+- diagnosed Wikipedia extraction issue: MediaWiki's `exlimit` silently limits full-text extracts to 1 page per batch request
+- fixed `scripts/refetch_wiki_extracts.py` to fetch one title at a time (0.2s delay, ~3 min for 847 titles)
+- created `public.eco_wikitext` table with FK to `gaz."Ecoregions2017"`, full-text search index
+- loaded 751/847 ecoregion Wikipedia extracts (88.5% initial coverage)
+- created `scripts/triage_missing_ecoregions.py` for automated candidate discovery
+- triaged 96 missing ecoregions: 7 strong matches, 19 partial, 45 redirects, 25 no match
+- manual review of 71 candidates: accepted 66 full articles + 4 section extracts, rejected 1 false positive
+- created `scripts/fetch_reviewed_extracts.py` to handle section extraction from broader articles
+- **final result: 821/847 ecoregions with Wikipedia text (96.9% coverage)**
+
 #### 11 Jan 2026
 - created `docs/edop_database_schema.md` — comprehensive reference for all source and result tables to reduce context-building between Claude Code sessions
 - implemented full 1565-dimensional basin clustering pipeline for all 190,675 basins:

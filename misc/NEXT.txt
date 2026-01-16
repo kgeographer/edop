@@ -1,4 +1,4 @@
-NEXT 14 Jan, 9am
+NEXT 15 Jan, 9am
 ================
 BUGS
 ----
@@ -15,15 +15,16 @@ GUI
 
 FEATURES
 --------
-/- Ideally: "Similar (env)" button for WHG API, comapres to WH cities at this time.
-- wire new Ecoregions tab (#tab-eco, gaz."Ecoregions2017"; generate signatures)
+\- "About" link to a modal long explainer
 - how many ecoregion pages in Wikipedia?
-- wire new Ecoregions tab (#tab-eco, eco847 with signatures)
-- home page explainer for EDOP (div below tab-content? #similar-results below map; change for each tab)
+- wire eco847 signatures
 - LLM summary of a signature?
 - add ssl to edop.kgeographer
 - distribution of WH sites in basin clusters? ecoregions?
-- "About" link to a modal long explainer
+/- home page explainer for EDOP (div below tab-content? #similar-results below map; change for each tab)
+/- wire new Ecoregions tab (#tab-eco, 
+/- Ideally: "Similar (env)" button for WHG API, comapres to WH cities at this time.
+/- wire new Ecoregions tab (#tab-eco, gaz."Ecoregions2017"; generate signatures)
 
 
 
