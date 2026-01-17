@@ -56,7 +56,29 @@ const ecoColors = [
 - `app/templates/index.html` — `displayEcoFeatures()`, bioregion list with external links, map click handler
 - `app/templates/base.html` — Bootstrap Icons CDN
 
+## Ecoregion Summaries (17 Jan 2026)
+
+Generated LLM summaries for all 821 ecoregions with Wikipedia text using Claude Sonnet.
+
+### Script
+- `scripts/summarize_ecoregion_text.py` — batch summarization with progress tracking, cost estimation
+- Added `summary` column to `eco_wikitext` table
+- 821 summaries generated, 0 errors, ~$6-7 cost
+
+### API Endpoint
+- `GET /api/eco/wikitext?eco_id=X` — returns `{eco_id, eco_name, summary, wiki_url}`
+
+### Frontend: Ecoregion Detail Card
+When user drills down to ecoregion level:
+- Header row: ecoregion name (`.fs-6`), OneEarth button, Wikipedia button
+- Body: LLM-generated summary paragraph (150-200 words, geo/eco focus)
+- Wikipedia button links directly to article (target=_blank)
+
+### Realm Ordering
+- Priority realms sorted to top: Subarctic America, North America, Eastern Eurasia
+- Note added: "Realms (first 3 have most complete bioregion data)"
+- Remaining realms sorted alphabetically
+
 ## Next Steps
-- Consider adding Wikipedia extract display for ecoregions (821/847 available)
 - Hover on list item → highlight map feature (reverse of current)
 - Accordion-style expandable hierarchy (future enhancement)

@@ -38,7 +38,7 @@ HydroATLAS basin data. Building a proof-of-concept for funding partners (ISHI/Pi
 - `gaz."Bioregions2023"` — 185 bioregions (FK to subrealm via subrealm_fk)
 - `gaz."Ecoregions2017"` — 847 ecoregions (FK to bioregion via bioregion_fk)
 - `gaz.bioregion_meta` — human-readable titles and OneEarth URL slugs for bioregions
-- `public.eco_wikitext` — Wikipedia extracts for 821/847 ecoregions (96.9% coverage), FK to Ecoregions2017
+- `public.eco_wikitext` — Wikipedia extracts for 821/847 ecoregions (96.9% coverage), FK to Ecoregions2017; includes `summary` column with LLM-generated 150-200 word summaries
 
 ## Key Findings
 - Environmental and text similarity are complementary (45% cluster agreement)
@@ -54,8 +54,18 @@ Wikipedia text harvested for ecoregions to enable semantic enrichment of hierarc
 - `scripts/load_eco_wikitext.py` — load JSONL to database
 - `scripts/triage_missing_ecoregions.py` — find candidates for missing ecoregions
 - `scripts/fetch_reviewed_extracts.py` — fetch full/section extracts for reviewed candidates
+- `scripts/summarize_ecoregion_text.py` — Claude Sonnet summarization of wiki text → 150-200 word geo/eco summaries
 
 **Coverage:** 821/847 (96.9%). Missing 26 are mostly Antarctic tundra and newer ecoregions without Wikipedia articles.
+
+## Ecoregion Detail UI (completed 17 Jan 2026)
+When user drills down to ecoregion level, the detail card shows:
+- Header: name (`.fs-6`), OneEarth button, Wikipedia button (links to wiki_url, target=_blank)
+- Body: LLM summary paragraph (150-200 words, geo/eco focus)
+
+**API:** `GET /api/eco/wikitext?eco_id=X` returns `{eco_id, eco_name, summary, wiki_url}`
+
+**Realm ordering:** Priority realms (Subarctic America, North America, Eastern Eurasia) sorted to top with note about bioregion data completeness.
 
 ## Key Files
 - `docs/edop_database_schema.md` — comprehensive schema reference

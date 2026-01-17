@@ -311,11 +311,19 @@
       <!-- Ecoregion selected info (shown below map when viewing ecoregion) -->
       <div id="eco-selected-info" class="card mt-3" style="display:none;">
         <div class="card-body">
-          <h6 class="card-title" id="eco-selected-name"></h6>
-          <p class="card-text small text-muted" id="eco-selected-meta"></p>
-          <a href="#" id="eco-oneearth-link" class="btn btn-sm btn-outline-secondary" target="_blank" style="display:none;">
-            View on OneEarth
-          </a>
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h6 class="card-title mb-0 fs-6" id="eco-selected-name"></h6>
+            <div class="d-flex gap-2">
+              <a href="#" id="eco-oneearth-link" class="btn btn-sm btn-outline-secondary" target="_blank" style="display:none;">
+                OneEarth <i class="bi bi-box-arrow-up-right small"></i>
+              </a>
+              <a href="#" id="eco-wiki-link" class="btn btn-sm btn-outline-secondary" target="_blank" style="display:none;">
+                Wikipedia <i class="bi bi-box-arrow-up-right small"></i>
+              </a>
+            </div>
+          </div>
+          <p class="card-text" id="eco-selected-summary" style="display:none;"></p>
+          <p class="card-text small text-muted" id="eco-selected-meta" style="display:none;"></p>
         </div>
       </div>
     </div>
@@ -2747,7 +2755,9 @@
     const ecoSelectedInfo = document.getElementById('eco-selected-info');
     const ecoSelectedName = document.getElementById('eco-selected-name');
     const ecoSelectedMeta = document.getElementById('eco-selected-meta');
+    const ecoSelectedSummary = document.getElementById('eco-selected-summary');
     const ecoOneEarthLink = document.getElementById('eco-oneearth-link');
+    const ecoWikiLink = document.getElementById('eco-wiki-link');
     const ecoStatus = document.getElementById('eco-status');
 
     let ecoLayer = null;  // Current polygon layer on map
@@ -2814,7 +2824,18 @@
           data = await resp.json();
           items = data.realms || [];
           level = 'realm';
-          ecoList.innerHTML = items.map(r => `
+          // Sort realms with best bioregion coverage to top
+          const priorityRealms = ['Nearctic-Upper', 'Nearctic', 'Palearctic-East'];
+          items.sort((a, b) => {
+            const aIdx = priorityRealms.indexOf(a.id);
+            const bIdx = priorityRealms.indexOf(b.id);
+            if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+            if (aIdx !== -1) return -1;
+            if (bIdx !== -1) return 1;
+            return a.name.localeCompare(b.name);
+          });
+          const realmNote = '<div class="small text-muted mb-2">Realms (first 3 have most complete bioregion data)</div>';
+          ecoList.innerHTML = realmNote + items.map(r => `
             <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-eco-level="realm" data-eco-id="${escapeHtml(r.id)}">
               ${escapeHtml(r.name)}
               <span class="badge bg-secondary rounded-pill">${r.subrealm_count} subrealms</span>
@@ -2996,8 +3017,13 @@
         // Show selected info
         if (ecoSelectedInfo) {
           ecoSelectedName.textContent = data.name || name;
-          ecoSelectedMeta.textContent = `${level.charAt(0).toUpperCase() + level.slice(1)}`;
           ecoSelectedInfo.style.display = '';
+
+          // Reset summary and links
+          ecoSelectedSummary.style.display = 'none';
+          ecoSelectedSummary.textContent = '';
+          ecoWikiLink.style.display = 'none';
+          ecoSelectedMeta.style.display = 'none';
 
           // OneEarth link for ecoregions with slug
           if (level === 'ecoregion' && data.oneearth_slug) {
@@ -3005,6 +3031,24 @@
             ecoOneEarthLink.style.display = '';
           } else {
             ecoOneEarthLink.style.display = 'none';
+          }
+
+          // Fetch and display Wikipedia summary for ecoregions
+          if (level === 'ecoregion') {
+            try {
+              const wikiResp = await fetch(`/api/eco/wikitext?eco_id=${encodeURIComponent(id)}`);
+              const wikiData = await wikiResp.json();
+              if (wikiData.summary) {
+                ecoSelectedSummary.textContent = wikiData.summary;
+                ecoSelectedSummary.style.display = '';
+              }
+              if (wikiData.wiki_url) {
+                ecoWikiLink.href = wikiData.wiki_url;
+                ecoWikiLink.style.display = '';
+              }
+            } catch (wikiErr) {
+              console.error('Error loading wiki summary:', wikiErr);
+            }
           }
         }
 

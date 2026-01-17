@@ -1,5 +1,12 @@
 ### EDOP LOG
 ----
+#### 17 Jan 2026
+- created `scripts/summarize_ecoregion_text.py` — Claude Sonnet batch summarization of ecoregion Wikipedia text
+- added `summary` column to `eco_wikitext` table; generated 821 summaries (150-200 words, geo/eco focus)
+- added `/api/eco/wikitext?eco_id=X` endpoint returning summary and wiki_url
+- redesigned ecoregion detail card: name + OneEarth/Wikipedia buttons + summary paragraph
+- reordered realms list: priority realms (Subarctic America, North America, Eastern Eurasia) sorted to top with note about completeness
+
 #### 16 Jan 2026
 - overhauled Ecoregions tab UX: map now shows child features matching the list (not parent geometry)
 - added 3 new geometry endpoints: `/api/eco/subrealms/geom`, `/api/eco/bioregions/geom`, `/api/eco/ecoregions/geom`

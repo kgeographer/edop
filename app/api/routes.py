@@ -1740,3 +1740,43 @@ def eco_geom(level: str, id: str):
     finally:
         if 'conn' in locals():
             conn.close()
+
+
+@router.get("/eco/wikitext")
+def eco_wikitext(eco_id: int):
+    """Get Wikipedia summary and URL for an ecoregion."""
+    import psycopg
+    import os
+
+    try:
+        conn = psycopg.connect(
+            host=os.environ.get("PGHOST", "localhost"),
+            port=os.environ.get("PGPORT", "5435"),
+            dbname=os.environ.get("PGDATABASE", "edop"),
+            user=os.environ.get("PGUSER", "postgres"),
+            password=os.environ.get("PGPASSWORD", ""),
+        )
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT e.eco_name, w.summary, w.wiki_url
+                FROM gaz."Ecoregions2017" e
+                LEFT JOIN public.eco_wikitext w ON w.eco_id = e.eco_id
+                WHERE e.eco_id = %s
+            """, (eco_id,))
+            row = cur.fetchone()
+
+            if not row:
+                return {"eco_id": eco_id, "error": "Not found"}
+
+            return {
+                "eco_id": eco_id,
+                "eco_name": row[0],
+                "summary": row[1],
+                "wiki_url": row[2]
+            }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if 'conn' in locals():
+            conn.close()
