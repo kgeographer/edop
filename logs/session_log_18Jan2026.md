@@ -102,3 +102,40 @@ Band D (Anthropocene markers: GDP, HDI, etc.) shows strong correlations but is *
 - Realm names stripped of parenthetical content (e.g., "South America" not "South America (lower Neotropic)")
 - 14 realms represented: Afrotropics (496), North America (234), Australasia (100), etc.
 - Generic `dplace-results` container created for reuse with future query outputs
+
+### Basin Clusters Display Toggle
+- Added "Show:" toggle in subsistence panel: Ecoregions by realm | Basin clusters
+- Basin clusters view shows society counts per environmental cluster type
+- **Bug fix**: Was joining to wrong table (`basin08_pca_clusters` instead of `basin08.cluster_id`)
+  - Resulted in counter-intuitive results (e.g., "High Andes: 69" for intensive agriculture)
+  - Detective work revealed two different clustering results stored in database
+
+### Environmental Cluster Labels
+- Replaced geographic cluster labels with environmental descriptors
+- Old labels derived from WHC city distributions were geographically misleading
+- New labels based on actual environmental characteristics (temp, precip, elevation):
+
+| Old (Geographic) | New (Environmental) |
+|------------------|---------------------|
+| High Andes | Cold high plateau |
+| Mediterranean | Warm semi-arid upland |
+| Central Asian steppe | Cool semi-arid upland |
+| Sahel/tropical dry | Hot subhumid lowland |
+| Nordic fjord/coastal | Cold subhumid lowland |
+
+### Religion Query (EA034)
+- Added second accordion: "High gods (EA034)"
+- 4 categories ordered by conceptual progression:
+  - Absent (277 societies)
+  - Otiose (258) - high god present but inactive
+  - Active, but not supporting morality (42)
+  - Active, supporting morality (198)
+- Color gradient: light pink → dark red reflecting belief intensity
+- Selecting religion filter resets subsistence filter (one query active at a time)
+- Both "Ecoregions by realm" and "Basin clusters" display modes work
+
+### Environmental-Religion Correlation Finding
+- Societies with moralizing high gods have **half the precipitation** (677mm vs 1281mm) of societies without high gods
+- Strong confound with subsistence: moralizing gods concentrated in intensive agriculture (95) and pastoralism (45)
+- Possible causal chain: drier environment → pastoralism/intensive ag → moralizing high gods
+- Aligns with anthropological literature on resource scarcity → cooperation → moral enforcement

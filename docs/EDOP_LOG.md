@@ -13,6 +13,16 @@
 - markers colored by subsistence type; filtered view fades non-matching markers
 - **top ecoregions by realm**: selecting subsistence filter shows top 3 ecoregions per realm in 2-column display
 - API joins through OneEarth hierarchy (Bioregions2023 → Subrealm2023 → Realm2023) for proper realm names
+- **basin clusters display**: toggle between "Ecoregions by realm" and "Basin clusters" views
+- fixed cluster join bug: was using `basin08_pca_clusters` table instead of `basin08.cluster_id`
+- **renamed cluster labels**: replaced geographic names with environmental descriptors
+  - "High Andes" → "Cold high plateau", "Mediterranean" → "Warm semi-arid upland", etc.
+  - labels now based on temperature/moisture/elevation, no geographic references
+- **Religion query (EA034)**: second accordion for "High gods" with 4 categories
+  - Absent (277), Otiose (258), Active not moral (42), Active supporting morality (198)
+  - color gradient from light pink to dark red reflecting belief intensity
+  - selecting religion resets subsistence filter and vice versa (one query active at a time)
+- **environmental correlation**: societies with moralizing high gods have half the precipitation of those without
 
 #### 17 Jan 2026
 - created `scripts/summarize_ecoregion_text.py` — Claude Sonnet batch summarization of ecoregion Wikipedia text
