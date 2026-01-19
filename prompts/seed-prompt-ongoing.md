@@ -76,7 +76,7 @@ D-PLACE (Database of Places, Language, Culture, and Environment) integrated to e
 
 **Data:** 1,291 societies, 94 anthropological variables, 121k coded observations. Focal years 1850-1940.
 
-**Spatial joins:** `basin_id` and `eco_id` added to `dplace_societies` via PostGIS ST_Contains (87% coverage).
+**Spatial joins:** `basin_id`, `eco_id`, and `bioregion_id` added to `dplace_societies` via PostGIS ST_Contains (87% basin, 99% bioregion coverage).
 
 **Scripts:**
 - `scripts/dplace_env_correlations_signature.py` — correlations using EDOP signature fields by band
@@ -88,6 +88,23 @@ D-PLACE (Database of Places, Language, Culture, and Environment) integrated to e
 - Band D (Anthropocene markers) excluded as anachronistic for historical inquiry
 
 **Output:** `output/dplace/correlations_signature_bands_ABC.csv`, `analysis_narrative_18Jan2026.md`
+
+## Societies Tab UI (18-19 Jan 2026)
+- Map displays 1,291 D-PLACE societies as circle markers
+- Two query accordions: Subsistence (EA042) and High gods (EA034)
+- Radio button filters with color-coded markers
+- Results display: toggle between "Ecoregions by realm" and "Basin clusters"
+- Loading spinner during initial 6-7s data fetch
+- Variable description tooltips on accordion headers (from `dplace_variables.description`)
+
+**API:** `GET /api/societies` returns societies with bioregion, subsistence, religion, cluster_id, and `variable_info` for tooltips.
+
+## Pre-launch Fixes (19 Jan 2026)
+- Fixed ecoregion geometry rendering (removed non-existent `oneearth_slug` column)
+- Fixed societies map: `L.featureGroup()` for bounds, `setView([20,0],1)` for zoom
+- Fixed WHG search: `mode: "fuzzy"` for prominence ranking (Denver CO now first)
+- Fixed WHG popover close button: `sanitize: false`, `html: true`
+- Header styling: smaller links, subtle badge
 
 ## Key Files
 - `docs/edop_database_schema.md` — comprehensive schema reference

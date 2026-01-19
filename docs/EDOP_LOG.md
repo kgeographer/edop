@@ -1,5 +1,17 @@
 ### EDOP LOG
 ----
+#### 19 Jan 2026
+- **pre-launch bug fixes** for v0.1 demo to Pitt collaborators
+- fixed ecoregion geometry: removed non-existent `oneearth_slug` column from `/api/eco/geom` query
+- fixed societies map: changed `L.layerGroup()` to `L.featureGroup()` for `getBounds()` support
+- fixed societies zoom: replaced `fitBounds()` with `setView([20, 0], 1)` for fixed global view
+- fixed WHG search ranking: changed `mode: "exact"` to `mode: "fuzzy"` — Denver CO now ranks first
+- fixed WHG popover close button: added `sanitize: false` and `html: true` to popover options
+- **societies loading spinner**: shows during 6-7s initial fetch, hides accordions until ready
+- **variable description tooltips**: question mark icons on EA042/EA034 headers, hover shows D-PLACE descriptions
+- added `variable_info` to `/api/societies` response with variable names and descriptions
+- header styling: smaller About/API links, subtle badge (`bg-secondary rounded-pill`)
+
 #### 18 Jan 2026
 - integrated D-PLACE cultural database: 1,291 societies, 94 anthropological variables, 121k observations
 - spatial join: added `basin_id`, `eco_id`, `bioregion_id` to `dplace_societies` (87% basin, 99% bioregion coverage)

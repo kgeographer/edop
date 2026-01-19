@@ -135,9 +135,11 @@ def _whg_reconcile_query(query: str, countries: List[str] = None, bounds: Dict =
         raise HTTPException(status_code=500, detail="WHG_API_TOKEN not configured on server")
 
     # Build query payload
+    # NOTE: "fuzzy" mode returns results ranked by prominence (alt names, etc.)
+    # "exact" mode returns exact matches but without prominence ranking
     q_params = {
         "query": query,
-        "mode": "exact",
+        "mode": "fuzzy",
         "fclasses": ["P"],  # Places (settlements)
         "type": "https://whgazetteer.org/static/whg_schema.jsonld#Place",
         "size": size
@@ -1881,11 +1883,24 @@ def societies():
                 for k in religion_order if k in religion_counts
             ]
 
+            # Get variable descriptions for tooltips
+            cur.execute("""
+                SELECT id, name, description
+                FROM gaz.dplace_variables
+                WHERE id IN ('EA042', 'EA034')
+            """)
+            var_rows = cur.fetchall()
+            variable_info = {
+                row[0]: {"name": row[1], "description": row[2]}
+                for row in var_rows
+            }
+
             return {
                 "count": len(societies),
                 "bioregions": bioregions,
                 "subsistence_categories": subsistence_categories,
                 "religion_categories": religion_categories,
+                "variable_info": variable_info,
                 "societies": societies
             }
 
