@@ -1801,7 +1801,7 @@ def societies():
             password=os.environ.get("PGPASSWORD", ""),
         )
         with conn.cursor() as cur:
-            # Get societies with bioregion, ecoregion, realm, basin cluster, and EA042 (dominant subsistence)
+            # Get societies with bioregion, ecoregion, realm, basin cluster, EA042 (subsistence), EA034 (religion)
             cur.execute("""
                 SELECT s.id, s.name, s.region, s.bioregion_id,
                        m.title as bioregion_name,
@@ -1809,12 +1809,16 @@ def societies():
                        c.name as subsistence,
                        s.eco_id, e.eco_name,
                        r.realm,
-                       ba.cluster_id
+                       ba.cluster_id,
+                       rel.name as religion
                 FROM gaz.dplace_societies s
                 LEFT JOIN gaz.bioregion_meta m ON m.bioregion_id = s.bioregion_id
                 LEFT JOIN gaz.dplace_data d ON d.soc_id = s.id AND d.var_id = 'EA042'
                 LEFT JOIN gaz.dplace_codes c ON c.id = d.code_id
                     AND c.name NOT IN ('Missing data', '', 'Missing for at least 1 activity', 'Two or more sources')
+                LEFT JOIN gaz.dplace_data rd ON rd.soc_id = s.id AND rd.var_id = 'EA034'
+                LEFT JOIN gaz.dplace_codes rel ON rel.id = rd.code_id
+                    AND rel.name != 'Missing data'
                 LEFT JOIN gaz."Ecoregions2017" e ON e.eco_id = s.eco_id
                 LEFT JOIN gaz."Bioregions2023" b ON b.bioregions = s.bioregion_id
                 LEFT JOIN gaz."Subrealm2023" sr ON sr.subrealmid = b.subrealm_id
@@ -1842,7 +1846,8 @@ def societies():
                     "eco_id": row[8],
                     "eco_name": row[9],
                     "realm": realm,
-                    "cluster_id": row[11]
+                    "cluster_id": row[11],
+                    "religion": row[12]
                 })
 
             # Get unique bioregions for legend
@@ -1868,10 +1873,23 @@ def societies():
                 for k, v in sorted(subsistence_counts.items(), key=lambda x: -x[1])
             ]
 
+            # Get religion categories with counts (ordered by conceptual progression)
+            religion_order = ['Absent', 'Otiose', 'Active, but not supporting morality', 'Active, supporting morality']
+            religion_counts = {}
+            for s in societies:
+                rel = s["religion"]
+                if rel:
+                    religion_counts[rel] = religion_counts.get(rel, 0) + 1
+            religion_categories = [
+                {"name": k, "count": religion_counts.get(k, 0)}
+                for k in religion_order if k in religion_counts
+            ]
+
             return {
                 "count": len(societies),
                 "bioregions": bioregions,
                 "subsistence_categories": subsistence_categories,
+                "religion_categories": religion_categories,
                 "societies": societies
             }
 

@@ -291,6 +291,27 @@
                 </div>
               </div>
             </div>
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="soc-query-religion">
+              High gods (EA034)
+              <i class="bi bi-chevron-down small"></i>
+            </a>
+            <div id="soc-religion-panel" class="p-2 border-start border-end border-bottom" style="display:none;">
+              <div id="soc-religion-radios" class="d-flex flex-wrap gap-2">
+                <!-- Radio buttons populated by JS -->
+              </div>
+              <hr class="my-2">
+              <div class="d-flex align-items-center small">
+                <span class="text-muted me-2">Show:</span>
+                <div class="form-check form-check-inline mb-0">
+                  <input class="form-check-input" type="radio" name="soc-religion-display-mode" id="soc-rel-mode-eco" value="ecoregions" checked>
+                  <label class="form-check-label" for="soc-rel-mode-eco">Ecoregions by realm</label>
+                </div>
+                <div class="form-check form-check-inline mb-0">
+                  <input class="form-check-input" type="radio" name="soc-religion-display-mode" id="soc-rel-mode-basin" value="basins">
+                  <label class="form-check-label" for="soc-rel-mode-basin">Basin clusters</label>
+                </div>
+              </div>
+            </div>
           </div>
           <div id="soc-content"></div>
         </div>
@@ -2848,9 +2869,20 @@
       'Intensive agriculture': '#e41a1c',
       'Agriculture, type unknown': '#984ea3'
     };
+
+    // 4-color palette for religion categories (gradient from absent to active)
+    const RELIGION_COLORS = {
+      'Absent': '#fee5d9',
+      'Otiose': '#fcae91',
+      'Active, but not supporting morality': '#fb6a4a',
+      'Active, supporting morality': '#cb181d'
+    };
+
     const NO_DATA_COLOR = '#999';
 
     let socSubsistenceFilter = 'all';  // Current filter: 'all' or a subsistence name
+    let socReligionFilter = 'all';     // Current filter: 'all' or a religion category
+    let socActiveQuery = 'subsistence'; // Which query is active: 'subsistence' or 'religion'
     let socDisplayMode = 'ecoregions';  // 'ecoregions' or 'basins'
 
     async function loadSocieties() {
@@ -2865,6 +2897,8 @@
         socData = await resp.json();
         renderSubsistenceRadios(socData);
         wireSubsistenceAccordion();
+        renderReligionRadios(socData);
+        wireReligionAccordion();
         displaySocieties(socData);
       } catch (err) {
         console.error('Failed to load societies:', err);
@@ -2929,6 +2963,81 @@
       container.querySelectorAll('input[name="soc-subsistence"]').forEach(radio => {
         radio.addEventListener('change', (e) => {
           socSubsistenceFilter = e.target.value;
+          socActiveQuery = 'subsistence';
+          // Reset religion filter when switching to subsistence
+          socReligionFilter = 'all';
+          document.querySelectorAll('input[name="soc-religion"]').forEach(r => {
+            r.checked = (r.value === 'all');
+          });
+          displaySocieties(socData);
+        });
+      });
+    }
+
+    function wireReligionAccordion() {
+      const toggle = document.getElementById('soc-query-religion');
+      const panel = document.getElementById('soc-religion-panel');
+      const chevron = toggle?.querySelector('i');
+      if (!toggle || !panel) return;
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = panel.style.display !== 'none';
+        panel.style.display = isOpen ? 'none' : 'block';
+        if (chevron) {
+          chevron.classList.toggle('bi-chevron-down', isOpen);
+          chevron.classList.toggle('bi-chevron-up', !isOpen);
+        }
+      });
+
+      // Wire display mode radios for religion
+      document.querySelectorAll('input[name="soc-religion-display-mode"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          socDisplayMode = e.target.value;
+          if (socData && socReligionFilter !== 'all') {
+            renderDplaceResults(socData);
+          }
+        });
+      });
+    }
+
+    function renderReligionRadios(data) {
+      const container = document.getElementById('soc-religion-radios');
+      if (!container) return;
+
+      // Build radio buttons: "All" first, then categories in conceptual order
+      const categories = ['all', ...data.religion_categories.map(c => c.name)];
+      const counts = { all: data.societies.filter(s => s.religion).length };
+      data.religion_categories.forEach(c => { counts[c.name] = c.count; });
+
+      container.innerHTML = categories.map((cat, idx) => {
+        const id = `soc-rel-${idx}`;
+        const label = cat === 'all' ? 'All' : cat;
+        const count = counts[cat];
+        const checked = cat === 'all' ? 'checked' : '';
+        const color = cat === 'all' ? '#666' : (RELIGION_COLORS[cat] || NO_DATA_COLOR);
+        return `
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="soc-religion"
+                   id="${id}" value="${escapeHtml(cat)}" ${checked}>
+            <label class="form-check-label small" for="${id}">
+              <span style="display:inline-block;width:12px;height:12px;background:${color};border:1px solid #333;margin-right:4px;vertical-align:middle;"></span>
+              ${escapeHtml(label)} (${count})
+            </label>
+          </div>
+        `;
+      }).join('');
+
+      // Wire up change handlers
+      container.querySelectorAll('input[name="soc-religion"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          socReligionFilter = e.target.value;
+          socActiveQuery = 'religion';
+          // Reset subsistence filter when switching to religion
+          socSubsistenceFilter = 'all';
+          document.querySelectorAll('input[name="soc-subsistence"]').forEach(r => {
+            r.checked = (r.value === 'all');
+          });
           displaySocieties(socData);
         });
       });
@@ -2944,21 +3053,27 @@
       data.societies.forEach(soc => {
         if (soc.lat == null || soc.lon == null) return;
 
-        const sub = soc.subsistence;
-        let color, show;
+        let color, isMatch;
 
-        if (socSubsistenceFilter === 'all') {
-          // Show all: colored by subsistence, grey if no data
-          color = sub ? (SUBSISTENCE_COLORS[sub] || NO_DATA_COLOR) : NO_DATA_COLOR;
-          show = true;
-        } else {
-          // Filtered: show matching in color, non-matching greyed out
-          if (sub === socSubsistenceFilter) {
-            color = SUBSISTENCE_COLORS[sub] || NO_DATA_COLOR;
-            show = true;
+        if (socActiveQuery === 'religion') {
+          // Religion filtering
+          const rel = soc.religion;
+          if (socReligionFilter === 'all') {
+            color = rel ? (RELIGION_COLORS[rel] || NO_DATA_COLOR) : NO_DATA_COLOR;
+            isMatch = true;
           } else {
-            color = NO_DATA_COLOR;
-            show = true;  // Show greyed out
+            isMatch = (rel === socReligionFilter);
+            color = isMatch ? (RELIGION_COLORS[rel] || NO_DATA_COLOR) : NO_DATA_COLOR;
+          }
+        } else {
+          // Subsistence filtering (default)
+          const sub = soc.subsistence;
+          if (socSubsistenceFilter === 'all') {
+            color = sub ? (SUBSISTENCE_COLORS[sub] || NO_DATA_COLOR) : NO_DATA_COLOR;
+            isMatch = true;
+          } else {
+            isMatch = (sub === socSubsistenceFilter);
+            color = isMatch ? (SUBSISTENCE_COLORS[sub] || NO_DATA_COLOR) : NO_DATA_COLOR;
           }
         }
 
@@ -2967,8 +3082,8 @@
           fillColor: color,
           color: '#333',
           weight: 1,
-          opacity: show && (socSubsistenceFilter === 'all' || sub === socSubsistenceFilter) ? 0.8 : 0.3,
-          fillOpacity: show && (socSubsistenceFilter === 'all' || sub === socSubsistenceFilter) ? 0.8 : 0.1
+          opacity: isMatch ? 0.8 : 0.3,
+          fillOpacity: isMatch ? 0.8 : 0.1
         });
 
         marker.bindTooltip(`<strong>${escapeHtml(soc.name)}</strong> (${escapeHtml(soc.id)})`);
@@ -2978,7 +3093,8 @@
       socLayer.addTo(map);
 
       // Fit map to markers on initial load only
-      if (socSubsistenceFilter === 'all' && data.societies.length > 0) {
+      const isAllFilter = (socActiveQuery === 'religion' ? socReligionFilter : socSubsistenceFilter) === 'all';
+      if (isAllFilter && data.societies.length > 0) {
         const bounds = socLayer.getBounds();
         if (bounds.isValid()) {
           map.fitBounds(bounds, { padding: [20, 20] });
@@ -3003,15 +3119,19 @@
       const content = document.getElementById('dplace-results-content');
       if (!container || !heading || !content) return;
 
-      if (socSubsistenceFilter === 'all') {
+      // Determine active filter
+      const activeFilter = socActiveQuery === 'religion' ? socReligionFilter : socSubsistenceFilter;
+      const filterField = socActiveQuery === 'religion' ? 'religion' : 'subsistence';
+
+      if (activeFilter === 'all') {
         container.style.display = 'none';
         return;
       }
 
-      // Count societies per ecoregion for selected subsistence, tracking realm
+      // Count societies per ecoregion for selected filter, tracking realm
       const ecoData = {};  // eco_name → {count, realm}
       data.societies.forEach(soc => {
-        if (soc.subsistence === socSubsistenceFilter && soc.eco_name && soc.realm) {
+        if (soc[filterField] === activeFilter && soc.eco_name && soc.realm) {
           const key = soc.eco_name;
           if (!ecoData[key]) {
             ecoData[key] = { count: 0, realm: soc.realm };
@@ -3041,7 +3161,7 @@
       })).sort((a, b) => b.total - a.total);
 
       // Render heading
-      heading.textContent = `Top ecoregions for ${socSubsistenceFilter}`;
+      heading.textContent = `Top ecoregions for ${activeFilter}`;
 
       // Render 2-column layout with realm subheadings
       const html = '<div class="row small">' +
@@ -3061,15 +3181,19 @@
       const content = document.getElementById('dplace-results-content');
       if (!container || !heading || !content) return;
 
-      if (socSubsistenceFilter === 'all') {
+      // Determine active filter
+      const activeFilter = socActiveQuery === 'religion' ? socReligionFilter : socSubsistenceFilter;
+      const filterField = socActiveQuery === 'religion' ? 'religion' : 'subsistence';
+
+      if (activeFilter === 'all') {
         container.style.display = 'none';
         return;
       }
 
-      // Count societies per cluster for selected subsistence
+      // Count societies per cluster for selected filter
       const clusterCounts = {};  // cluster_id → count
       data.societies.forEach(soc => {
-        if (soc.subsistence === socSubsistenceFilter && soc.cluster_id != null) {
+        if (soc[filterField] === activeFilter && soc.cluster_id != null) {
           const cid = soc.cluster_id;
           clusterCounts[cid] = (clusterCounts[cid] || 0) + 1;
         }
@@ -3086,7 +3210,7 @@
         .sort((a, b) => b.count - a.count);
 
       // Render heading
-      heading.textContent = `Basin clusters for ${socSubsistenceFilter}`;
+      heading.textContent = `Basin clusters for ${activeFilter}`;
 
       // Render as list with badges (similar to Basins tab)
       const html = '<div class="list-group list-group-flush small">' +
